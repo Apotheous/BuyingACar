@@ -9,6 +9,7 @@ public class Car : MonoBehaviour
     void Start()
     {
         CarMain car = new CarMain();
+
         car.carName = gameObject.name.ToString();
 
         car.damagedParts = Random.Range(1, 10);
