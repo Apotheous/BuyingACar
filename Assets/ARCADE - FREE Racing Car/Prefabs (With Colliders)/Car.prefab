@@ -1545,6 +1545,8 @@ GameObject:
   - component: {fileID: 7495443279060062592}
   - component: {fileID: 1953448115}
   - component: {fileID: 1288273463404085869}
+  - component: {fileID: -864326412688956233}
+  - component: {fileID: -8027563335105156319}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -1567,7 +1569,6 @@ Transform:
   - {fileID: 1792549862734306809}
   - {fileID: 7096574665496613375}
   - {fileID: 7781842844044976076}
-  - {fileID: 3431066677492787382}
   - {fileID: 3482683350071178924}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1632,6 +1633,31 @@ MonoBehaviour:
   - {fileID: 249338026380019086}
   - {fileID: 5915063753619315712}
   - {fileID: 7069542962847998495}
+--- !u!114 &-864326412688956233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3311311803080157842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 863e0e32ec65a0640b7dae4703df7709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &-8027563335105156319
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3311311803080157842}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.4628754, z: 5.2222543}
+  m_Center: {x: 0, y: 0.74797964, z: -0.10791087}
 --- !u!1 &3347512963720842258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1800,7 +1826,7 @@ RectTransform:
   m_Children:
   - {fileID: 6151094135993255015}
   m_Father: {fileID: 2792218741957914664}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3840,37 +3866,6 @@ Transform:
   - {fileID: 1678281826333504937}
   m_Father: {fileID: 6151094135993255015}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7876625338180433700
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3431066677492787382}
-  m_Layer: 0
-  m_Name: FollowPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3431066677492787382
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7876625338180433700}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0629518, y: 1.1, z: -0.35407066}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2792218741957914664}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7946724397903840259
 GameObject:
