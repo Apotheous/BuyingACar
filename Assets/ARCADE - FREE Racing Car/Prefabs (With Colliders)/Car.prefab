@@ -1546,7 +1546,7 @@ GameObject:
   - component: {fileID: 1953448115}
   - component: {fileID: 1288273463404085869}
   m_Layer: 0
-  m_Name: Free Racing Car
+  m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
