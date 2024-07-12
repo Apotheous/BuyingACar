@@ -21,10 +21,11 @@ public class Interactor : MonoBehaviour
 
     [SerializeField] bool inCar= false;
 
-
+    public GameObject TradePanel;
     void Update()
     {
         SelectCar();
+        TalkSeller();
     }
 
     private void SelectCar()
@@ -48,8 +49,48 @@ public class Interactor : MonoBehaviour
             Debug.Log("Trying to get out of the car");
             GettinOutCar(theCarImin);
         }
-    }
 
+    }    
+    private void TalkSeller()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Ray r = new Ray(interactirSource.position, interactirSource.forward);
+            if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
+            {
+                
+                if (hitInfo.collider.gameObject.name=="MrSeller")
+                {
+                    if (!TradePanel.activeSelf)
+                    {
+
+                        ShowCursor();
+                        TradePanel.SetActive(true);
+                        character.gameObject.SetActive(false);
+                    }
+                    else 
+                    { 
+                        TradePanel.SetActive(false);
+                        character.gameObject.SetActive(true);
+                        // Fare imlecinin görünürlüðünü tersine çevir
+                        Cursor.visible = !Cursor.visible;
+
+                        // Fare imlecinin kilitli olup olmadýðýný tersine çevir
+                        Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
+                    }
+
+                }
+            }
+        }
+    }
+    void ShowCursor()
+    {
+        // Fare imlecini görünür yap
+        Cursor.visible = true;
+
+        // Fare imlecinin serbest hareket etmesini saðla
+        Cursor.lockState = CursorLockMode.None;
+    }
     private void DriveCarComps(Transform car)
     {
         driveCam.SetParent(car.transform);
