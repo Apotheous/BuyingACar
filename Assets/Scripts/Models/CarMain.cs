@@ -18,6 +18,7 @@ namespace Models
         //Factors That Will Not Affect the Sales Value of Vehicles
         public int Suspensions { get; set; }
         public int wheelCamberValues { get; set; }
+        public int price { get; set; }
 
     }
 }

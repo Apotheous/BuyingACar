@@ -7,7 +7,7 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     // Define a list of TextMeshProUGUI components
-    public List<TextMeshProUGUI> textElements = new List<TextMeshProUGUI>(7);
+    public List<TextMeshProUGUI> textElements = new List<TextMeshProUGUI>(8);
     void Start()
     {
         CarMain car = new CarMain();
@@ -32,6 +32,9 @@ public class Car : MonoBehaviour
 
         car.wheelCamberValues = Random.Range(1, 10);
         textElements[6].text = car.wheelCamberValues.ToString();
+
+        car.price = (car.damagedParts + car.paintedParts + car.maxSpeed+ car.torque)*1000;
+        textElements[7].text = car.price.ToString() + " $ ";
 
         Debug.Log($"Car Name = {car.carName}, " +
             $"Car Damaged Parts = {car.damagedParts}, " +
