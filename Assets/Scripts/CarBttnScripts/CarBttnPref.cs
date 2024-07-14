@@ -35,6 +35,7 @@ public class CarBttnPref : MonoBehaviour
             "--" + BttnCar.GetComponent<Car>().carObject.paintedParts.ToString()+ 
             "--" + BttnCar.GetComponent<Car>().carObject.maxSpeed.ToString()+
             "--" + BttnCar.GetComponent<Car>().carObject.torque.ToString());
+            this.gameObject .SetActive(false);
         foreach (Transform item in mrSellerManager.transform)
         {
             Debug.Log(" Seller Childs " + item.name);
