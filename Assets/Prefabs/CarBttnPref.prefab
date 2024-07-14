@@ -148,9 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnName: 
-  selectedCar: {fileID: 0}
+  BttnCar: {fileID: 0}
   mrSellerManager: {fileID: 0}
-  textElements: []
 --- !u!1 &1484810055807733232
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,4 +229,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Car Blue
