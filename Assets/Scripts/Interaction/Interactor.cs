@@ -21,7 +21,7 @@ public class Interactor : MonoBehaviour
 
     [SerializeField] bool inCar= false;
 
-    public GameObject TradePanel,SelectedCarPropsPanel;
+    public GameObject TradePanel;
     void Update()
     {
         SelectCar();
@@ -66,15 +66,12 @@ public class Interactor : MonoBehaviour
 
                         ShowCursor();
                         TradePanel.SetActive(true);
-                        SelectedCarPropsPanel.SetActive(true);
                         character.gameObject.SetActive(false);
                     }
                     else 
                     { 
                         TradePanel.SetActive(false);
-                        SelectedCarPropsPanel.SetActive(false);
                         character.gameObject.SetActive(true);
-
                         // Fare imlecinin görünürlüðünü tersine çevir
                         Cursor.visible = !Cursor.visible;
 
