@@ -30,16 +30,18 @@ public class CarBttnPref : MonoBehaviour
     public void SelectCar()
     {
         BttnCar = GameObject.Find(this.gameObject.name);
-        Debug.Log("BtnPrefab = " + BttnCar.GetComponent<Car>().carObject.name+ 
-            "--" + BttnCar.GetComponent<Car>().carObject.damagedParts.ToString()+
-            "--" + BttnCar.GetComponent<Car>().carObject.paintedParts.ToString()+ 
-            "--" + BttnCar.GetComponent<Car>().carObject.maxSpeed.ToString()+
-            "--" + BttnCar.GetComponent<Car>().carObject.torque.ToString());
-            this.gameObject .SetActive(false);
-        foreach (Transform item in mrSellerManager.transform)
-        {
-            Debug.Log(" Seller Childs " + item.name);
-        }    
+        mrSellerManager.BttnSelectCar = GameObject.Find(this.gameObject.name);
+        mrSellerManager.SelectCar();
+        //Debug.Log("BtnPrefab = " + BttnCar.GetComponent<Car>().carObject.name+ 
+        //    "--" + BttnCar.GetComponent<Car>().carObject.damagedParts.ToString()+
+        //    "--" + BttnCar.GetComponent<Car>().carObject.paintedParts.ToString()+ 
+        //    "--" + BttnCar.GetComponent<Car>().carObject.maxSpeed.ToString()+
+        //    "--" + BttnCar.GetComponent<Car>().carObject.torque.ToString());
+        //    this.gameObject .SetActive(false);
+        //foreach (Transform item in mrSellerManager.transform)
+        //{
+        //    Debug.Log(" Seller Childs " + item.name);
+        //}    
     }
 
     //public void ToggleActiveState(GameObject obj)

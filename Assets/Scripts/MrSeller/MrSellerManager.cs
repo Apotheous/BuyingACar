@@ -11,13 +11,19 @@ public class MrSellerManager : MonoBehaviour
 
     public List<GameObject> carBtn = new List<GameObject>();
     Text carBttnText;
+    //Bttn Prefab
     public GameObject carBtnPref;
+    //For more bttns
     public GameObject content;
 
 
     //----
     // Define a list of TextMeshProUGUI components
     public List<TextMeshProUGUI> textElements = new List<TextMeshProUGUI>(8);
+
+    //Select Car
+    public GameObject BttnSelectCar;
+
 
     void Start()
     {
@@ -48,7 +54,17 @@ public class MrSellerManager : MonoBehaviour
     }
 
 
-
+    public void SelectCar()
+    {
+        textElements[0].text = BttnSelectCar.GetComponent<Car>().carObject.name;
+        textElements[1].text = BttnSelectCar.GetComponent<Car>().carObject.damagedParts.ToString();
+        textElements[2].text = BttnSelectCar.GetComponent<Car>().carObject.paintedParts.ToString();
+        textElements[3].text = BttnSelectCar.GetComponent<Car>().carObject.maxSpeed.ToString();
+        textElements[4].text = BttnSelectCar.GetComponent<Car>().carObject.torque.ToString();
+        textElements[5].text = BttnSelectCar.GetComponent<Car>().carObject.Suspensions.ToString();
+        textElements[6].text = BttnSelectCar.GetComponent<Car>().carObject.wheelCamberValues.ToString();
+        textElements[7].text = BttnSelectCar.GetComponent<Car>().carObject.price.ToString();
+    }
 
 
 }
