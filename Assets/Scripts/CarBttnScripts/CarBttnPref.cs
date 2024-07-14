@@ -29,6 +29,7 @@ public class CarBttnPref : MonoBehaviour
     }
     public void SelectCar()
     {
+<<<<<<< Updated upstream
         BttnCar = GameObject.Find(this.gameObject.name);
         Debug.Log("BtnPrefab = " + BttnCar.GetComponent<Car>().carObject.name+ 
             "--" + BttnCar.GetComponent<Car>().carObject.damagedParts.ToString()+
@@ -39,6 +40,10 @@ public class CarBttnPref : MonoBehaviour
         {
             Debug.Log(" Seller Childs " + item.name);
         }    
+=======
+        mrSellerManager.BttnSelectCar = GameObject.Find(this.gameObject.name);
+        mrSellerManager.SelectCar();
+>>>>>>> Stashed changes
     }
 
     //public void ToggleActiveState(GameObject obj)
