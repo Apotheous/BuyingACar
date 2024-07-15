@@ -9,39 +9,40 @@ public class CarBttnPref : MonoBehaviour
 {
 
     public string btnName;
-    public GameObject BttnCar;
-    //public GameObject SelectedCarPanel;
+    public GameObject carObjOfBttn;
     public MrSellerManager mrSellerManager;
-   
 
+    public GameObject MrSellerContent;
    
     private void Start()
     {
-
         // Initialize MrSellerManager
         GameObject sellerManagerObject = GameObject.Find("MrSeller");
         
-        BttnCar = GameObject.Find(this.gameObject.name);
         if (sellerManagerObject != null)
         {
             mrSellerManager = sellerManagerObject.GetComponent<MrSellerManager>();
         }
+        foreach (Transform item in mrSellerManager.transform)
+        {
+            if (item.name== "MrSellerCanvas")
+            {
+                foreach (Transform child in item.transform)
+                {
+                    if (child.name == "TradeBg")
+                    {
+                        MrSellerContent = child.transform.gameObject;
+                    }
+                }
+            }
+        }
+
     }
     public void SelectCar()
     {
-        BttnCar = GameObject.Find(this.gameObject.name);
-        mrSellerManager.BttnSelectCar = GameObject.Find(this.gameObject.name);
+        mrSellerManager.BttnSelectCar = carObjOfBttn;
+        MrSellerContent.GetComponent<MessageHandler>().MrSellerNextText();
         mrSellerManager.SelectCar();
-        //Debug.Log("BtnPrefab = " + BttnCar.GetComponent<Car>().carObject.name+ 
-        //    "--" + BttnCar.GetComponent<Car>().carObject.damagedParts.ToString()+
-        //    "--" + BttnCar.GetComponent<Car>().carObject.paintedParts.ToString()+ 
-        //    "--" + BttnCar.GetComponent<Car>().carObject.maxSpeed.ToString()+
-        //    "--" + BttnCar.GetComponent<Car>().carObject.torque.ToString());
-        //    this.gameObject .SetActive(false);
-        //foreach (Transform item in mrSellerManager.transform)
-        //{
-        //    Debug.Log(" Seller Childs " + item.name);
-        //}    
     }
 
     //public void ToggleActiveState(GameObject obj)
