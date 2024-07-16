@@ -16,6 +16,7 @@ public class MrSellerManager : MonoBehaviour
     public List<GameObject> SoldCarList= new List<GameObject>();
 
     Text carBttnText;
+
     //Bttn Prefab
     public GameObject carBtnPref;
     //For more bttns
@@ -29,9 +30,12 @@ public class MrSellerManager : MonoBehaviour
     public GameObject BttnSelectCar;
 
 
+    //UI elements trade factors
+    public Image damagePartsImg, paintedPartsImg, maxSpeedImg, torqueImg;
+
+
     void Start()
     {
-
         allObjects = GameObject.FindObjectsOfType<GameObject>();
 
         foreach (GameObject obj in allObjects)
@@ -57,7 +61,16 @@ public class MrSellerManager : MonoBehaviour
         //We empty the array that is no longer needed so that it does not take up space in memory.
         allObjects = null;
     }
+    private void Update()
+    {
+        if (BttnSelectCar != null)
+        {
+            for (int i = 0; i < 1; i++)
+            {
 
+            }
+        }
+    }
 
     public void SelectCar()
     {
@@ -80,4 +93,5 @@ public class MrSellerManager : MonoBehaviour
         mrSellerText.text =  text;
     }
 
+    
 }

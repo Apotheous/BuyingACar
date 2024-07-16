@@ -67,6 +67,7 @@ public class Interactor : MonoBehaviour
 
                         ShowCursor();
                         TradePanel.SetActive(true);
+                        hitInfo.collider.GetComponent<MrSellerManager>().BttnSelectCar = null;
                         SelectedCarPropsPanel.SetActive(true);
                         character.gameObject.SetActive(false);
                         foreach (Transform item in content.transform)
