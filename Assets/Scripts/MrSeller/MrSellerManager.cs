@@ -30,10 +30,6 @@ public class MrSellerManager : MonoBehaviour
     public GameObject BttnSelectCar;
 
 
-    //UI elements trade factors
-    public Image damagePartsImg, paintedPartsImg, maxSpeedImg, torqueImg;
-
-
     void Start()
     {
         allObjects = GameObject.FindObjectsOfType<GameObject>();
@@ -61,16 +57,7 @@ public class MrSellerManager : MonoBehaviour
         //We empty the array that is no longer needed so that it does not take up space in memory.
         allObjects = null;
     }
-    private void Update()
-    {
-        if (BttnSelectCar != null)
-        {
-            for (int i = 0; i < 1; i++)
-            {
 
-            }
-        }
-    }
 
     public void SelectCar()
     {
@@ -87,7 +74,18 @@ public class MrSellerManager : MonoBehaviour
             item.transform.gameObject.SetActive(false);
         }
     }
+    public void DeselectSelectCar()
+    {
+        foreach (var item in textElements)
+        {
+            item.text = null;
+        }
 
+        foreach (Transform item in content.transform)
+        {
+            item.transform.gameObject.SetActive(true);
+        }
+    }
     void MrSellerTextMetod(string text)
     {
         mrSellerText.text =  text;

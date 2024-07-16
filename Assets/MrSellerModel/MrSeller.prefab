@@ -1244,7 +1244,7 @@ GameObject:
   - component: {fileID: 1318860963630741633}
   - component: {fileID: 2981036334680678672}
   m_Layer: 5
-  m_Name: Image
+  m_Name: TorqueImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2198,7 +2198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1672735179869893289
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2723,6 +2723,8 @@ GameObject:
   - component: {fileID: 4547543097988243448}
   - component: {fileID: 4077630302651103246}
   - component: {fileID: 4077630302651103245}
+  - component: {fileID: 374167870}
+  - component: {fileID: 1805119818665421236}
   - component: {fileID: 4077630302651103244}
   m_Layer: 0
   m_Name: MrSeller
@@ -2783,6 +2785,42 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &374167870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3771710769288054082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0d161417dcd8a4ca62d502a95b9a6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Manager: {fileID: 3771710769288054082}
+  damagePartsImg: {fileID: 698058468272205270}
+  paintedPartsImg: {fileID: 2921037781715758334}
+  maxSpeedImg: {fileID: 7998614783877644175}
+  torqueImg: {fileID: 2981036334680678672}
+  lightPurple: {r: 0.8, g: 0.4, b: 0.8, a: 1}
+  darkPurple: {r: 0.4, g: 0, b: 0.4, a: 1}
+  colorChangeSpeed: 1
+  isAnimationRunning: 0
+--- !u!114 &1805119818665421236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3771710769288054082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e78635c7a9bb848b9e35f84b77874b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogueScriptableObject: {fileID: 11400000, guid: 332433deebd7614489fb5c306bee6de9,
+    type: 2}
+  dialogueText: {fileID: 8691508508347788212}
 --- !u!114 &4077630302651103244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2801,7 +2839,7 @@ MonoBehaviour:
   SoldCarList: []
   carBtnPref: {fileID: 1484810055019763548, guid: 894eff8836ea5e44383e48c4702abd59,
     type: 3}
-  content: {fileID: 0}
+  content: {fileID: 8691508507384686884}
   textElements:
   - {fileID: 4086794227423398739}
   - {fileID: 7948727295408780697}
@@ -2812,10 +2850,10 @@ MonoBehaviour:
   - {fileID: 1188153616581061326}
   - {fileID: 2339518371055703249}
   BttnSelectCar: {fileID: 0}
-  damagePartsImg: {fileID: 0}
-  paintedPartsImg: {fileID: 0}
-  maxSpeedImg: {fileID: 0}
-  torqueImg: {fileID: 0}
+  damagePartsImg: {fileID: 698058468272205270}
+  paintedPartsImg: {fileID: 2921037781715758334}
+  maxSpeedImg: {fileID: 7998614783877644175}
+  torqueImg: {fileID: 2981036334680678672}
 --- !u!1 &3901589655417863921
 GameObject:
   m_ObjectHideFlags: 0
@@ -4281,7 +4319,7 @@ GameObject:
   - component: {fileID: 6570814583522150054}
   - component: {fileID: 698058468272205270}
   m_Layer: 5
-  m_Name: Image
+  m_Name: DamagePartsImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5861,7 +5899,7 @@ GameObject:
   - component: {fileID: 330077695171636097}
   - component: {fileID: 7998614783877644175}
   m_Layer: 5
-  m_Name: Image
+  m_Name: MaxSpeedImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6270,7 +6308,7 @@ GameObject:
   - component: {fileID: 766220009396653805}
   - component: {fileID: 2921037781715758334}
   m_Layer: 5
-  m_Name: Image
+  m_Name: PaintedPartsImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7104,7 +7142,7 @@ PrefabInstance:
     - target: {fileID: 7628535791576068670, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7628535791576068671, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
         type: 3}
@@ -7376,8 +7414,15 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8507630164017466630, guid: 00dc9090c926b9c4a9f77b3a0b18959c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 00dc9090c926b9c4a9f77b3a0b18959c, type: 3}
+--- !u!1 &8691508507384686884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7628535791594841013, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1243116721488661137}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8691508507428567214 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7628535791576068671, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
