@@ -34,7 +34,7 @@ namespace Models
             torque = Random.Range(1, 10);
             Suspensions = Random.Range(1, 10);
             wheelCamberValues = Random.Range(1, 10);
-            price = (damagedParts + paintedParts + maxSpeed + torque) * 1000;
+            price = (50000) ;
         }
 
         public override string ToString()

@@ -21,7 +21,6 @@ public class MrSellerManager : MonoBehaviour
     //For more bttns
     public GameObject content;
 
-
     //----
     // Define a list of TextMeshProUGUI components
     public List<TextMeshProUGUI> textElements = new List<TextMeshProUGUI>(8);
@@ -46,9 +45,11 @@ public class MrSellerManager : MonoBehaviour
                 carBtnPref.name = obj.name;
 
                 carBtnPref.GetComponent<CarBttnPref>().carObjOfBttn = obj;
-                //carBtnPref.name = obj.name;
-                carBtnPref.SetActive(true);
+                
+                carBtnPref.SetActive(false);
+
                 carBttnText = carBtnPref.transform.GetChild(0).GetComponent<Text>();
+
                 carBttnText.text = obj.name;
 
             }
@@ -68,6 +69,10 @@ public class MrSellerManager : MonoBehaviour
         textElements[5].text = BttnSelectCar.GetComponent<Car>().carObject.Suspensions.ToString();
         textElements[6].text = BttnSelectCar.GetComponent<Car>().carObject.wheelCamberValues.ToString();
         textElements[7].text = BttnSelectCar.GetComponent<Car>().carObject.price.ToString();
+        foreach (Transform  item in content.transform)
+        {
+            item.transform.gameObject.SetActive(false);
+        }
     }
 
     void MrSellerTextMetod(string text)

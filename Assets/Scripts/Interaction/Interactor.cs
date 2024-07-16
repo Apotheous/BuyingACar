@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 
 interface IInteractable
@@ -21,7 +22,7 @@ public class Interactor : MonoBehaviour
 
     [SerializeField] bool inCar= false;
 
-    public GameObject TradePanel, SelectedCarPropsPanel;
+    public GameObject TradePanel, SelectedCarPropsPanel,content;
     void Update()
     {
         SelectCar();
@@ -68,6 +69,13 @@ public class Interactor : MonoBehaviour
                         TradePanel.SetActive(true);
                         SelectedCarPropsPanel.SetActive(true);
                         character.gameObject.SetActive(false);
+                        foreach (Transform item in content.transform)
+                        {
+                            if (!item.transform.gameObject.activeSelf)
+                            {
+                                ToggleActiveState(item.transform.gameObject);
+                            }
+                        }
                     }
                     else 
                     { 
@@ -84,6 +92,11 @@ public class Interactor : MonoBehaviour
                 }
             }
         }
+    }
+    public void ToggleActiveState(GameObject obj)
+    {
+        // GameObject'in aktiflik durumunu tersine çevir
+        obj.SetActive(!obj.activeSelf);
     }
     void ShowCursor()
     {

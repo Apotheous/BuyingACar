@@ -1041,7 +1041,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
@@ -6829,6 +6829,7 @@ MonoBehaviour:
   inCar: 0
   TradePanel: {fileID: 1513686322}
   SelectedCarPropsPanel: {fileID: 4077630300891542494}
+  content: {fileID: 1461283599}
 --- !u!1 &1793293563
 GameObject:
   m_ObjectHideFlags: 0
@@ -10399,6 +10400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnName: 
+  carObjOfBttn: {fileID: 0}
   mrSellerManager: {fileID: 0}
   MrSellerContent: {fileID: 0}
 --- !u!114 &8044215270639845852
@@ -10414,6 +10416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnName: 
+  carObjOfBttn: {fileID: 0}
   mrSellerManager: {fileID: 0}
   MrSellerContent: {fileID: 0}
 --- !u!114 &8044215271197494489
@@ -10429,6 +10432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnName: 
+  carObjOfBttn: {fileID: 0}
   mrSellerManager: {fileID: 0}
   MrSellerContent: {fileID: 0}
 --- !u!114 &8044215271699857282
@@ -10444,6 +10448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnName: 
+  carObjOfBttn: {fileID: 0}
   mrSellerManager: {fileID: 0}
   MrSellerContent: {fileID: 0}
 --- !u!114 &8044215271712201779
@@ -10459,6 +10464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnName: 
+  carObjOfBttn: {fileID: 0}
   mrSellerManager: {fileID: 0}
   MrSellerContent: {fileID: 0}
 --- !u!224 &8214598734489426560
