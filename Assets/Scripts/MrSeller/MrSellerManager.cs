@@ -6,13 +6,36 @@ using UnityEngine.UI;
 
 public class MrSellerManager : MonoBehaviour
 {
+
     [Header("Selected Car")]
     [Tooltip("The car of choice when trading")]
     public GameObject BttnSelectCar;
 
+    [System.Serializable]
+    public class UIElements
+    {
+        [Tooltip("Button prefab for car selection")]
+        public GameObject carBtnPref;
+
+        [Tooltip("Button prefab for properties selection")]
+        public GameObject propsBtnPref;
+
+        [Tooltip("Bontent from which buttons are created")]
+        public GameObject carSelectionContent;
+        public GameObject carSelectionContentPanel;
+        [Tooltip("Content used for deal management")]
+        public GameObject dealContent;
+        public GameObject dealContentPanel;
+
+        [Tooltip("Text of Mr Seller")]
+        public TextMeshProUGUI mrSellerText;
+    }
+    public UIElements uýElements;
+
+
     private GameObject[] allObjects;
 
-    public TextMeshProUGUI mrSellerText;
+
 
     [Tooltip("list of cars for sale")]
     public List<GameObject> ListCarSale = new List<GameObject>();
@@ -21,10 +44,7 @@ public class MrSellerManager : MonoBehaviour
 
     Text carBttnText;
 
-    //Bttn Prefab
-    public GameObject carBtnPref;
-    //For more bttns
-    public GameObject content;
+
 
     //----
     // Define a list of TextMeshProUGUI components
@@ -40,15 +60,15 @@ public class MrSellerManager : MonoBehaviour
             {
                 ListCarSale.Add(obj);
 
-                Instantiate(carBtnPref, content.transform);
+                Instantiate(uýElements.carBtnPref, uýElements.carSelectionContent.transform);
 
-                carBtnPref.name = obj.name;
+                uýElements.carBtnPref.name = obj.name;
 
-                carBtnPref.GetComponent<CarBttnPref>().carObjOfBttn = obj;
-                
-                carBtnPref.SetActive(false);
+                uýElements.carBtnPref.GetComponent<CarBttnPref>().carObjOfBttn = obj;
 
-                carBttnText = carBtnPref.transform.GetChild(0).GetComponent<Text>();
+                uýElements.carBtnPref.SetActive(false);
+
+                carBttnText = uýElements.carBtnPref.transform.GetChild(0).GetComponent<Text>();
 
                 carBttnText.text = obj.name;
 
@@ -56,6 +76,7 @@ public class MrSellerManager : MonoBehaviour
         }
         //We empty the array that is no longer needed so that it does not take up space in memory.
         allObjects = null;
+
     }
 
 
@@ -69,7 +90,7 @@ public class MrSellerManager : MonoBehaviour
         textElements[5].text = BttnSelectCar.GetComponent<Car>().carObject.Suspensions.ToString();
         textElements[6].text = BttnSelectCar.GetComponent<Car>().carObject.wheelCamberValues.ToString();
         textElements[7].text = BttnSelectCar.GetComponent<Car>().carObject.price.ToString();
-        foreach (Transform  item in content.transform)
+        foreach (Transform  item in uýElements.carSelectionContent.transform)
         {
             item.transform.gameObject.SetActive(false);
         }
@@ -81,15 +102,25 @@ public class MrSellerManager : MonoBehaviour
             item.text = null;
         }
 
-        foreach (Transform item in content.transform)
+        foreach (Transform item in uýElements.carSelectionContent.transform)
         {
             item.transform.gameObject.SetActive(true);
         }
     }
     void MrSellerTextMetod(string text)
     {
-        mrSellerText.text =  text;
+        uýElements.mrSellerText.text =  text;
+    }
+    public void CallDealContent()
+    {
+        ToggleActiveState(uýElements.carSelectionContentPanel);
+        ToggleActiveState(uýElements.dealContentPanel);
+
     }
 
-    
+    public void ToggleActiveState(GameObject obj)
+    {
+        // Reverse GameObject's active state
+        obj.SetActive(!obj.activeSelf);
+    }
 }

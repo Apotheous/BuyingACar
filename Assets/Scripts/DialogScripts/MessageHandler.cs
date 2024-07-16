@@ -11,7 +11,7 @@ public class MessageHandler : MonoBehaviour
 
     //UI
     [SerializeField] private TextMeshProUGUI dialogueText;
-    int textNubber;
+    public int textNubber;
 
     private void Start()
     {

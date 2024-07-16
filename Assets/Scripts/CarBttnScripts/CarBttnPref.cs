@@ -43,7 +43,7 @@ public class CarBttnPref : MonoBehaviour
         mrSellerManager.BttnSelectCar = carObjOfBttn;
         mrSellerManager.GetComponent<MessageHandler>().MrSellerNextText();
         mrSellerManager.SelectCar();
-
+        mrSellerManager.CallDealContent();
     }
 
     //public void ToggleActiveState(GameObject obj)

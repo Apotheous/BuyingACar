@@ -117,34 +117,35 @@ public class Interactor : MonoBehaviour
                         mrSellerVariables.TradePanel.SetActive(false);
                         mrSellerVariables.SelectedCarPropsPanel.SetActive(false);
                         characterCs.character.gameObject.SetActive(true);
-                        // Fare imlecinin görünürlüðünü tersine çevir
+                        // Invert the visibility of the mouse cursor
                         Cursor.visible = !Cursor.visible;
 
-                        // Fare imlecinin kilitli olup olmadýðýný tersine çevir
+                        //Reverse whether the mouse cursor is locked or not
                         Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
                     }
 
                 }
             }
         }
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonUp(1)&& mrSellerVariables.MrSeller.GetComponent<MessageHandler>().textNubber>1)
         {
             mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().BttnSelectCar=null;
             mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().DeselectSelectCar();
             mrSellerVariables.MrSeller.GetComponent<MessageHandler>().MrSellerResetText();
+            mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().CallDealContent();
         }
     }
     public void ToggleActiveState(GameObject obj)
     {
-        // GameObject'in aktiflik durumunu tersine çevir
+        // Reverse GameObject's active state
         obj.SetActive(!obj.activeSelf);
     }
     void ShowCursor()
     {
-        // Fare imlecini görünür yap
+        //Make the mouse cursor visible
         Cursor.visible = true;
 
-        // Fare imlecinin serbest hareket etmesini saðla
+        // Make the mouse cursor move freely
         Cursor.lockState = CursorLockMode.None;
     }
     private void DriveCarComps(Transform car)
