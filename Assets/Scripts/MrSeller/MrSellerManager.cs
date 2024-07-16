@@ -6,11 +6,15 @@ using UnityEngine.UI;
 
 public class MrSellerManager : MonoBehaviour
 {
-    
-    public GameObject[] allObjects;
+    [Header("Selected Car")]
+    [Tooltip("The car of choice when trading")]
+    public GameObject BttnSelectCar;
+
+    private GameObject[] allObjects;
 
     public TextMeshProUGUI mrSellerText;
 
+    [Tooltip("list of cars for sale")]
     public List<GameObject> ListCarSale = new List<GameObject>();
 
     public List<GameObject> SoldCarList= new List<GameObject>();
@@ -25,10 +29,6 @@ public class MrSellerManager : MonoBehaviour
     //----
     // Define a list of TextMeshProUGUI components
     public List<TextMeshProUGUI> textElements = new List<TextMeshProUGUI>(8);
-
-    //Select Car
-    public GameObject BttnSelectCar;
-
 
     void Start()
     {

@@ -41,7 +41,6 @@ public class Interactor : MonoBehaviour
     [System.Serializable]
     public class Character
     {
-        [Header("Character")]
         [Tooltip("Character Controller")]
         public Transform character;
     }
