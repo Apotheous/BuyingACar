@@ -6,12 +6,15 @@ using UnityEngine.UI;
 
 public class MrSellerManager : MonoBehaviour
 {
+    
+    public GameObject[] allObjects;
+
     public TextMeshProUGUI mrSellerText;
+
     public List<GameObject> ListCarSale = new List<GameObject>();
 
     public List<GameObject> SoldCarList= new List<GameObject>();
 
-    public List<GameObject> carBtn = new List<GameObject>();
     Text carBttnText;
     //Bttn Prefab
     public GameObject carBtnPref;
@@ -30,7 +33,7 @@ public class MrSellerManager : MonoBehaviour
     void Start()
     {
 
-        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
+        allObjects = GameObject.FindObjectsOfType<GameObject>();
 
         foreach (GameObject obj in allObjects)
         {
@@ -38,10 +41,10 @@ public class MrSellerManager : MonoBehaviour
             {
                 ListCarSale.Add(obj);
 
-               
                 Instantiate(carBtnPref, content.transform);
-                carBtn.Add(carBtnPref);
+
                 carBtnPref.name = obj.name;
+
                 carBtnPref.GetComponent<CarBttnPref>().carObjOfBttn = obj;
                 //carBtnPref.name = obj.name;
                 carBtnPref.SetActive(true);
@@ -50,20 +53,8 @@ public class MrSellerManager : MonoBehaviour
 
             }
         }
-        Debug.Log("Found " + ListCarSale.Count + " cars in the scene.");
-
-        //for (int i = 0; i < ListCarSale.Count; i++)
-        //{
-        //    carBtn[i].name = ListCarSale[i].name.ToString();
-        //    carBtn[i].SetActive(true);
-        //    carBttnText = carBtn[i].transform.GetChild(0).GetComponent<Text>();
-        //    carBttnText.text = ListCarSale[i].name;
-        //}
-        //foreach (Transform item in content.transform)
-        //{
-        //    carBtn.Add(item.transform.gameObject);
-        //}
-
+        //We empty the array that is no longer needed so that it does not take up space in memory.
+        allObjects = null;
     }
 
 
@@ -77,8 +68,6 @@ public class MrSellerManager : MonoBehaviour
         textElements[5].text = BttnSelectCar.GetComponent<Car>().carObject.Suspensions.ToString();
         textElements[6].text = BttnSelectCar.GetComponent<Car>().carObject.wheelCamberValues.ToString();
         textElements[7].text = BttnSelectCar.GetComponent<Car>().carObject.price.ToString();
-        //MrSellerTextMetod("Seçtiðin arabanýn özelliklerini yanýmýzda ki panelde görebilirsin.");
-        mrSellerText.text="Seçtiðin arabanýn özelliklerini yanýmýzda ki panelde görebilirsin.";
     }
 
     void MrSellerTextMetod(string text)
