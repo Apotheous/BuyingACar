@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DialogueScriptableObject", menuName = "ScriptableObjects/DialogueScriptableObject")]
 public class DialogueScriptableObject : ScriptableObject
 {
-    public string[] text;
+    public string[] textStart;
+    public string[] textPositive;
+    public string[] textNegative;
 }

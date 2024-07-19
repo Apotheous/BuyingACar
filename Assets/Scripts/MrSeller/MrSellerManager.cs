@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class MrSellerManager : MonoBehaviour
 {
-
     [Header("Selected Car")]
     [Tooltip("The car of choice when trading")]
     public GameObject BttnSelectCar;
@@ -17,24 +16,25 @@ public class MrSellerManager : MonoBehaviour
         [Tooltip("Button prefab for car selection")]
         public GameObject carBtnPref;
 
-        [Tooltip("Button prefab for properties selection")]
-        public GameObject propsBtnPref;
+        //[Tooltip("Button prefab for properties selection")]
+        //public GameObject propsBtnPref;
 
         [Tooltip("Bontent from which buttons are created")]
         public GameObject carSelectionContent;
         public GameObject carSelectionContentPanel;
+
         [Tooltip("Content used for deal management")]
         public GameObject dealContent;
         public GameObject dealContentPanel;
 
         [Tooltip("Text of Mr Seller")]
         public TextMeshProUGUI mrSellerText;
+        public MessageHandler mrMessageHandler;
     }
     public UIElements uýElements;
 
 
     private GameObject[] allObjects;
-
 
 
     [Tooltip("list of cars for sale")]
@@ -76,7 +76,7 @@ public class MrSellerManager : MonoBehaviour
         }
         //We empty the array that is no longer needed so that it does not take up space in memory.
         allObjects = null;
-
+        uýElements.mrMessageHandler=gameObject.GetComponent<MessageHandler>();
     }
 
 
@@ -115,7 +115,6 @@ public class MrSellerManager : MonoBehaviour
     {
         ToggleActiveState(uýElements.carSelectionContentPanel);
         ToggleActiveState(uýElements.dealContentPanel);
-
     }
 
     public void ToggleActiveState(GameObject obj)
@@ -123,4 +122,18 @@ public class MrSellerManager : MonoBehaviour
         // Reverse GameObject's active state
         obj.SetActive(!obj.activeSelf);
     }
+    public void MrSellerDealPositivie()
+    {
+        uýElements.mrMessageHandler.MrSellerPositiveText();
+        if (uýElements.mrMessageHandler.textNubber==4)
+        {
+            BttnSelectCar.GetComponent<Car>().IsActive=true;
+        }     
+    }
+    public void MrSellerDealNegative()
+    {
+         uýElements.mrMessageHandler.MrSellerNegativeText();
+
+    }
+
 }

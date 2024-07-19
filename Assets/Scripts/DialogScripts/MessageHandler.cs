@@ -7,44 +7,36 @@ public class MessageHandler : MonoBehaviour
 {
     //- Scriptable Object Referansý
     [SerializeField] private DialogueScriptableObject _dialogueScriptableObject;
-    //-
 
     //UI
     [SerializeField] private TextMeshProUGUI dialogueText;
-    public int textNubber;
+    public int textNubber = 0;
 
-    private void Start()
+    public void MrSellerStartText()
     {
-        //StartCoroutine(DialogueLoop());
-    }
-
-    IEnumerator DialogueLoop()
-    {
-        if (_dialogueScriptableObject.text.Length < 1)
-        {
-            Debug.LogError("Text array is empty!");
-            yield return null;
-        }
-
-        for (int i = 0; i < _dialogueScriptableObject.text.Length; i++)
-        {
-            dialogueText.text = _dialogueScriptableObject.text[i];
-            if (i == _dialogueScriptableObject.text.Length - 1) i = -1;
-            yield return new WaitForSeconds(2f);
-        }
-    }
-    public void MrSellerNextText()
-    {
-        dialogueText.text = _dialogueScriptableObject.text[textNubber];
+        dialogueText.text = _dialogueScriptableObject.textStart[textNubber];
         textNubber++;
-        //if (textNubber >= _dialogueScriptableObject.text.Length)
-        //{
-        //    textNubber = 0;
-        //}
+    }
+    public void MrSellerPositiveText()
+    {
+        dialogueText.text = _dialogueScriptableObject.textPositive[textNubber];
+        textNubber++;
+    }    
+    public void MrSellerNegativeText()
+    {
+        dialogueText.text = _dialogueScriptableObject.textNegative[textNubber];
+        textNubber++;
+    }
+    public void MrSellerNumberText(int txtNmbr)
+    {
+        dialogueText.text = _dialogueScriptableObject.textPositive[textNubber];
+        textNubber=txtNmbr;
     }
     public void MrSellerResetText()
     {
-        dialogueText.text = _dialogueScriptableObject.text[0];
-        textNubber = 1;
+        textNubber = 0;
+        dialogueText.text = _dialogueScriptableObject.textStart[textNubber];
+        textNubber++;
+
     }
 }

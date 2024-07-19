@@ -4,7 +4,6 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-
 interface IInteractable
 {
     public void Interact();
@@ -79,7 +78,6 @@ public class Interactor : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.E) && inCar == true)
         {
-            Debug.Log("Trying to get out of the car");
             GettinOutCar(theCarImin);
         }
 
@@ -100,7 +98,8 @@ public class Interactor : MonoBehaviour
                         ShowCursor();
                         mrSellerVariables.TradePanel.SetActive(true);
                         hitInfo.collider.GetComponent<MrSellerManager>().BttnSelectCar = null;
-                        hitInfo.collider.GetComponent<MessageHandler>().MrSellerNextText();
+                        hitInfo.collider.GetComponent<MessageHandler>().MrSellerStartText();
+                        hitInfo.collider.GetComponent<MessageHandler>().textNubber=1;
                         mrSellerVariables.SelectedCarPropsPanel.SetActive(true);
                         characterCs.character.gameObject.SetActive(false);
 
@@ -127,7 +126,7 @@ public class Interactor : MonoBehaviour
                 }
             }
         }
-        if (Input.GetMouseButtonUp(1)&& mrSellerVariables.MrSeller.GetComponent<MessageHandler>().textNubber>1)
+        if (Input.GetMouseButtonUp(1) && mrSellerVariables.MrSeller.GetComponent<MessageHandler>().textNubber >= 2)
         {
             mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().BttnSelectCar=null;
             mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().DeselectSelectCar();
@@ -149,21 +148,25 @@ public class Interactor : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
     private void DriveCarComps(Transform car)
-    {
-        camVariables.driveCam.SetParent(car.transform);
+    {if (car.gameObject.GetComponent<Car>().IsActive == true)  
+        {
+            camVariables.driveCam.SetParent(car.transform);
 
-        camVariables.driveCam.gameObject.SetActive(true);
-        characterCs.character.gameObject.SetActive(false);
-        characterCs.character.transform.SetParent(car.transform);
-        camVariables.followPoint.SetParent(car.transform);
-        Vector3 carPos = new Vector3(car.transform.position.x, 1f, car.transform.position.z);
-        
-        camVariables.followPoint.position = carPos;
-        camVariables.followPoint.rotation = car.rotation;
+            camVariables.driveCam.gameObject.SetActive(true);
+            characterCs.character.gameObject.SetActive(false);
+            characterCs.character.transform.SetParent(car.transform);
+            camVariables.followPoint.SetParent(car.transform);
+            Vector3 carPos = new Vector3(car.transform.position.x, 1f, car.transform.position.z);
 
-        car.transform.gameObject.GetComponent<CarController>().enabled = true;
-        inCar = true;
-        theCarImin=car.transform;
+            camVariables.followPoint.position = carPos;
+            camVariables.followPoint.rotation = car.rotation;
+            // 
+            car.transform.gameObject.GetComponent<CarController>().enabled = true;
+            inCar = true;
+            theCarImin = car.transform;
+
+        }
+
     }
     private void GettinOutCar(Transform car)
     {
@@ -173,8 +176,9 @@ public class Interactor : MonoBehaviour
         characterCs.character.transform.SetParent(null);
         characterCs.character.gameObject.SetActive(true);
         car.GetComponent<Rigidbody>().isKinematic=true;
-        car.transform.gameObject.GetComponent<CarController>().enabled = false;
+        //car.transform.gameObject.GetComponent<CarController>().enabled = false;
         inCar = false;
-        car.GetComponent<Rigidbody>().isKinematic = false;
+        //car.GetComponent<Rigidbody>().isKinematic = false;
+        car.GetComponent<Car>().IsActive = false;
     }
 }
