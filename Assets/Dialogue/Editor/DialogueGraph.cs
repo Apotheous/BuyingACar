@@ -23,7 +23,9 @@ public class DialogueGraph : EditorWindow
     {
         ConstructGraphView();
         GenerateToolBar();
+        GenerateMiniMap();
     }
+
     private void ConstructGraphView()
     {
         _graphView = new DialogueGraphView
@@ -51,6 +53,13 @@ public class DialogueGraph : EditorWindow
         toolbar.Add(nodeCreateButton);
 
         rootVisualElement.Add(toolbar);
+    }
+
+    private void GenerateMiniMap()
+    {
+        var miniMap = new MiniMap { anchored = true };
+        miniMap.SetPosition(new Rect(x: 10, y: 30, width: 200, height: 140)); 
+        _graphView.Add(miniMap);
     }
 
     private void RequestDataOperation(bool save)

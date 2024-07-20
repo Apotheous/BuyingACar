@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class DialogueGraphView : GraphView
 {
-    private readonly Vector2 defaultNodeSize = new Vector2(x: 150, y: 200); 
+    public readonly Vector2 defaultNodeSize = new Vector2(x: 150, y: 200); 
     public DialogueGraphView() 
     {
         styleSheets.Add(styleSheet: Resources.Load<StyleSheet>(path:"DialogueGraph"));
@@ -53,6 +54,9 @@ public class DialogueGraphView : GraphView
         generatePort.portName = "Next";
         node.outputContainer.Add(generatePort);
 
+        node.capabilities &= ~Capabilities.Movable;
+        node.capabilities &= ~Capabilities.Deletable;
+
         node.RefreshExpandedState();
         node.RefreshPorts();
 
@@ -76,11 +80,20 @@ public class DialogueGraphView : GraphView
         inputport.portName = "Input";
         dialogueNode.inputContainer.Add(inputport);
 
+        dialogueNode.styleSheets.Add(styleSheet: Resources.Load<StyleSheet>(path: "Node"));
+
         var button = new Button(clickEvent: () => { AddChoicePort(dialogueNode); });
         button.text = "New Choice";
         dialogueNode.titleContainer.Add(button);
 
-
+        var textfield = new TextField(string.Empty);
+        textfield.RegisterValueChangedCallback(evt =>
+        {
+            dialogueNode.DialogueText = evt.newValue;
+            dialogueNode.title = evt.newValue;
+        });
+        textfield.SetValueWithoutNotify(dialogueNode.title);
+        dialogueNode.mainContainer.Add(textfield);
 
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
@@ -89,14 +102,52 @@ public class DialogueGraphView : GraphView
         return dialogueNode;
     }
 
-    private void AddChoicePort(DialogueNode dialogueNode)
+    public void AddChoicePort(DialogueNode dialogueNode, string overriddenPortName = "")
     {
         var generatedPort = GeneratePort(dialogueNode, Direction.Output);
 
-        var outputCount = dialogueNode.outputContainer.Query(name: "connector").ToList().Count;
-        generatedPort.portName = $"Choice {outputCount}";
+        var oldLabel = generatedPort.contentContainer.Q<Label>("type");
+        generatedPort.contentContainer.Remove(oldLabel);
 
+        var outputPortCount = dialogueNode.outputContainer.Query(name: "connector").ToList().Count;
+
+        var choicePortName = string.IsNullOrEmpty(overriddenPortName)
+            ? $"Choice {outputPortCount + 1}"
+            : overriddenPortName;
+
+        var textField = new TextField
+        {
+            name = string.Empty,
+            value = choicePortName
+        };
+        textField.RegisterValueChangedCallback(evt => generatedPort.portName = evt.newValue); 
+        generatedPort.contentContainer.Add(new Label(" "));
+        generatedPort.contentContainer.Add(textField);
+        var deleteButton = new Button(clickEvent: () => RemovePort(dialogueNode, generatedPort))
+        {
+            text = "X"
+        };
+        generatedPort.contentContainer.Add(deleteButton);  
+
+        generatedPort.portName = choicePortName;    
         dialogueNode.outputContainer.Add(generatedPort);
+        dialogueNode.RefreshPorts();
+        dialogueNode.RefreshExpandedState();
+
+    }
+
+    private void RemovePort(DialogueNode dialogueNode, Port generatedPort)
+    {
+        var targetEdge = edges.ToList().Where(x =>
+            x.output.portName == generatedPort.portName &&
+            x.output.node == generatedPort.node);
+
+        if (!targetEdge.Any()) return;
+        var edge = targetEdge.First();
+        edge.input.Disconnect(edge);
+        RemoveElement(targetEdge.First());
+
+        dialogueNode.outputContainer.Remove(generatedPort);
         dialogueNode.RefreshPorts();
         dialogueNode.RefreshExpandedState();
 
