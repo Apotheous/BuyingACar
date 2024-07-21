@@ -15,14 +15,8 @@ MonoBehaviour:
   NodeLinks:
   - BaseNodeGuid: 20774734-4e15-4c7f-8e50-fc1f7f15e1e5
     PortName: Next
-    TargetNodeGuid: 471987f8-6331-4c4a-b9c8-475bb4ccfb18
-  - BaseNodeGuid: 471987f8-6331-4c4a-b9c8-475bb4ccfb18
-    PortName: Choice 1
-    TargetNodeGuid: 3389fdbc-4268-4c77-a952-b6c4cb0c5dce
+    TargetNodeGuid: 6c44489e-42c6-4726-8c5c-d10bfedacc80
   DialogueNodeData:
-  - Guid: 3389fdbc-4268-4c77-a952-b6c4cb0c5dce
+  - Guid: 6c44489e-42c6-4726-8c5c-d10bfedacc80
     DialogueText: Dialogue Node
-    Position: {x: 624, y: 85}
-  - Guid: 471987f8-6331-4c4a-b9c8-475bb4ccfb18
-    DialogueText: Dialogue Node
-    Position: {x: 317, y: 123}
+    Position: {x: 221, y: 180}
