@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -9,8 +10,12 @@ using UnityEngine.UIElements;
 public class DialogueGraphView : GraphView
 {
     public readonly Vector2 defaultNodeSize = new Vector2(x: 150, y: 200);
+
+    public Blackboard Blackboard;
+    public List<ExposedProperty> ExposedProperties = new List<ExposedProperty>();
     private NodeSearchWindow _searchWindow;
-    public DialogueGraphView() 
+
+    public DialogueGraphView(EditorWindow editorWindow) 
     {
         styleSheets.Add(styleSheet: Resources.Load<StyleSheet>(path:"DialogueGraph"));
         SetupZoom(ContentZoomer.DefaultMinScale,ContentZoomer.DefaultMaxScale);
@@ -24,12 +29,13 @@ public class DialogueGraphView : GraphView
         grid.StretchToParentSize();
 
         AddElement(GenerateEntryPointNode());
-        AddSearchWindow();
+        AddSearchWindow(editorWindow);
     }
 
-    private void AddSearchWindow()
+    private void AddSearchWindow(EditorWindow editorWindow)
     {
         _searchWindow = ScriptableObject.CreateInstance<NodeSearchWindow>();
+        _searchWindow.Init(editorWindow,this);
         nodeCreationRequest = context => 
             SearchWindow.Open(new SearchWindowContext(context.screenMousePosition),_searchWindow); 
     }
@@ -72,11 +78,11 @@ public class DialogueGraphView : GraphView
         node.SetPosition(new Rect(x:100,y:200,width:100 ,height:150));
         return node;
     }
-    public void CreateNode(string nodeName)
+    public void CreateNode(string nodeName,Vector2 position)
     {
-        AddElement(CreateDialogueNode(nodeName));
+        AddElement(CreateDialogueNode(nodeName,position));
     }
-    public DialogueNode CreateDialogueNode(string nodeName)
+    public DialogueNode CreateDialogueNode(string nodeName, Vector2 position)
     {
         var dialogueNode = new DialogueNode
         {
@@ -106,7 +112,7 @@ public class DialogueGraphView : GraphView
 
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
-        dialogueNode.SetPosition(new Rect(position: Vector2.zero, defaultNodeSize));
+        dialogueNode.SetPosition(new Rect(position: position, defaultNodeSize));
 
         return dialogueNode;
     }
@@ -160,5 +166,18 @@ public class DialogueGraphView : GraphView
         dialogueNode.RefreshPorts();
         dialogueNode.RefreshExpandedState();
 
+    }
+
+    internal void AddPropertyToBlackBoard(ExposedProperty exposedProperty)
+    {
+        var property = new ExposedProperty();
+        property.PropertyName= exposedProperty.PropertyName;
+        property.PropertyValue= exposedProperty.PropertyValue;
+        ExposedProperties.Add(property);
+
+        var container = new VisualElement();
+        var blackBoardField = new BlackboardField { text = property.PropertyName, typeText = "string property" };
+        container.Add(blackBoardField);
+        Blackboard.Add(container);
     }
 }

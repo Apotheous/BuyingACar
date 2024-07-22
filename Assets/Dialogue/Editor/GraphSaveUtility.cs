@@ -98,7 +98,8 @@ public class GraphSaveUtility
     {
         foreach (var nodeData in _containerCache.DialogueNodeData)
         {
-            var tempNode = _targetGraphView.CreateDialogueNode(nodeData.DialogueText);
+            //we pass position later on, so we can just use vec2 zero for now as position while looding nodes.
+            var tempNode = _targetGraphView.CreateDialogueNode(nodeData.DialogueText,Vector2.zero);
             tempNode.GUID = nodeData.Guid;
             _targetGraphView.AddElement(tempNode);
 

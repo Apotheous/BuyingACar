@@ -13,10 +13,22 @@ MonoBehaviour:
   m_Name: New Narrative
   m_EditorClassIdentifier: 
   NodeLinks:
-  - BaseNodeGuid: 20774734-4e15-4c7f-8e50-fc1f7f15e1e5
+  - BaseNodeGuid: ea63e8ed-bb14-4588-8d35-87a2ed3e71fc
     PortName: Next
-    TargetNodeGuid: 6c44489e-42c6-4726-8c5c-d10bfedacc80
+    TargetNodeGuid: 7b1afef4-a506-43d7-b098-251f9b1d50b0
+  - BaseNodeGuid: 7b1afef4-a506-43d7-b098-251f9b1d50b0
+    PortName: Choice 1
+    TargetNodeGuid: ba7261bb-f265-4a13-87c4-9d28fc15367e
+  - BaseNodeGuid: ba7261bb-f265-4a13-87c4-9d28fc15367e
+    PortName: Choice 1
+    TargetNodeGuid: da9e197d-94fa-48a6-805d-60db9cfe2c5a
   DialogueNodeData:
-  - Guid: 6c44489e-42c6-4726-8c5c-d10bfedacc80
+  - Guid: 7b1afef4-a506-43d7-b098-251f9b1d50b0
     DialogueText: Dialogue Node
-    Position: {x: 221, y: 180}
+    Position: {x: 337, y: 134}
+  - Guid: da9e197d-94fa-48a6-805d-60db9cfe2c5a
+    DialogueText: Dialogue Node
+    Position: {x: 930, y: 219}
+  - Guid: ba7261bb-f265-4a13-87c4-9d28fc15367e
+    DialogueText: Dialogue Node
+    Position: {x: 606, y: 134}

@@ -24,11 +24,22 @@ public class DialogueGraph : EditorWindow
         ConstructGraphView();
         GenerateToolBar();
         GenerateMiniMap();
+        GenerateBlackBoard();
+    }
+
+    private void GenerateBlackBoard()
+    {
+        var blackboard = new Blackboard();
+        blackboard.Add(new BlackboardSection { title = "Exposed Properties" });
+        blackboard.addItemRequested = _blackboard => { _graphView.AddPropertyToBlackBoard(new ExposedProperty()); };
+        blackboard.SetPosition(new Rect(10, 30, 200, 300));
+        _graphView.Add(blackboard);
+        _graphView.Blackboard = blackboard;
     }
 
     private void ConstructGraphView()
     {
-        _graphView = new DialogueGraphView
+        _graphView = new DialogueGraphView(this)
         {
             name = "Dialogue Graph"
         };
@@ -47,18 +58,16 @@ public class DialogueGraph : EditorWindow
 
         toolbar.Add(child: new Button(clickEvent: () => RequestDataOperation(save:true)) { text = "Save Data" });
         toolbar.Add(child: new Button(clickEvent: () => RequestDataOperation(save:false)) { text = "Load Data" });
-
-        var nodeCreateButton = new Button(clickEvent: () => { _graphView.CreateNode("Dialogue Node"); });
-        nodeCreateButton.text = "Create node";
-        toolbar.Add(nodeCreateButton);
-
         rootVisualElement.Add(toolbar);
     }
 
     private void GenerateMiniMap()
     {
         var miniMap = new MiniMap { anchored = true };
-        miniMap.SetPosition(new Rect(x: 10, y: 30, width: 200, height: 140)); 
+        ////this will give 10 px offet from left side
+        //var cords = _graphView.contentViewContainer.WorldToLocal(new Vector2(-10,-60));
+        //miniMap.SetPosition(new Rect(cords.x,cords.y, width: 200, height: 140)); 
+        miniMap.SetPosition(new Rect(10, 800, 200, 200));
         _graphView.Add(miniMap);
     }
 
