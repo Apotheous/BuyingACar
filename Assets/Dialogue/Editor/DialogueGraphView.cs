@@ -168,16 +168,42 @@ public class DialogueGraphView : GraphView
 
     }
 
+    public void ClearBlackBoardAndExposedProperties()
+    {
+        ExposedProperties.Clear();
+        Blackboard.Clear();//Yes, blacboard can clean itself!
+    }
+
     internal void AddPropertyToBlackBoard(ExposedProperty exposedProperty)
     {
+        var localPropertyName = exposedProperty.PropertyName;
+        var localPropertyValue = exposedProperty.PropertyValue;
+        while (ExposedProperties.Any(x => x.PropertyName == localPropertyName))
+            localPropertyName = $"{localPropertyName}(1)";//USERNAME(1) || USERNAME(1)(1)(1) ETC...
+
+
+
         var property = new ExposedProperty();
-        property.PropertyName= exposedProperty.PropertyName;
-        property.PropertyValue= exposedProperty.PropertyValue;
+        property.PropertyName= localPropertyName;
+        property.PropertyValue= localPropertyValue;
         ExposedProperties.Add(property);
 
         var container = new VisualElement();
-        var blackBoardField = new BlackboardField { text = property.PropertyName, typeText = "string property" };
-        container.Add(blackBoardField);
+        var blackboardField = new BlackboardField { text = property.PropertyName, typeText = "string" };
+        container.Add(blackboardField);
+
+        var propertyValueTextField = new TextField(label: "Value:")
+        {
+            value = localPropertyValue
+        };
+        propertyValueTextField.RegisterValueChangedCallback( evt=>
+        {
+            var changingPropertyIndex = ExposedProperties.FindIndex(x => x.PropertyName == property.PropertyName);
+            ExposedProperties[changingPropertyIndex].PropertyValue = evt.newValue;
+        }); 
+        var blackBoardValueRow = new BlackboardRow(blackboardField,propertyValueTextField);
+        container.Add(blackBoardValueRow);
+
         Blackboard.Add(container);
     }
 }

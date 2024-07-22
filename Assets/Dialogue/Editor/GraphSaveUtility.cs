@@ -28,9 +28,29 @@ public class GraphSaveUtility
     }
     public void SaveGraph(string fileName)
     {
-        if (!Edges.Any()) return; //if there are no edges(no connections) then return
-
         var dialogueContainer = ScriptableObject.CreateInstance<DialogueContainer>();
+
+        if (!SaveNodes(dialogueContainer)) return; 
+        SaveExposedProperties(dialogueContainer);
+
+        if (!AssetDatabase.IsValidFolder(path: "Assets/Resources"))
+        {
+            AssetDatabase.CreateFolder(parentFolder: "Assets", newFolderName: "Resources");
+        }
+
+        AssetDatabase.CreateAsset(dialogueContainer, path: $"Assets/Resources/{fileName}.asset");
+        AssetDatabase.SaveAssets();
+    }
+
+    private void SaveExposedProperties(DialogueContainer dialogueContainer)
+    {
+        dialogueContainer.ExposedProperties.AddRange(_targetGraphView.ExposedProperties);
+    }
+
+    private bool SaveNodes(DialogueContainer dialogueContainer)
+    {
+        if (!Edges.Any()) return false;//if there are no edges(no connections) then return
+
 
         var connectedPorts = Edges.Where(x => x.input.node != null).ToArray();
         for (int i = 0; i < connectedPorts.Length; i++)
@@ -55,15 +75,8 @@ public class GraphSaveUtility
                 Position = dialogueNode.GetPosition().position
             });
         }
-
-        if (!AssetDatabase.IsValidFolder(path: "Assets/Resources"))
-        {
-            AssetDatabase.CreateFolder(parentFolder: "Assets", newFolderName: "Resources");
-        }
-
-        AssetDatabase.CreateAsset(dialogueContainer, path: $"Assets/Resources/{fileName}.asset");
-        AssetDatabase.SaveAssets();
-    } 
+        return true;
+    }
     public void LoadGraph(string fileName)
     {
         _containerCache = Resources.Load<DialogueContainer>(fileName);
@@ -76,6 +89,18 @@ public class GraphSaveUtility
         ClearGraph();
         CreateNodes();
         ConnectNodes();
+        CreateExpossedProperties();
+    }
+
+    private void CreateExpossedProperties()
+    {
+        //Clear existing properties on hot-reload
+        _targetGraphView.ClearBlackBoardAndExposedProperties();
+        //add properties from data.
+        foreach (var exposedProperty in _containerCache.ExposedProperties)
+        {
+            _targetGraphView.AddPropertyToBlackBoard(exposedProperty);
+        }
     }
 
     private void ClearGraph()
@@ -126,6 +151,7 @@ public class GraphSaveUtility
             }
         }
     }
+
 
     private void LinkNodes(Port output, Port input)
     {
