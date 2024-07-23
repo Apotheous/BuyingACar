@@ -9,8 +9,10 @@ namespace Models
 {
     public class CarMain : MonoBehaviour
     {
+
         public string carName { get; set; }
         //Factors That Will Affect the Sales Value of Vehicles
+        public int generalPropValue { get; set; }
         public int damagedParts { get; set; }
         public int paintedParts { get; set; }
         public int maxSpeed { get; set; }
@@ -34,6 +36,7 @@ namespace Models
             torque = Random.Range(1, 10);
             Suspensions = Random.Range(1, 10);
             wheelCamberValues = Random.Range(1, 10);
+            generalPropValue = damagedParts + paintedParts + maxSpeed + torque;
             price = (50000) ;
         }
 

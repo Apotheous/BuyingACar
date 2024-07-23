@@ -16,50 +16,20 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 831
-    y: 445
+    x: 597
+    y: 496
     width: 190
-    height: 135
+    height: 155
   isDragging: 0
-  isSelected: 0
+  isSelected: 1
   sentence:
     characterName: MrSeller
     text: Yes you are right. I can give you some discount for the defective parts.
     characterSprite: {fileID: 0}
   parentNode: {fileID: 1590810676400165809}
   childNode: {fileID: 4340556992365990874}
-  isExternalFunc: 0
-  externalFunctionName: 
---- !u!114 &-6405241207754029581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
-  m_Name: Sentence Node
-  m_EditorClassIdentifier: 
-  connectedNodesList: []
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 363
-    y: 321
-    width: 190
-    height: 135
-  isDragging: 0
-  isSelected: 0
-  sentence:
-    characterName: MrSeller
-    text: show Properties
-    characterSprite: {fileID: 0}
-  parentNode: {fileID: -3848748082894144068}
-  childNode: {fileID: 1590810676400165809}
-  isExternalFunc: 0
-  externalFunctionName: 
+  isExternalFunc: 1
+  externalFunctionName: Discount
 --- !u!114 &-3848748082894144068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,18 +46,18 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 60
-    y: 361
+    x: -133
+    y: 265
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   sentence:
     characterName: MrSeller
-    text: Selected Car
+    text: You can review the features of the car you chose from the panel.
     characterSprite: {fileID: 0}
   parentNode: {fileID: 0}
-  childNode: {fileID: -6405241207754029581}
+  childNode: {fileID: 1590810676400165809}
   isExternalFunc: 0
   externalFunctionName: 
 --- !u!114 &-828888638610289948
@@ -106,20 +76,20 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1311
-    y: 434
+    x: 1094
+    y: 394
     width: 190
-    height: 135
+    height: 155
   isDragging: 0
-  isSelected: 0
+  isSelected: 1
   sentence:
     characterName: MrSeller
-    text: Okkeeeyyy
+    text: Ok the car is yours now
     characterSprite: {fileID: 0}
   parentNode: {fileID: 4340556992365990874}
   childNode: {fileID: 0}
-  isExternalFunc: 0
-  externalFunctionName: 
+  isExternalFunc: 1
+  externalFunctionName: Discountbuy
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +104,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodesList:
   - {fileID: -3848748082894144068}
-  - {fileID: -6405241207754029581}
   - {fileID: 1590810676400165809}
   - {fileID: 7008049287845582032}
   - {fileID: -6445800926091013720}
@@ -162,15 +131,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1280
-    y: 92
+    x: 1088
+    y: 12
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   sentence:
     characterName: MrSeller
-    text: Very good, come on, take a tour and see.
+    text: The car is yours
     characterSprite: {fileID: 0}
   parentNode: {fileID: 1556118929296606993}
   childNode: {fileID: 0}
@@ -200,7 +169,7 @@ MonoBehaviour:
   isSelected: 1
   answers:
   - dfggsfgsdf
-  parentSentenceNode: {fileID: -6405241207754029581}
+  parentSentenceNode: {fileID: 0}
   childSentenceNodes: []
 --- !u!114 &1556118929296606993
 MonoBehaviour:
@@ -218,8 +187,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1059
-    y: 196
+    x: 842
+    y: 117
     width: 190
     height: 135
   isDragging: 0
@@ -247,8 +216,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 594
-    y: 336
+    x: 208
+    y: 259
     width: 190
     height: 135
   isDragging: 0
@@ -256,7 +225,7 @@ MonoBehaviour:
   answers:
   - I love this car
   - This car has defective parts
-  parentSentenceNode: {fileID: -6405241207754029581}
+  parentSentenceNode: {fileID: -3848748082894144068}
   childSentenceNodes:
   - {fileID: 7008049287845582032}
   - {fileID: -6445800926091013720}
@@ -276,20 +245,21 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1328
-    y: 625
+    x: 1096
+    y: 596
     width: 190
-    height: 135
+    height: 155
   isDragging: 0
-  isSelected: 0
+  isSelected: 1
   sentence:
     characterName: MrSeller
-    text: asfsdfdfnasjdfkasf
+    text: I have determined a price for you according to the features of your car.
+      I can't do more.
     characterSprite: {fileID: 0}
   parentNode: {fileID: 4340556992365990874}
   childNode: {fileID: 0}
-  isExternalFunc: 0
-  externalFunctionName: 
+  isExternalFunc: 1
+  externalFunctionName: ScrapBargaining
 --- !u!114 &4340556992365990874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,15 +276,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1082
-    y: 553
+    x: 819
+    y: 513
     width: 190
     height: 135
   isDragging: 0
-  isSelected: 0
+  isSelected: 1
   answers:
-  - Choise1
-  - Choise2
+  - Okay, this discount is enough, I'll buy it
+  - No, this car is completely junk.
   parentSentenceNode: {fileID: -6445800926091013720}
   childSentenceNodes:
   - {fileID: -828888638610289948}
@@ -365,8 +335,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 830
-    y: 267
+    x: 613
+    y: 188
     width: 190
     height: 135
   isDragging: 0
@@ -395,15 +365,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1282
-    y: 250
+    x: 1089
+    y: 169
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   sentence:
     characterName: MrSeller
-    text: Okeeteterter
+    text: Very good, come on, take a tour and see.
     characterSprite: {fileID: 0}
   parentNode: {fileID: 1556118929296606993}
   childNode: {fileID: 0}

@@ -24,6 +24,7 @@ public class Interactor : MonoBehaviour
         public GameObject SelectedCarPropsPanel;
         [Tooltip("Content listing Mr Seller's buttons for interaction")]
         public GameObject content;
+        public GameObject DealPanel;
     }
     public MrSellerVariables mrSellerVariables;
 
@@ -84,7 +85,7 @@ public class Interactor : MonoBehaviour
     }    
     private void TalkSeller()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) &&!mrSellerVariables.SelectedCarPropsPanel.activeSelf)
         {
             Ray r = new Ray(camVariables.interactirSource.position, camVariables.interactirSource.forward);
             if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
@@ -104,31 +105,30 @@ public class Interactor : MonoBehaviour
                 }
             }
         }
-        if (Input.GetMouseButtonUp(1))
-        {
-            ForReset();
-        }
     }
 
-    private void ForReset()
+    private void ForResetPanels()
     {
         mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().BttnSelectCar = null;
         mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().DeselectSelectCar();
         mrSellerVariables.MrSeller.GetComponent<MessageHandler>().MrSellerResetText();
-        mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().CarSelectionContentPanelOff();
+        mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().CarSelectionContentPanelOn();
     }
 
     private void MrSellerTalkOn(RaycastHit hitInfo)
     {
-        ForReset();
+        ForResetPanels();
         ShowCursor();
 
-        mrSellerVariables.TradePanel.SetActive(true);
         hitInfo.collider.GetComponent<MrSellerManager>().BttnSelectCar = null;
+
+        mrSellerVariables.SelectedCarPropsPanel.SetActive(true);
+        mrSellerVariables.TradePanel.SetActive(true);
+        mrSellerVariables.content.SetActive(true);
+
         hitInfo.collider.GetComponent<MessageHandler>().MrSellerStartText();
         hitInfo.collider.GetComponent<MessageHandler>().textNubber = 1;
-        mrSellerVariables.SelectedCarPropsPanel.SetActive(true);
-        mrSellerVariables.content.SetActive(true);
+
         characterCs.character.gameObject.SetActive(false);
         
         foreach (Transform item in mrSellerVariables.content.transform)

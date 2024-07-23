@@ -1240,6 +1240,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4077630300891542493}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &374167884 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4077630302651103244, guid: f6da99420f248a64891193a88883deca,
+    type: 3}
+  m_PrefabInstance: {fileID: 4077630300891542493}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374167865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdf109a9df9752468b4b44dfd1499f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &374167889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374167865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ff47263401bc24888b042624434714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Manager: {fileID: 374167884}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -5573,6 +5598,7 @@ MonoBehaviour:
     TradePanel: {fileID: 1513686322}
     SelectedCarPropsPanel: {fileID: 4077630300891542494}
     content: {fileID: 1461283599}
+    DealPanel: {fileID: 4825435160704716417}
   camVariables:
     interactirSource: {fileID: 1784804293}
     driveCam: {fileID: 1764413920}
@@ -8635,6 +8661,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 374167881, guid: f6da99420f248a64891193a88883deca, type: 3}
+      propertyPath: externalFunc
+      value: 
+      objectReference: {fileID: 374167889}
     - target: {fileID: 374167881, guid: f6da99420f248a64891193a88883deca, type: 3}
       propertyPath: dialogBehaviour
       value: 

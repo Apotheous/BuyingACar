@@ -16,6 +16,7 @@ public class Car : MonoBehaviour
  
     [SerializeField]
     private bool isActive;
+    public bool isScrap;
     [Tooltip("If the car lock sold is true, it is sold. It means the car can be used.")]
     // Event tanýmlama
     public event Action<bool> OnValueChanged;
@@ -37,11 +38,15 @@ public class Car : MonoBehaviour
 
     void Start()
     {
-        carObject = this.gameObject.AddComponent<CarMain>();
-        //carNameThis=this.gameObject.name;
-        carObject.CarName(this.gameObject.name);
 
-        carObject.InitializeRandomValues();
+        SetCarPropsStart();
+        PrintProperties();
+
+    }
+
+    private void PrintProperties()
+    {
+ 
         Debug.Log($" {carObject.ToString()}");
         textElements[0].text = carObject.name;
         textElements[1].text = carObject.damagedParts.ToString();
@@ -51,8 +56,17 @@ public class Car : MonoBehaviour
         textElements[5].text = carObject.Suspensions.ToString();
         textElements[6].text = carObject.wheelCamberValues.ToString();
         textElements[7].text = carObject.price.ToString();
-
     }
+
+    private void SetCarPropsStart()
+    {
+        carObject = this.gameObject.AddComponent<CarMain>();
+        //carNameThis=this.gameObject.name;
+        carObject.CarName(this.gameObject.name);
+
+        carObject.InitializeRandomValues();
+    }
+
     private void OnEnable()
     {
         // Event'e abone ol
@@ -71,6 +85,23 @@ public class Car : MonoBehaviour
         }else { gameObject.GetComponent<CarController>().enabled = false; }
         
     }
+    public void PriceCalculation()
+    {
+        int newPrice;
+        newPrice=carObject.maxSpeed+carObject.torque+carObject.paintedParts+carObject.torque;
+        newPrice = newPrice * 1000;
+        carObject.price = newPrice;
+        Debug.Log("The car name ="+gameObject.name+"Car newPrice = "+newPrice);
+        PrintProperties();
+    }
+    public void IsTheCarScrap()
+    {
 
- 
+        int scrapPrice = carObject.price-1000;
+        carObject.price = scrapPrice;
+        //Debug.Log("The car name ="+gameObject.name+"Car newPrice = "+newPrice);
+        PrintProperties();
+    }
+
+
 }

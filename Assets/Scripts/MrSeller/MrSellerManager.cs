@@ -1,3 +1,4 @@
+using Models;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -37,11 +38,13 @@ public class MrSellerManager : MonoBehaviour
     private GameObject[] allObjects;
 
 
-    [Tooltip("list of cars for sale")]
+    [Tooltip("List of cars for sale")]
     public List<GameObject> ListCarSale = new List<GameObject>();
+    public List<int> gnrlPropValue = new List<int>();
 
     public List<GameObject> SoldCarList= new List<GameObject>();
 
+    public int gnrlPropValueCars = 0;
     Text carBttnText;
 
 
@@ -58,6 +61,7 @@ public class MrSellerManager : MonoBehaviour
         {
             if (obj.GetComponent<Car>() != null)
             {
+
                 ListCarSale.Add(obj);
 
                 Instantiate(uýElements.carBtnPref, uýElements.carSelectionContent.transform);
@@ -71,16 +75,28 @@ public class MrSellerManager : MonoBehaviour
                 carBttnText = uýElements.carBtnPref.transform.GetChild(0).GetComponent<Text>();
 
                 carBttnText.text = obj.name;
+                gnrlPropValue.Add(obj.GetComponent<CarMain>().generalPropValue);
+                gnrlPropValueCars = gnrlPropValueCars + obj.GetComponent<CarMain>().generalPropValue;
 
             }
         }
         //We empty the array that is no longer needed so that it does not take up space in memory.
         allObjects = null;
+        
         uýElements.mrMessageHandler=gameObject.GetComponent<MessageHandler>();
+        gnrlPropValueCars = gnrlPropValueCars/ListCarSale.Count;
+        foreach (var item in ListCarSale)
+        {
+            if (item.GetComponent<CarMain>().generalPropValue <= gnrlPropValueCars)
+            {
+                item.GetComponent<Car>().isScrap = true;
+            }
+
+        }
     }
 
 
-    public void SelectCar()
+    public void SelectCarPrintProps()
     {
         textElements[0].text = BttnSelectCar.GetComponent<Car>().carObject.name;
         textElements[1].text = BttnSelectCar.GetComponent<Car>().carObject.damagedParts.ToString();
@@ -111,7 +127,7 @@ public class MrSellerManager : MonoBehaviour
     {
         uýElements.mrSellerText.text =  text;
     }
-    public void CarSelectionContentPanelOff()
+    public void CarSelectionContentPanelOn()
     {
         uýElements.carSelectionContentPanel.SetActive(true);
     }
