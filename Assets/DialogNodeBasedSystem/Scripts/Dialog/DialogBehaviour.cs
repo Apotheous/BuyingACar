@@ -65,6 +65,23 @@ namespace cherrydev
         {
             HandleSentenceSkipping();
         }
+        public Node CurrentNode
+        {
+            get { return currentNode; }
+        }
+        public string GetCurrentNodeType()
+        {
+            return currentNode.GetType().Name;
+        }
+
+        public string GetCurrentNodeText()
+        {
+            if (currentNode is SentenceNode sentenceNode)
+            {
+                return sentenceNode.GetSentenceText();
+            }
+            return string.Empty;
+        }
 
         /// <summary>
         /// Setting dialogCharDelay float parameter

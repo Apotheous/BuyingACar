@@ -2726,6 +2726,7 @@ GameObject:
   - component: {fileID: 374167870}
   - component: {fileID: 1805119818665421236}
   - component: {fileID: 4077630302651103244}
+  - component: {fileID: 374167881}
   m_Layer: 0
   m_Name: MrSeller
   m_TagString: Untagged
@@ -2855,6 +2856,21 @@ MonoBehaviour:
   - {fileID: 4692328407722931008}
   - {fileID: 1188153616581061326}
   - {fileID: 2339518371055703249}
+--- !u!114 &374167881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3771710769288054082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4776522b9f141428f48d7c280fc8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogBehaviour: {fileID: 0}
+  dialogGraph: {fileID: 11400000, guid: ae28f1dfede14624781d58bb44decc62, type: 2}
+  beforeSelectCar: {fileID: 11400000, guid: 66bf43a15982b2c4d9291c8e4c561f9b, type: 2}
 --- !u!1 &3901589655417863921
 GameObject:
   m_ObjectHideFlags: 0
@@ -7125,6 +7141,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 485311028980782735, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2901427233811244368}
+    - target: {fileID: 485311028980782735, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DealBttnNegative, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7628535789850413593, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -7308,7 +7334,12 @@ PrefabInstance:
     - target: {fileID: 9090903892010428007, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
         type: 3}
       propertyPath: m_Text
-      value: 
+      value: I loved this car.
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090903892374553616, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
+        type: 3}
+      propertyPath: m_Name
+      value: DealPositive
       objectReference: {fileID: 0}
     - target: {fileID: 9090903892374553623, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
         type: 3}
@@ -7354,6 +7385,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1243116721488661137}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2901427233811244368 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4108268710754037697, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1243116721488661137}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d441008a6f2a743a0e5d5c7a277cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8691508507384686884 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7628535791594841013, guid: 00dc9090c926b9c4a9f77b3a0b18959c,

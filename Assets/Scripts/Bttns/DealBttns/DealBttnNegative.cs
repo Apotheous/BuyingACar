@@ -50,7 +50,7 @@ public class DealBttnNegative : MonoBehaviour
     }
     public void DealPositivie()
     {
-        mrSellerComps.mrSellerManager.MrSellerDealPositivie();
+        mrSellerComps.mrSellerManager.SelectedCar();
     }
     public void DealNegative()
     {

@@ -23,9 +23,9 @@ public class MrSellerManager : MonoBehaviour
         public GameObject carSelectionContent;
         public GameObject carSelectionContentPanel;
 
-        [Tooltip("Content used for deal management")]
-        public GameObject dealContent;
-        public GameObject dealContentPanel;
+        //[Tooltip("Content used for deal management")]
+        //public GameObject dealContent;
+        //public GameObject dealContentPanel;
 
         [Tooltip("Text of Mr Seller")]
         public TextMeshProUGUI mrSellerText;
@@ -111,10 +111,9 @@ public class MrSellerManager : MonoBehaviour
     {
         uýElements.mrSellerText.text =  text;
     }
-    public void CallDealContent()
+    public void CarSelectionContentPanelOff()
     {
-        ToggleActiveState(uýElements.carSelectionContentPanel);
-        ToggleActiveState(uýElements.dealContentPanel);
+        uýElements.carSelectionContentPanel.SetActive(true);
     }
 
     public void ToggleActiveState(GameObject obj)
@@ -122,10 +121,10 @@ public class MrSellerManager : MonoBehaviour
         // Reverse GameObject's active state
         obj.SetActive(!obj.activeSelf);
     }
-    public void MrSellerDealPositivie()
+    public void SelectedCar()
     {
-        uýElements.mrMessageHandler.MrSellerPositiveText();
-        if (uýElements.mrMessageHandler.textNubber==4)
+       // uýElements.mrMessageHandler.MrSellerPositiveText();
+        if (BttnSelectCar!=null)
         {
             BttnSelectCar.GetComponent<Car>().IsActive=true;
         }     

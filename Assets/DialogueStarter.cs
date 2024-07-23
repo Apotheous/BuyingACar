@@ -13,7 +13,19 @@ public class DialogueStarter : MonoBehaviour
         //dialogBehaviour.StartDialog(beforeSelectCar);
         
         dialogBehaviour.StartDialog(dialogGraph);
+        // Mevcut düðümü kontrol etme
+        Node currentNode = dialogBehaviour.CurrentNode;
+        Debug.Log("Current Node: " + currentNode);
+
+        // Mevcut düðümün türünü kontrol etme
+        string nodeType = dialogBehaviour.GetCurrentNodeType();
+        Debug.Log("Current Node Type: " + nodeType);
+
+        // Mevcut düðümün metnini kontrol etme
+        string nodeText = dialogBehaviour.GetCurrentNodeText();
+        Debug.Log("Current Node Text: " + nodeText);
     }
-
-
 }
+
+
+

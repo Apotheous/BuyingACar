@@ -94,46 +94,65 @@ public class Interactor : MonoBehaviour
                 {
                     if (!mrSellerVariables.TradePanel.activeSelf)
                     {
-
-                        ShowCursor();
-                        mrSellerVariables.TradePanel.SetActive(true);
-                        hitInfo.collider.GetComponent<MrSellerManager>().BttnSelectCar = null;
-                        hitInfo.collider.GetComponent<MessageHandler>().MrSellerStartText();
-                        hitInfo.collider.GetComponent<MessageHandler>().textNubber=1;
-                        mrSellerVariables.SelectedCarPropsPanel.SetActive(true);
-                        characterCs.character.gameObject.SetActive(false);
-
-                        foreach (Transform item in mrSellerVariables.content.transform)
-                        {
-                            if (!item.transform.gameObject.activeSelf)
-                            {
-                                ToggleActiveState(item.transform.gameObject);
-                            }
-                        }
+                        MrSellerTalkOn(hitInfo);
                     }
-                    else 
+                    else
                     {
-                        mrSellerVariables.TradePanel.SetActive(false);
-                        mrSellerVariables.SelectedCarPropsPanel.SetActive(false);
-                        characterCs.character.gameObject.SetActive(true);
-                        // Invert the visibility of the mouse cursor
-                        Cursor.visible = !Cursor.visible;
-
-                        //Reverse whether the mouse cursor is locked or not
-                        Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
+                        MrSellerTalkOff();
                     }
 
                 }
             }
         }
-        if (Input.GetMouseButtonUp(1) && mrSellerVariables.MrSeller.GetComponent<MessageHandler>().textNubber >= 2)
+        if (Input.GetMouseButtonUp(1))
         {
-            mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().BttnSelectCar=null;
-            mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().DeselectSelectCar();
-            mrSellerVariables.MrSeller.GetComponent<MessageHandler>().MrSellerResetText();
-            mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().CallDealContent();
+            ForReset();
         }
     }
+
+    private void ForReset()
+    {
+        mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().BttnSelectCar = null;
+        mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().DeselectSelectCar();
+        mrSellerVariables.MrSeller.GetComponent<MessageHandler>().MrSellerResetText();
+        mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().CarSelectionContentPanelOff();
+    }
+
+    private void MrSellerTalkOn(RaycastHit hitInfo)
+    {
+        ForReset();
+        ShowCursor();
+
+        mrSellerVariables.TradePanel.SetActive(true);
+        hitInfo.collider.GetComponent<MrSellerManager>().BttnSelectCar = null;
+        hitInfo.collider.GetComponent<MessageHandler>().MrSellerStartText();
+        hitInfo.collider.GetComponent<MessageHandler>().textNubber = 1;
+        mrSellerVariables.SelectedCarPropsPanel.SetActive(true);
+        mrSellerVariables.content.SetActive(true);
+        characterCs.character.gameObject.SetActive(false);
+        
+        foreach (Transform item in mrSellerVariables.content.transform)
+        {
+            if (!item.transform.gameObject.activeSelf)
+            {
+                ToggleActiveState(item.transform.gameObject);
+            }
+        }
+        
+    }
+
+    public void MrSellerTalkOff()
+    {
+        mrSellerVariables.TradePanel.SetActive(false);
+        mrSellerVariables.SelectedCarPropsPanel.SetActive(false);
+        characterCs.character.gameObject.SetActive(true);
+        // Invert the visibility of the mouse cursor
+        Cursor.visible = !Cursor.visible;
+
+        //Reverse whether the mouse cursor is locked or not
+        Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
+    }
+
     public void ToggleActiveState(GameObject obj)
     {
         // Reverse GameObject's active state
@@ -181,4 +200,5 @@ public class Interactor : MonoBehaviour
         //car.GetComponent<Rigidbody>().isKinematic = false;
         car.GetComponent<Car>().IsActive = false;
     }
+
 }
