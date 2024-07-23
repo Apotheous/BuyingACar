@@ -1,35 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9132852964565897477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
-  m_Name: Sentence Node
-  m_EditorClassIdentifier: 
-  connectedNodesList: []
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 573
-    y: 484
-    width: 190
-    height: 135
-  isDragging: 0
-  isSelected: 0
-  sentence:
-    characterName: MrSeller
-    text: dasbasdnsd
-    characterSprite: {fileID: 0}
-  parentNode: {fileID: -3023509894426716086}
-  childNode: {fileID: 0}
-  isExternalFunc: 0
-  externalFunctionName: 
 --- !u!114 &-6445800926091013720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,8 +16,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1042
-    y: 441
+    x: 831
+    y: 445
     width: 190
     height: 135
   isDragging: 0
@@ -76,8 +46,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 574
-    y: 317
+    x: 363
+    y: 321
     width: 190
     height: 135
   isDragging: 0
@@ -86,7 +56,7 @@ MonoBehaviour:
     characterName: MrSeller
     text: show Properties
     characterSprite: {fileID: 0}
-  parentNode: {fileID: -3023509894426716086}
+  parentNode: {fileID: -3848748082894144068}
   childNode: {fileID: 1590810676400165809}
   isExternalFunc: 0
   externalFunctionName: 
@@ -106,49 +76,20 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 116
-    y: 370
+    x: 60
+    y: 361
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   sentence:
     characterName: MrSeller
-    text: SelectCar
+    text: Selected Car
     characterSprite: {fileID: 0}
   parentNode: {fileID: 0}
-  childNode: {fileID: -3023509894426716086}
+  childNode: {fileID: -6405241207754029581}
   isExternalFunc: 0
   externalFunctionName: 
---- !u!114 &-3023509894426716086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1717f3c6dba9fa40844ddacac301510, type: 3}
-  m_Name: Answer Node
-  m_EditorClassIdentifier: 
-  connectedNodesList: []
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 362
-    y: 389
-    width: 190
-    height: 135
-  isDragging: 0
-  isSelected: 0
-  answers:
-  - carRed
-  - texdfas
-  parentSentenceNode: {fileID: -3848748082894144068}
-  childSentenceNodes:
-  - {fileID: -6405241207754029581}
-  - {fileID: -9132852964565897477}
 --- !u!114 &-828888638610289948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,8 +106,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1522
-    y: 430
+    x: 1311
+    y: 434
     width: 190
     height: 135
   isDragging: 0
@@ -194,7 +135,6 @@ MonoBehaviour:
   nodesList:
   - {fileID: -3848748082894144068}
   - {fileID: -6405241207754029581}
-  - {fileID: -3023509894426716086}
   - {fileID: 1590810676400165809}
   - {fileID: 7008049287845582032}
   - {fileID: -6445800926091013720}
@@ -202,7 +142,6 @@ MonoBehaviour:
   - {fileID: 1556118929296606993}
   - {fileID: 45215565177357122}
   - {fileID: -828888638610289948}
-  - {fileID: -9132852964565897477}
   - {fileID: 7203157882607978473}
   - {fileID: 4097340941910562399}
   nodeToDrawLineFrom: {fileID: 0}
@@ -223,8 +162,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1491
-    y: 88
+    x: 1280
+    y: 92
     width: 190
     height: 135
   isDragging: 0
@@ -279,8 +218,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1270
-    y: 192
+    x: 1059
+    y: 196
     width: 190
     height: 135
   isDragging: 0
@@ -308,8 +247,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 805
-    y: 332
+    x: 594
+    y: 336
     width: 190
     height: 135
   isDragging: 0
@@ -337,12 +276,12 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1539
-    y: 621
+    x: 1328
+    y: 625
     width: 190
     height: 135
   isDragging: 0
-  isSelected: 1
+  isSelected: 0
   sentence:
     characterName: MrSeller
     text: asfsdfdfnasjdfkasf
@@ -367,8 +306,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1293
-    y: 549
+    x: 1082
+    y: 553
     width: 190
     height: 135
   isDragging: 0
@@ -426,8 +365,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1041
-    y: 263
+    x: 830
+    y: 267
     width: 190
     height: 135
   isDragging: 0
@@ -456,8 +395,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1493
-    y: 246
+    x: 1282
+    y: 250
     width: 190
     height: 135
   isDragging: 0

@@ -44,6 +44,8 @@ public class CarBttnPref : MonoBehaviour
         mrSellerManager.GetComponent<MessageHandler>().MrSellerStartText();
         mrSellerManager.SelectCar();
         mrSellerManager.CallDealContent();
+        mrSellerManager.GetComponent<DialogueStarter>().DialogStart();
+        MrSellerContent.SetActive(false);
     }
 
     //public void ToggleActiveState(GameObject obj)

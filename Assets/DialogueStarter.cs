@@ -7,14 +7,13 @@ public class DialogueStarter : MonoBehaviour
 {
     [SerializeField] private DialogBehaviour dialogBehaviour;
     [SerializeField] private DialogNodeGraph dialogGraph;
-    void Start()
+    [SerializeField] private DialogNodeGraph beforeSelectCar;
+    public void DialogStart()
     {
+        //dialogBehaviour.StartDialog(beforeSelectCar);
+        
         dialogBehaviour.StartDialog(dialogGraph);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
