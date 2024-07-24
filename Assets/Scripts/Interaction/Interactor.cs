@@ -131,14 +131,6 @@ public class Interactor : MonoBehaviour
 
         characterCs.character.gameObject.SetActive(false);
         
-        foreach (Transform item in mrSellerVariables.content.transform)
-        {
-            if (!item.transform.gameObject.activeSelf)
-            {
-                ToggleActiveState(item.transform.gameObject);
-            }
-        }
-        
     }
 
     public void MrSellerTalkOff()
@@ -176,7 +168,7 @@ public class Interactor : MonoBehaviour
             characterCs.character.transform.SetParent(car.transform);
             camVariables.followPoint.SetParent(car.transform);
             Vector3 carPos = new Vector3(car.transform.position.x, 1f, car.transform.position.z);
-
+            car.GetComponent<Rigidbody>().isKinematic = false;
             camVariables.followPoint.position = carPos;
             camVariables.followPoint.rotation = car.rotation;
             // 

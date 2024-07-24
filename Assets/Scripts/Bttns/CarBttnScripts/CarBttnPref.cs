@@ -42,7 +42,7 @@ public class CarBttnPref : MonoBehaviour
     {
         mrSellerManager.BttnSelectCar = carObjOfBttn;
         mrSellerManager.GetComponent<MessageHandler>().MrSellerStartText();
-        mrSellerManager.SelectCarPrintProps();
+        mrSellerManager.PrintPropsSelectedCar();
         mrSellerManager.CarSelectionContentPanelOn();
         mrSellerManager.GetComponent<DialogueStarter>().DialogStart();
         MrSellerContent.SetActive(false);

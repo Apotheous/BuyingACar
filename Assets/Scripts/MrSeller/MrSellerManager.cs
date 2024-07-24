@@ -47,13 +47,16 @@ public class MrSellerManager : MonoBehaviour
     public int gnrlPropValueCars = 0;
     Text carBttnText;
 
-
-
     //----
     // Define a list of TextMeshProUGUI components
     public List<TextMeshProUGUI> textElements = new List<TextMeshProUGUI>(8);
 
     void Start()
+    {
+        MrSellerStartFoncs();
+    }
+
+    private void MrSellerStartFoncs()
     {
         allObjects = GameObject.FindObjectsOfType<GameObject>();
 
@@ -70,7 +73,7 @@ public class MrSellerManager : MonoBehaviour
 
                 uýElements.carBtnPref.GetComponent<CarBttnPref>().carObjOfBttn = obj;
 
-                uýElements.carBtnPref.SetActive(false);
+                uýElements.carBtnPref.SetActive(true);
 
                 carBttnText = uýElements.carBtnPref.transform.GetChild(0).GetComponent<Text>();
 
@@ -82,9 +85,9 @@ public class MrSellerManager : MonoBehaviour
         }
         //We empty the array that is no longer needed so that it does not take up space in memory.
         allObjects = null;
-        
-        uýElements.mrMessageHandler=gameObject.GetComponent<MessageHandler>();
-        gnrlPropValueCars = gnrlPropValueCars/ListCarSale.Count;
+
+        uýElements.mrMessageHandler = gameObject.GetComponent<MessageHandler>();
+        gnrlPropValueCars = gnrlPropValueCars / ListCarSale.Count;
         foreach (var item in ListCarSale)
         {
             if (item.GetComponent<CarMain>().generalPropValue <= gnrlPropValueCars)
@@ -95,8 +98,7 @@ public class MrSellerManager : MonoBehaviour
         }
     }
 
-
-    public void SelectCarPrintProps()
+    public void PrintPropsSelectedCar()
     {
         textElements[0].text = BttnSelectCar.GetComponent<Car>().carObject.name;
         textElements[1].text = BttnSelectCar.GetComponent<Car>().carObject.damagedParts.ToString();
@@ -120,7 +122,19 @@ public class MrSellerManager : MonoBehaviour
 
         foreach (Transform item in uýElements.carSelectionContent.transform)
         {
-            item.transform.gameObject.SetActive(true);
+
+            foreach (GameObject obj in SoldCarList)
+            {
+                if (obj.name + "(Clone)" ==item.name)
+                {
+                    Destroy(item.gameObject);
+                    //item.gameObject.SetActive(false);
+                }
+                else
+                {
+                    item.transform.gameObject.SetActive(true);
+                }
+            }
         }
     }
     void MrSellerTextMetod(string text)
@@ -148,7 +162,6 @@ public class MrSellerManager : MonoBehaviour
     public void MrSellerDealNegative()
     {
          uýElements.mrMessageHandler.MrSellerNegativeText();
-
     }
 
 }
