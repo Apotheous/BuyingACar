@@ -131,6 +131,7 @@ public class Interactor : MonoBehaviour
 
         characterCs.character.gameObject.SetActive(false);
         
+        
     }
 
     public void MrSellerTalkOff()
@@ -159,7 +160,8 @@ public class Interactor : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
     private void DriveCarComps(Transform car)
-    {if (car.gameObject.GetComponent<Car>().IsActive == true)  
+    {
+        if (car.gameObject.GetComponent<Car>().IsActive == true&& mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().SoldCarList.Contains(car.gameObject))  
         {
             camVariables.driveCam.SetParent(car.transform);
 
@@ -171,7 +173,7 @@ public class Interactor : MonoBehaviour
             car.GetComponent<Rigidbody>().isKinematic = false;
             camVariables.followPoint.position = carPos;
             camVariables.followPoint.rotation = car.rotation;
-            // 
+            //
             car.transform.gameObject.GetComponent<CarController>().enabled = true;
             inCar = true;
             theCarImin = car.transform;
@@ -187,10 +189,10 @@ public class Interactor : MonoBehaviour
         characterCs.character.transform.SetParent(null);
         characterCs.character.gameObject.SetActive(true);
         car.GetComponent<Rigidbody>().isKinematic=true;
-        //car.transform.gameObject.GetComponent<CarController>().enabled = false;
+        car.transform.gameObject.GetComponent<CarController>().enabled = false;
         inCar = false;
         //car.GetComponent<Rigidbody>().isKinematic = false;
-        car.GetComponent<Car>().IsActive = false;
+        //car.GetComponent<Car>().IsActive = false;
     }
 
 }

@@ -94,7 +94,6 @@ public class MrSellerManager : MonoBehaviour
             {
                 item.GetComponent<Car>().isScrap = true;
             }
-
         }
     }
 
@@ -122,19 +121,25 @@ public class MrSellerManager : MonoBehaviour
 
         foreach (Transform item in uýElements.carSelectionContent.transform)
         {
-
-            foreach (GameObject obj in SoldCarList)
+            if (SoldCarList!=null)
             {
-                if (obj.name + "(Clone)" ==item.name)
+                foreach (GameObject obj in SoldCarList)
                 {
-                    Destroy(item.gameObject);
-                    //item.gameObject.SetActive(false);
-                }
-                else
-                {
-                    item.transform.gameObject.SetActive(true);
+                    if (obj.name + "(Clone)" == item.name)
+                    {
+                        Destroy(item.gameObject);
+                    }
+                    else
+                    {
+                        item.transform.gameObject.SetActive(true);
+                    }
                 }
             }
+            else
+            {
+                item.transform.gameObject.SetActive(true);
+            }
+            
         }
     }
     void MrSellerTextMetod(string text)
@@ -148,12 +153,10 @@ public class MrSellerManager : MonoBehaviour
 
     public void ToggleActiveState(GameObject obj)
     {
-        // Reverse GameObject's active state
         obj.SetActive(!obj.activeSelf);
     }
     public void SelectedCar()
     {
-       // uýElements.mrMessageHandler.MrSellerPositiveText();
         if (BttnSelectCar!=null)
         {
             BttnSelectCar.GetComponent<Car>().IsActive=true;

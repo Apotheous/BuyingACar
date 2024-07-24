@@ -16,11 +16,10 @@ public class DialogueStarter : MonoBehaviour
         externalFunc = GetComponent<ExternalFuncs>();
         dialogBehaviour.BindExternalFunction("Discount", externalFunc.Discount);
         dialogBehaviour.BindExternalFunction("ScrapBargaining", externalFunc.ScrapBargaining);
+        dialogBehaviour.BindExternalFunction("SaleListToSoldList", externalFunc.SaleListToSoldList);
     }
     public void DialogStart()
     {
-
-        
         dialogBehaviour.StartDialog(dialogGraph);
         // Mevcut düðümü kontrol etme
         Node currentNode = dialogBehaviour.CurrentNode;
