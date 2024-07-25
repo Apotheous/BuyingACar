@@ -121,25 +121,28 @@ public class MrSellerManager : MonoBehaviour
 
         foreach (Transform item in uýElements.carSelectionContent.transform)
         {
-            if (SoldCarList!=null)
+            bool isSoldCar = false;
+
+            if (SoldCarList != null)
             {
                 foreach (GameObject obj in SoldCarList)
                 {
                     if (obj.name + "(Clone)" == item.name)
                     {
-                        Destroy(item.gameObject);
-                    }
-                    else
-                    {
-                        item.transform.gameObject.SetActive(true);
+                        isSoldCar = true;
+                        break;
                     }
                 }
             }
+
+            if (isSoldCar)
+            {
+                Destroy(item.gameObject);
+            }
             else
             {
-                item.transform.gameObject.SetActive(true);
+                item.gameObject.SetActive(true);
             }
-            
         }
     }
     void MrSellerTextMetod(string text)
@@ -150,7 +153,6 @@ public class MrSellerManager : MonoBehaviour
     {
         uýElements.carSelectionContentPanel.SetActive(true);
     }
-
     public void ToggleActiveState(GameObject obj)
     {
         obj.SetActive(!obj.activeSelf);
@@ -166,5 +168,4 @@ public class MrSellerManager : MonoBehaviour
     {
          uýElements.mrMessageHandler.MrSellerNegativeText();
     }
-
 }

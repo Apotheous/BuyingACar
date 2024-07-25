@@ -9462,7 +9462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogCharDelay: 0.05
   nextSentenceKeyCodes: 2000000043010000
-  isCanSkippingText: 1
+  isCanSkippingText: 0
   onDialogStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -9481,6 +9481,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  currentNode: {fileID: 0}
+  maxAmountOfAnswerButtons: 0
 --- !u!114 &7345451047949519404
 MonoBehaviour:
   m_ObjectHideFlags: 0

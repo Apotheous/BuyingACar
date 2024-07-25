@@ -20,6 +20,7 @@ public class DialogueStarter : MonoBehaviour
     }
     public void DialogStart()
     {
+ 
         dialogBehaviour.StartDialog(dialogGraph);
         // Mevcut düðümü kontrol etme
         Node currentNode = dialogBehaviour.CurrentNode;

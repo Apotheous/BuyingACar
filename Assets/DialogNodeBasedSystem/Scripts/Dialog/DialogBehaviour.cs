@@ -17,9 +17,9 @@ namespace cherrydev
         [SerializeField] private UnityEvent onDialogFinished;
 
         private DialogNodeGraph currentNodeGraph;
-        private Node currentNode;
+        public Node currentNode;
 
-        private int maxAmountOfAnswerButtons;
+        public int maxAmountOfAnswerButtons;
 
         private bool isDialogStarted;
         private bool isCurrentSentenceSkipped;
@@ -375,5 +375,6 @@ namespace cherrydev
 
             return false;
         }
+
     }
 }

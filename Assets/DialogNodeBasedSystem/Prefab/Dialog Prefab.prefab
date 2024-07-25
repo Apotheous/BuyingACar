@@ -345,13 +345,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogCharDelay: 0.05
   nextSentenceKeyCodes: 2000000043010000
-  isCanSkippingText: 1
+  isCanSkippingText: 0
   onDialogStarted:
     m_PersistentCalls:
       m_Calls: []
   onDialogFinished:
     m_PersistentCalls:
       m_Calls: []
+  currentNode: {fileID: 0}
+  maxAmountOfAnswerButtons: 0
 --- !u!114 &7766932276470276865
 MonoBehaviour:
   m_ObjectHideFlags: 0
