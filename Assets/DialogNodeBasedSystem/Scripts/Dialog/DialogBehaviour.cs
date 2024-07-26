@@ -21,8 +21,8 @@ namespace cherrydev
 
         public int maxAmountOfAnswerButtons;
 
-        private bool isDialogStarted;
-        private bool isCurrentSentenceSkipped;
+        public bool isDialogStarted;
+        public bool isCurrentSentenceSkipped;
 
         public bool IsCanSkippingText
         {
@@ -107,6 +107,12 @@ namespace cherrydev
         /// <param name="dialogNodeGraph"></param>
         public void StartDialog(DialogNodeGraph dialogNodeGraph)
         {
+
+            Debug.LogWarning("Dialog Graph's node STArt");
+
+            isDialogStarted = false;
+            isCurrentSentenceSkipped = false;
+
             isDialogStarted = true;
 
             if (dialogNodeGraph.nodesList == null)

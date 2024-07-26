@@ -28,16 +28,9 @@ public class ExternalFuncs : MonoBehaviour
 
     public void SaleListToSoldList()
     {
+        Debug.Log("SaleLisToSoldListCalled");
         if (!m_Manager.SoldCarList.Contains(m_Manager.BttnSelectCar))
         {
-            //foreach (Transform item in m_Manager.uýElements.carSelectionContent.transform)
-            //{
-            //    if (item.name == m_Manager.BttnSelectCar.name + "(Clone)")
-            //    {
-            //        Debug.Log("Destroy for car selected" + item.name);
-            //        item.gameObject.SetActive(false);
-            //    }
-            //}
             m_Manager.SoldCarList.Add(m_Manager.BttnSelectCar);
             m_Manager.ListCarSale.Remove(m_Manager.BttnSelectCar);
         }
@@ -45,5 +38,11 @@ public class ExternalFuncs : MonoBehaviour
         {
             Debug.LogWarning("This car is already on the sold list!");
         }
+    }
+
+    public void ILoveThisCar()
+    {
+        Debug.LogWarning("SaleLisToSoldListCalled2222");
+
     }
 }

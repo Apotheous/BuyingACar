@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6445800926091013720
+--- !u!114 &-8867080231474011848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16,81 +16,21 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 194
-    y: 627
-    width: 190
-    height: 155
-  isDragging: 0
-  isSelected: 0
-  sentence:
-    characterName: MrSeller
-    text: Yes you are right. I can give you some discount for the defective parts.
-    characterSprite: {fileID: 0}
-  parentNode: {fileID: 1590810676400165809}
-  childNode: {fileID: 4340556992365990874}
-  isExternalFunc: 1
-  externalFunctionName: Discount
---- !u!114 &-6102521638626802638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
-  m_Name: Sentence Node
-  m_EditorClassIdentifier: 
-  connectedNodesList: []
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 1271
-    y: 771
+    x: 1395
+    y: 534
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: MrSeller
-    text: "se\xE7im senin"
+    characterName: 
+    text: this Car your
     characterSprite: {fileID: 0}
-  parentNode: {fileID: 8795796049771614219}
+  parentNode: {fileID: 8047484397418546695}
   childNode: {fileID: 0}
   isExternalFunc: 0
   externalFunctionName: 
---- !u!114 &-3848748082894144068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
-  m_Name: Sentence Node
-  m_EditorClassIdentifier: 
-  connectedNodesList: []
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: -536
-    y: 396
-    width: 190
-    height: 135
-  isDragging: 0
-  isSelected: 0
-  sentence:
-    characterName: MrSeller
-    text: You can review the features of the car you chose from the panel.
-    characterSprite: {fileID: 0}
-  parentNode: {fileID: 0}
-  childNode: {fileID: 1590810676400165809}
-  isExternalFunc: 0
-  externalFunctionName: 
---- !u!114 &-3820058098172191342
+--- !u!114 &-8707103711094994345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,17 +46,20 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 983
-    y: 142
+    x: 653
+    y: 536
     width: 190
-    height: 115
+    height: 135
   isDragging: 0
   isSelected: 0
   answers:
-  - 
-  parentSentenceNode: {fileID: 45215565177357122}
-  childSentenceNodes: []
---- !u!114 &-828888638610289948
+  - Okey discount
+  - no discoun inoff
+  parentSentenceNode: {fileID: -8376946208867661023}
+  childSentenceNodes:
+  - {fileID: -3735307479980415106}
+  - {fileID: -5362766542378857485}
+--- !u!114 &-8376946208867661023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,20 +75,110 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 713
-    y: 518
+    x: 395
+    y: 456
     width: 190
     height: 155
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: MrSeller
+    characterName: 
+    text: Yes you alrihgt
+    characterSprite: {fileID: 0}
+  parentNode: {fileID: -4771906700214444625}
+  childNode: {fileID: -8707103711094994345}
+  isExternalFunc: 1
+  externalFunctionName: Discount
+--- !u!114 &-5362766542378857485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  connectedNodesList: []
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 914
+    y: 634
+    width: 190
+    height: 135
+  isDragging: 0
+  isSelected: 0
+  sentence:
+    characterName: 
+    text: I have determined a price for you according to the features of your car.
+      I can't do more.
+    characterSprite: {fileID: 0}
+  parentNode: {fileID: -8707103711094994345}
+  childNode: {fileID: 8047484397418546695}
+  isExternalFunc: 0
+  externalFunctionName: 
+--- !u!114 &-4771906700214444625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1717f3c6dba9fa40844ddacac301510, type: 3}
+  m_Name: Answer Node
+  m_EditorClassIdentifier: 
+  connectedNodesList: []
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 168
+    y: 363
+    width: 190
+    height: 135
+  isDragging: 0
+  isSelected: 0
+  answers:
+  - I Love this car!
+  - This car has defective parts
+  parentSentenceNode: {fileID: 5676157591334552417}
+  childSentenceNodes:
+  - {fileID: 2728450827044181497}
+  - {fileID: -8376946208867661023}
+--- !u!114 &-3735307479980415106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  connectedNodesList: []
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 909
+    y: 471
+    width: 190
+    height: 135
+  isDragging: 0
+  isSelected: 0
+  sentence:
+    characterName: 
     text: Ok the car is yours now
     characterSprite: {fileID: 0}
-  parentNode: {fileID: 4340556992365990874}
+  parentNode: {fileID: -8707103711094994345}
   childNode: {fileID: 0}
-  isExternalFunc: 1
-  externalFunctionName: Discountbuy
+  isExternalFunc: 0
+  externalFunctionName: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,86 +189,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33f741ea10ebcf842a91c9b871dd032a, type: 3}
-  m_Name: DialogGraph
+  m_Name: DialogueGraph
   m_EditorClassIdentifier: 
   nodesList:
-  - {fileID: -3848748082894144068}
-  - {fileID: 1590810676400165809}
-  - {fileID: 7008049287845582032}
-  - {fileID: -6445800926091013720}
-  - {fileID: 4340556992365990874}
-  - {fileID: 1556118929296606993}
-  - {fileID: 45215565177357122}
-  - {fileID: -828888638610289948}
-  - {fileID: 7203157882607978473}
-  - {fileID: 4097340941910562399}
-  - {fileID: 8795796049771614219}
-  - {fileID: 778096031050699150}
-  - {fileID: -6102521638626802638}
-  - {fileID: -3820058098172191342}
+  - {fileID: 5676157591334552417}
+  - {fileID: -4771906700214444625}
+  - {fileID: 2728450827044181497}
+  - {fileID: -8376946208867661023}
+  - {fileID: 1163099791748217058}
+  - {fileID: -8707103711094994345}
+  - {fileID: 3429725159372135423}
+  - {fileID: 1837185078554883637}
+  - {fileID: -3735307479980415106}
+  - {fileID: -5362766542378857485}
+  - {fileID: 8047484397418546695}
+  - {fileID: -8867080231474011848}
+  - {fileID: 5868603026238649715}
   nodeToDrawLineFrom: {fileID: 0}
   linePosition: {x: 0, y: 0}
---- !u!114 &45215565177357122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
-  m_Name: Sentence Node
-  m_EditorClassIdentifier: 
-  connectedNodesList: []
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 706
-    y: 131
-    width: 190
-    height: 155
-  isDragging: 0
-  isSelected: 0
-  sentence:
-    characterName: MrSeller
-    text: The car is yours
-    characterSprite: {fileID: 0}
-  parentNode: {fileID: 1556118929296606993}
-  childNode: {fileID: -3820058098172191342}
-  isExternalFunc: 1
-  externalFunctionName: SaleListToSoldList
---- !u!114 &778096031050699150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
-  m_Name: Sentence Node
-  m_EditorClassIdentifier: 
-  connectedNodesList: []
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 1272
-    y: 581
-    width: 190
-    height: 155
-  isDragging: 0
-  isSelected: 0
-  sentence:
-    characterName: MrSeller
-    text: al bakam
-    characterSprite: {fileID: 0}
-  parentNode: {fileID: 8795796049771614219}
-  childNode: {fileID: 0}
-  isExternalFunc: 1
-  externalFunctionName: SaleListToSoldList
---- !u!114 &1348808215528536435
+--- !u!114 &1163099791748217058
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,75 +223,20 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 860
-    y: 325
-    width: 190
-    height: 115
-  isDragging: 0
-  isSelected: 1
-  answers:
-  - dfggsfgsdf
-  parentSentenceNode: {fileID: 0}
-  childSentenceNodes: []
---- !u!114 &1556118929296606993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1717f3c6dba9fa40844ddacac301510, type: 3}
-  m_Name: Answer Node
-  m_EditorClassIdentifier: 
-  connectedNodesList: []
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 435
-    y: 226
+    x: 672
+    y: 247
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   answers:
   - I get it
-  - "vazge\xE7tim"
-  parentSentenceNode: {fileID: 7008049287845582032}
+  - Dont get i
+  parentSentenceNode: {fileID: 2728450827044181497}
   childSentenceNodes:
-  - {fileID: 45215565177357122}
-  - {fileID: 7203157882607978473}
---- !u!114 &1590810676400165809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1717f3c6dba9fa40844ddacac301510, type: 3}
-  m_Name: Answer Node
-  m_EditorClassIdentifier: 
-  connectedNodesList: []
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: -268
-    y: 405
-    width: 190
-    height: 135
-  isDragging: 0
-  isSelected: 0
-  answers:
-  - I love this car
-  - This car has defective parts
-  parentSentenceNode: {fileID: -3848748082894144068}
-  childSentenceNodes:
-  - {fileID: 7008049287845582032}
-  - {fileID: -6445800926091013720}
---- !u!114 &4097340941910562399
+  - {fileID: 3429725159372135423}
+  - {fileID: 1837185078554883637}
+--- !u!114 &1837185078554883637
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -335,51 +252,81 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 718
-    y: 708
+    x: 906
+    y: 322
+    width: 190
+    height: 135
+  isDragging: 0
+  isSelected: 0
+  sentence:
+    characterName: 
+    text: Okey
+    characterSprite: {fileID: 0}
+  parentNode: {fileID: 1163099791748217058}
+  childNode: {fileID: 0}
+  isExternalFunc: 0
+  externalFunctionName: 
+--- !u!114 &2728450827044181497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  connectedNodesList: []
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 398
+    y: 252
+    width: 190
+    height: 135
+  isDragging: 0
+  isSelected: 0
+  sentence:
+    characterName: 
+    text: Good Choose
+    characterSprite: {fileID: 0}
+  parentNode: {fileID: -4771906700214444625}
+  childNode: {fileID: 1163099791748217058}
+  isExternalFunc: 0
+  externalFunctionName: 
+--- !u!114 &3429725159372135423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
+  m_Name: Sentence Node
+  m_EditorClassIdentifier: 
+  connectedNodesList: []
+  nodeGraph: {fileID: 11400000}
+  rect:
+    serializedVersion: 2
+    x: 907
+    y: 141
     width: 190
     height: 155
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: MrSeller
-    text: I have determined a price for you according to the features of your car.
-      I can't do more.
+    characterName: 
+    text: The car is yours
     characterSprite: {fileID: 0}
-  parentNode: {fileID: 4340556992365990874}
-  childNode: {fileID: 8795796049771614219}
+  parentNode: {fileID: 1163099791748217058}
+  childNode: {fileID: 0}
   isExternalFunc: 1
-  externalFunctionName: ScrapBargaining
---- !u!114 &4340556992365990874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1717f3c6dba9fa40844ddacac301510, type: 3}
-  m_Name: Answer Node
-  m_EditorClassIdentifier: 
-  connectedNodesList: []
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 416
-    y: 644
-    width: 190
-    height: 135
-  isDragging: 0
-  isSelected: 0
-  answers:
-  - Okay, this discount is enough, I'll buy it
-  - No, this car is completely junk.
-  parentSentenceNode: {fileID: -6445800926091013720}
-  childSentenceNodes:
-  - {fileID: -828888638610289948}
-  - {fileID: 4097340941910562399}
---- !u!114 &6477780949204911397
+  externalFunctionName: SaleListToSoldList
+--- !u!114 &5676157591334552417
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -395,21 +342,21 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 824
-    y: 189
+    x: -68
+    y: 356
     width: 190
     height: 135
   isDragging: 0
-  isSelected: 1
+  isSelected: 0
   sentence:
-    characterName: 
-    text: 
+    characterName: MrSeller
+    text: You can review the features of the car you chose from the panel.
     characterSprite: {fileID: 0}
   parentNode: {fileID: 0}
-  childNode: {fileID: 0}
+  childNode: {fileID: -4771906700214444625}
   isExternalFunc: 0
   externalFunctionName: 
---- !u!114 &7008049287845582032
+--- !u!114 &5868603026238649715
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -425,51 +372,21 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 161
-    y: 226
+    x: 1393
+    y: 692
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: MrSeller
-    text: "g\xFCzel se\xE7im sat\u0131n al\u0131yor musun?"
+    characterName: 
+    text: your chose
     characterSprite: {fileID: 0}
-  parentNode: {fileID: 1590810676400165809}
-  childNode: {fileID: 1556118929296606993}
-  isExternalFunc: 0
-  externalFunctionName: 
---- !u!114 &7203157882607978473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32a464d8ccff4e40a60c45b40a1e648, type: 3}
-  m_Name: Sentence Node
-  m_EditorClassIdentifier: 
-  connectedNodesList: []
-  nodeGraph: {fileID: 11400000}
-  rect:
-    serializedVersion: 2
-    x: 713
-    y: 335
-    width: 190
-    height: 135
-  isDragging: 0
-  isSelected: 0
-  sentence:
-    characterName: MrSeller
-    text: okeyyfnish talk
-    characterSprite: {fileID: 0}
-  parentNode: {fileID: 1556118929296606993}
+  parentNode: {fileID: 8047484397418546695}
   childNode: {fileID: 0}
   isExternalFunc: 0
   externalFunctionName: 
---- !u!114 &8795796049771614219
+--- !u!114 &8047484397418546695
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -485,16 +402,16 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 970
-    y: 726
+    x: 1175
+    y: 657
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   answers:
-  - tamam alam madem
-  - "vazge\xE7tim"
-  parentSentenceNode: {fileID: 4097340941910562399}
+  - okey
+  - Dont
+  parentSentenceNode: {fileID: -5362766542378857485}
   childSentenceNodes:
-  - {fileID: 778096031050699150}
-  - {fileID: -6102521638626802638}
+  - {fileID: -8867080231474011848}
+  - {fileID: 5868603026238649715}

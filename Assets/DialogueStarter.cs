@@ -17,11 +17,15 @@ public class DialogueStarter : MonoBehaviour
         dialogBehaviour.BindExternalFunction("Discount", externalFunc.Discount);
         dialogBehaviour.BindExternalFunction("ScrapBargaining", externalFunc.ScrapBargaining);
         dialogBehaviour.BindExternalFunction("SaleListToSoldList", externalFunc.SaleListToSoldList);
+        //dialogBehaviour.BindExternalFunction("ILoveThisCar", externalFunc.SaleListToSoldList);
     }
     public void DialogStart()
     {
- 
+        
+
+        // Dialog'u baþlatma
         dialogBehaviour.StartDialog(dialogGraph);
+
         // Mevcut düðümü kontrol etme
         Node currentNode = dialogBehaviour.CurrentNode;
         Debug.Log("Current Node: " + currentNode);

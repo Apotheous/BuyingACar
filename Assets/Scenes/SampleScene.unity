@@ -8662,6 +8662,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 374167881, guid: f6da99420f248a64891193a88883deca, type: 3}
+      propertyPath: dialogGraph
+      value: 
+      objectReference: {fileID: 11400000, guid: ce16e04016f4da44d8ed158baf2c6353,
+        type: 2}
+    - target: {fileID: 374167881, guid: f6da99420f248a64891193a88883deca, type: 3}
       propertyPath: externalFunc
       value: 
       objectReference: {fileID: 374167889}
@@ -9483,6 +9488,8 @@ MonoBehaviour:
         m_CallState: 2
   currentNode: {fileID: 0}
   maxAmountOfAnswerButtons: 0
+  isDialogStarted: 0
+  isCurrentSentenceSkipped: 0
 --- !u!114 &7345451047949519404
 MonoBehaviour:
   m_ObjectHideFlags: 0
