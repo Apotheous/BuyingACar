@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    Rigidbody rb;
     private float horizontalInput, verticalInput;
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
@@ -18,6 +19,13 @@ public class CarController : MonoBehaviour
     // Wheels
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
+    public float maxSpeed;
+    public float speed;
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        maxSpeed=gameObject.GetComponent<Car>().carObject.maxSpeed;
+    }
 
     private void FixedUpdate()
     {
@@ -25,6 +33,7 @@ public class CarController : MonoBehaviour
         HandleMotor();
         HandleSteering();
         UpdateWheels();
+        MaxSpeed();
     }
 
     private void GetInput()
@@ -77,5 +86,14 @@ public class CarController : MonoBehaviour
         wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
+    }
+
+    private void MaxSpeed()
+    {
+        speed = rb.velocity.magnitude;
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+        }
     }
 }
