@@ -17,41 +17,27 @@ namespace cherrydev
         [SerializeField] private UnityEvent onDialogFinished;
 
         private DialogNodeGraph currentNodeGraph;
-        public Node currentNode;
+        private Node currentNode;
 
-        public int maxAmountOfAnswerButtons;
+        private int maxAmountOfAnswerButtons;
 
-        public bool isDialogStarted;
-        public bool isCurrentSentenceSkipped;
+        private bool isDialogStarted;
+        private bool isCurrentSentenceSkipped;
 
         public bool IsCanSkippingText
         {
-            get
-            {
-                return isCanSkippingText;
-            }
-            set
-            {
-                isCanSkippingText = value;
-            }
+            get => isCanSkippingText;
+            set => isCanSkippingText = value;
         }
 
         public event Action OnSentenceNodeActive;
-
         public event Action<string, string, Sprite> OnSentenceNodeActiveWithParameter;
-
         public event Action OnAnswerNodeActive;
-
         public event Action<int, AnswerNode> OnAnswerButtonSetUp;
-
         public event Action<int> OnMaxAmountOfAnswerButtonsCalculated;
-
         public event Action<int> OnAnswerNodeActiveWithParameter;
-
         public event Action<int, string> OnAnswerNodeSetUp;
-
         public event Action OnDialogTextCharWrote;
-
         public event Action<string> OnDialogTextSkipped;
 
         public DialogExternalFunctionsHandler ExternalFunctionsHandler { get; private set; }
@@ -64,23 +50,6 @@ namespace cherrydev
         private void Update()
         {
             HandleSentenceSkipping();
-        }
-        public Node CurrentNode
-        {
-            get { return currentNode; }
-        }
-        public string GetCurrentNodeType()
-        {
-            return currentNode.GetType().Name;
-        }
-
-        public string GetCurrentNodeText()
-        {
-            if (currentNode is SentenceNode sentenceNode)
-            {
-                return sentenceNode.GetSentenceText();
-            }
-            return string.Empty;
         }
 
         /// <summary>
@@ -107,12 +76,6 @@ namespace cherrydev
         /// <param name="dialogNodeGraph"></param>
         public void StartDialog(DialogNodeGraph dialogNodeGraph)
         {
-
-            Debug.LogWarning("Dialog Graph's node STArt");
-
-            isDialogStarted = false;
-            isCurrentSentenceSkipped = false;
-
             isDialogStarted = true;
 
             if (dialogNodeGraph.nodesList == null)
@@ -214,7 +177,7 @@ namespace cherrydev
 
             for (int i = 0; i < answerNode.childSentenceNodes.Count; i++)
             {
-                if (answerNode.childSentenceNodes[i] != null)
+                if (answerNode.childSentenceNodes[i])
                 {
                     OnAnswerNodeSetUp?.Invoke(i, answerNode.answers[i]);
                     OnAnswerButtonSetUp?.Invoke(i, answerNode);
@@ -381,6 +344,5 @@ namespace cherrydev
 
             return false;
         }
-
     }
 }
