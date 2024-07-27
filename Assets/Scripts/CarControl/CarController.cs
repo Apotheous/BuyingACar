@@ -24,7 +24,8 @@ public class CarController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        maxSpeed=gameObject.GetComponent<Car>().carObject.maxSpeed;
+        maxSpeed=gameObject.GetComponent<Car>().carObject.maxSpeed;  
+        motorForce=gameObject.GetComponent<Car>().carObject.torque*1000;
     }
 
     private void FixedUpdate()
