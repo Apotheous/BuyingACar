@@ -21,6 +21,8 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
     public float maxSpeed;
     public float speed;
+    // Alt objenin (örneðin, wheelChild) kamber açýsýný eklemek
+    public float camberAngle; // Örnek olarak 10 derece kamber
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -74,19 +76,50 @@ public class CarController : MonoBehaviour
 
     private void UpdateWheels()
     {
-        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
-        UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform);
-        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
-        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform);
+        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform, -camberAngle);
+        UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform, camberAngle);
+        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform, -camberAngle);
+        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform, camberAngle);
+
     }
 
-    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
+    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform,float cmbrAbngle)
     {
+        if (cmbrAbngle>=0)
+        {
+            camberAngle = camberAngle;
+        }
+        else
+        {
+            camberAngle = -camberAngle;
+        }
+
         Vector3 pos;
         Quaternion rot;
+
+        // WheelCollider'dan pozisyon ve rotasyonu al
         wheelCollider.GetWorldPose(out pos, out rot);
-        wheelTransform.rotation = rot;
+
+
+        Quaternion camberRotation = Quaternion.Euler(0, 0, camberAngle);
+
+        // Alt nesneyi al
+        Transform wheelChild = wheelTransform.GetChild(0);
+
+        // Alt nesnenin rotasyonunu güncelle
+        wheelChild.localRotation = camberRotation;
+
+        //// WheelTransform'un rotasyonunu güncelle
+        //wheelTransform.rotation = rot;
+
+        // Pozisyonu güncelle
         wheelTransform.position = pos;
+
+        //Vector3 pos;
+        //Quaternion rot;
+        //wheelCollider.GetWorldPose(out pos, out rot);
+        //wheelTransform.rotation = rot;
+        //wheelTransform.position = pos;
     }
 
     private void MaxSpeed()

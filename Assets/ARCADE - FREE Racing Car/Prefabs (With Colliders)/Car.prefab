@@ -595,6 +595,7 @@ MonoBehaviour:
   rearRightWheelTransform: {fileID: 28636839611146925}
   maxSpeed: 0
   speed: 0
+  camberAngle: 15
 --- !u!114 &1288273463404085869
 MonoBehaviour:
   m_ObjectHideFlags: 0
