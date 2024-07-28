@@ -9799,7 +9799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogCharDelay: 0.05
   nextSentenceKeyCodes: 2000000043010000
-  isCanSkippingText: 0
+  isCanSkippingText: 1
   onDialogStarted:
     m_PersistentCalls:
       m_Calls: []
