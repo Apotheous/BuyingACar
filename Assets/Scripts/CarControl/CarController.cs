@@ -8,6 +8,8 @@ public class CarController : MonoBehaviour
     private float horizontalInput, verticalInput;
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
+    Vector3 wheelPosition;
+    Quaternion wheelRotation;
 
     // Settings
     [SerializeField] private float motorForce, breakForce, maxSteerAngle;
@@ -94,26 +96,31 @@ public class CarController : MonoBehaviour
             camberAngle = -camberAngle;
         }
 
-        Vector3 pos;
-        Quaternion rot;
+        wheelCollider.GetWorldPose(out wheelPosition, out wheelRotation);
+        wheelTransform.transform.localRotation = Quaternion.Euler(0, wheelCollider.steerAngle, camberAngle);
+        wheelTransform.transform.GetChild(0).transform.Rotate(wheelCollider.rpm * 6.6f * Time.deltaTime, 0, 0, Space.Self);
+        wheelTransform.transform.position = wheelPosition;
 
-        // WheelCollider'dan pozisyon ve rotasyonu al
-        wheelCollider.GetWorldPose(out pos, out rot);
+        //Vector3 pos;
+        //Quaternion rot;
+
+        //// WheelCollider'dan pozisyon ve rotasyonu al
+        //wheelCollider.GetWorldPose(out pos, out rot);
 
 
-        Quaternion camberRotation = Quaternion.Euler(0, 0, camberAngle);
+        //Quaternion camberRotation = Quaternion.Euler(0, 0, camberAngle);
 
-        // Alt nesneyi al
-        Transform wheelChild = wheelTransform.GetChild(0);
+        //// Alt nesneyi al
+        //Transform wheelChild = wheelTransform.GetChild(0);
 
-        // Alt nesnenin rotasyonunu güncelle
-        wheelChild.localRotation = camberRotation;
+        //// Alt nesnenin rotasyonunu güncelle
+        //wheelChild.localRotation = camberRotation;
 
-        //// WheelTransform'un rotasyonunu güncelle
-        //wheelTransform.rotation = rot;
+        ////// WheelTransform'un rotasyonunu güncelle
+        ////wheelTransform.rotation = rot;
 
-        // Pozisyonu güncelle
-        wheelTransform.position = pos;
+        //// Pozisyonu güncelle
+        //wheelTransform.position = pos;
 
         //Vector3 pos;
         //Quaternion rot;
