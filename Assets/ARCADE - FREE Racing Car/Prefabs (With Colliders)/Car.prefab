@@ -647,7 +647,7 @@ MonoBehaviour:
   frontRightWheelTransform: {fileID: 5536184018728695142}
   rearLeftWheelTransform: {fileID: 8300722904061064130}
   rearRightWheelTransform: {fileID: 6888211214124850648}
-  maxSpeed: 0
+  maxSpeed: 20
   speed: 0
   camberAngle: 15
 --- !u!114 &1288273463404085869

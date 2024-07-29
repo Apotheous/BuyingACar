@@ -28,8 +28,16 @@ public class CarController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        maxSpeed=gameObject.GetComponent<Car>().carObject.maxSpeed;  
+        //maxSpeed=gameObject.GetComponent<Car>().carObject.maxSpeed;  
         motorForce=gameObject.GetComponent<Car>().carObject.torque*1000;
+
+        float frontWheels, rearWheels;
+        frontWheels=Random.Range(0.3f,0.7f);
+        rearWheels=Random.Range(0.3f,0.7f);
+        SetSuspensionSpringTargetPosition(frontLeftWheelCollider, frontWheels); // En alt pozisyon
+        SetSuspensionSpringTargetPosition(frontRightWheelCollider, frontWheels); // En üst pozisyon
+        SetSuspensionSpringTargetPosition(rearLeftWheelCollider, rearWheels); // Orta pozisyon
+        SetSuspensionSpringTargetPosition(rearRightWheelCollider, rearWheels); // Biraz alt pozisyon
     }
 
     private void FixedUpdate()
@@ -101,34 +109,18 @@ public class CarController : MonoBehaviour
         wheelTransform.transform.GetChild(0).transform.Rotate(wheelCollider.rpm * 6.6f * Time.deltaTime, 0, 0, Space.Self);
         wheelTransform.transform.position = wheelPosition;
 
-        //Vector3 pos;
-        //Quaternion rot;
-
-        //// WheelCollider'dan pozisyon ve rotasyonu al
-        //wheelCollider.GetWorldPose(out pos, out rot);
-
-
-        //Quaternion camberRotation = Quaternion.Euler(0, 0, camberAngle);
-
-        //// Alt nesneyi al
-        //Transform wheelChild = wheelTransform.GetChild(0);
-
-        //// Alt nesnenin rotasyonunu güncelle
-        //wheelChild.localRotation = camberRotation;
-
-        ////// WheelTransform'un rotasyonunu güncelle
-        ////wheelTransform.rotation = rot;
-
-        //// Pozisyonu güncelle
-        //wheelTransform.position = pos;
-
-        //Vector3 pos;
-        //Quaternion rot;
-        //wheelCollider.GetWorldPose(out pos, out rot);
-        //wheelTransform.rotation = rot;
-        //wheelTransform.position = pos;
     }
+    void SetSuspensionSpringTargetPosition(WheelCollider wheelCollider, float targetPosition)
+    {
+        // JointSpring struct'ýný al
+        JointSpring suspensionSpring = wheelCollider.suspensionSpring;
 
+        // targetPosition deðerini ayarla (0 ile 1 arasýnda olmalýdýr)
+        suspensionSpring.targetPosition = Mathf.Clamp01(targetPosition);
+
+        // JointSpring struct'ýný geri ata
+        wheelCollider.suspensionSpring = suspensionSpring;
+    }
     private void MaxSpeed()
     {
         speed = rb.velocity.magnitude;
