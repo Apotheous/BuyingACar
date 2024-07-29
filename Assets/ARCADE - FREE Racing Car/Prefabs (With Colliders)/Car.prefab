@@ -173,7 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6888211214124850648}
   m_Layer: 0
-  m_Name: Rright
+  m_Name: RRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,7 +631,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3311311803080157842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9725b0c126dd15944ac59f1a64422808, type: 3}
   m_Name: 
@@ -643,10 +643,10 @@ MonoBehaviour:
   frontRightWheelCollider: {fileID: 4795950753765878369}
   rearLeftWheelCollider: {fileID: 3145262460232535540}
   rearRightWheelCollider: {fileID: 1057494946909100755}
-  frontLeftWheelTransform: {fileID: 3794951908810334882}
-  frontRightWheelTransform: {fileID: 948405438201742482}
-  rearLeftWheelTransform: {fileID: 9188640840458259854}
-  rearRightWheelTransform: {fileID: 28636839611146925}
+  frontLeftWheelTransform: {fileID: 639405857522347959}
+  frontRightWheelTransform: {fileID: 5536184018728695142}
+  rearLeftWheelTransform: {fileID: 8300722904061064130}
+  rearRightWheelTransform: {fileID: 6888211214124850648}
   maxSpeed: 0
   speed: 0
   camberAngle: 15
