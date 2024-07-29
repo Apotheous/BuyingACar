@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7856647043997521970}
   - component: {fileID: 2716459193614891142}
+  - component: {fileID: 9156653046042679259}
   m_Layer: 0
   m_Name: FrontLeftWheel
   m_TagString: Untagged
@@ -62,6 +63,23 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!114 &9156653046042679259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460083236159403640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adede683c6df2b241867415de2d1f415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useWheelAntiStuck: 1
+  raysNumber: 36
+  raysMaxAngle: 180
+  wheelWidth: 0.25
+  wheelModel: {fileID: 3794951908810334882}
 --- !u!1 &856612622373900327
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6227607877416696010}
   - component: {fileID: 1057494946909100755}
+  - component: {fileID: 756060004867501320}
   m_Layer: 0
   m_Name: RearRightWheel
   m_TagString: Untagged
@@ -354,6 +373,23 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!114 &756060004867501320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2762295717202265143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adede683c6df2b241867415de2d1f415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useWheelAntiStuck: 1
+  raysNumber: 36
+  raysMaxAngle: 180
+  wheelWidth: 0.25
+  wheelModel: {fileID: 28636839611146925}
 --- !u!1 &3018720586628133803
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7671413317644158532}
   - component: {fileID: 4795950753765878369}
+  - component: {fileID: 773639836558981836}
   m_Layer: 0
   m_Name: FrontRightWheel
   m_TagString: Untagged
@@ -514,6 +551,23 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!114 &773639836558981836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3220844048195430644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adede683c6df2b241867415de2d1f415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useWheelAntiStuck: 1
+  raysNumber: 36
+  raysMaxAngle: 180
+  wheelWidth: 0.25
+  wheelModel: {fileID: 948405438201742482}
 --- !u!1 &3311311803080157842
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,6 +741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8572727330653681354}
   - component: {fileID: 3145262460232535540}
+  - component: {fileID: 8282497276250077033}
   m_Layer: 0
   m_Name: RearLeftWheel
   m_TagString: Untagged
@@ -739,6 +794,23 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!114 &8282497276250077033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962000127133956386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adede683c6df2b241867415de2d1f415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useWheelAntiStuck: 1
+  raysNumber: 36
+  raysMaxAngle: 180
+  wheelWidth: 0.25
+  wheelModel: {fileID: 9188640840458259854}
 --- !u!1 &4163942240364048118
 GameObject:
   m_ObjectHideFlags: 0
