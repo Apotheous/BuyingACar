@@ -649,6 +649,8 @@ MonoBehaviour:
   rearRightWheelTransform: {fileID: 6888211214124850648}
   maxSpeed: 0
   speed: 0
+  frontWheels: 0
+  rearWheels: 0
   camberAngle: 15
 --- !u!114 &1288273463404085869
 MonoBehaviour:
@@ -1456,6 +1458,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149223954955882439, guid: 7a2d6d222e7236342ac5762c31b7fb07,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6345824400581982410, guid: 7a2d6d222e7236342ac5762c31b7fb07,
         type: 3}
