@@ -5,6 +5,7 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
     Rigidbody rb;
+    private Car carObj;
     private float horizontalInput, verticalInput;
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
@@ -23,21 +24,43 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
     public float maxSpeed;
     public float speed;
-
+    public float frontWheels, rearWheels;
     public float camberAngle; 
     private void Start()
     {
+        carObj= GetComponent<Car>();
         rb = GetComponent<Rigidbody>();
-        //maxSpeed=gameObject.GetComponent<Car>().carObject.maxSpeed;  
-        motorForce=gameObject.GetComponent<Car>().carObject.torque*1000;
 
-        float frontWheels, rearWheels;
-        frontWheels=Random.Range(0.3f,0.7f);
-        rearWheels=Random.Range(0.3f,0.7f);
-        SetSuspensionSpringTargetPosition(frontLeftWheelCollider, frontRightWheelCollider, frontWheels); 
-        SetSuspensionSpringTargetPosition(rearLeftWheelCollider, rearRightWheelCollider, rearWheels);  
+        maxSpeed=carObj.carObject.maxSpeed;  
+        motorForce= carObj.carObject.torque * 1000;
+
+        SupensionCase();
+
     }
-
+    void SupensionCase()
+    {
+        switch (carObj.carObject.Suspensions)
+        {
+            case 3:
+                frontWheels = 0f;
+                rearWheels = 0f;
+                break;
+            case 2:
+                frontWheels = 1f;
+                rearWheels = 1f;
+                break;
+            case 1:
+                frontWheels = Random.Range(0f, 1f);
+                rearWheels = Random.Range(0f, 1f);
+                break;
+            case 0:
+                frontWheels = 0.5f;
+                rearWheels = 0.5f;
+                break;
+        }
+        SetSuspensionSpringTargetPosition(frontLeftWheelCollider, frontRightWheelCollider, frontWheels);
+        SetSuspensionSpringTargetPosition(rearLeftWheelCollider, rearRightWheelCollider, rearWheels);
+    }
     private void FixedUpdate()
     {
         GetInput();

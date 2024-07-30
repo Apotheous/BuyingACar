@@ -30,22 +30,29 @@ namespace Models
 
         public void InitializeRandomValues()
         {
-            damagedParts = Random.Range(1, 10);
+            torque = Random.Range(5, 10);
+
+            maxSpeed = Random.Range(5, 15);
+
+            damagedParts = Random.Range(0, 5);
+
             paintedParts = Random.Range(1, 10);
-            maxSpeed = Random.Range(1, 10);
-            torque = Random.Range(1, 10);
-            Suspensions = Random.Range(1, 10);
+
+            Suspensions = Random.Range(0, 3);
+
             wheelCamberValues = Random.Range(1, 10);
+
             generalPropValue = damagedParts + paintedParts + maxSpeed + torque;
+
             price = (50000) ;
         }
 
         public override string ToString()
         {
-            return $"Car Name From CarMain: {carName}, Damaged Parts: {damagedParts}, Painted Parts: {paintedParts}, Max Speed: {maxSpeed}, Torque: {torque}, Suspensions: {Suspensions}, Wheel Camber Values: {wheelCamberValues}, Price: {price}";
+            return $"Car Name From CarMain: {carName}, Damaged Parts: {damagedParts}" +
+                $", Painted Parts: {paintedParts}, Max Speed: {maxSpeed}, Torque: {torque}" +
+                $", Suspensions: {Suspensions}, Wheel Camber Values: {wheelCamberValues}, Price: {price}";
         }
-
     }
-
 }
 
