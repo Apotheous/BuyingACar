@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    Rigidbody rb;
     private float horizontalInput, verticalInput;
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
+    Vector3 wheelPosition;
+    Quaternion wheelRotation;
 
     // Settings
     [SerializeField] private float motorForce, breakForce, maxSteerAngle;
@@ -18,6 +21,22 @@ public class CarController : MonoBehaviour
     // Wheels
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
+    public float maxSpeed;
+    public float speed;
+
+    public float camberAngle; 
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        //maxSpeed=gameObject.GetComponent<Car>().carObject.maxSpeed;  
+        motorForce=gameObject.GetComponent<Car>().carObject.torque*1000;
+
+        float frontWheels, rearWheels;
+        frontWheels=Random.Range(0.3f,0.7f);
+        rearWheels=Random.Range(0.3f,0.7f);
+        SetSuspensionSpringTargetPosition(frontLeftWheelCollider, frontRightWheelCollider, frontWheels); 
+        SetSuspensionSpringTargetPosition(rearLeftWheelCollider, rearRightWheelCollider, rearWheels);  
+    }
 
     private void FixedUpdate()
     {
@@ -25,6 +44,7 @@ public class CarController : MonoBehaviour
         HandleMotor();
         HandleSteering();
         UpdateWheels();
+        MaxSpeed();
     }
 
     private void GetInput()
@@ -64,18 +84,45 @@ public class CarController : MonoBehaviour
 
     private void UpdateWheels()
     {
-        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
-        UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform);
-        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
-        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform);
+        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform, -camberAngle);
+        UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform, camberAngle);
+        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform, -camberAngle);
+        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform, camberAngle);
+
     }
 
-    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
+    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform,float cmbrAbngle)
     {
-        Vector3 pos;
-        Quaternion rot;
-        wheelCollider.GetWorldPose(out pos, out rot);
-        wheelTransform.rotation = rot;
-        wheelTransform.position = pos;
+        if (cmbrAbngle>=0)
+        {
+            camberAngle = camberAngle;
+        }
+        else
+        {
+            camberAngle = -camberAngle;
+        }
+
+        wheelCollider.GetWorldPose(out wheelPosition, out wheelRotation);
+        wheelTransform.transform.localRotation = Quaternion.Euler(0, wheelCollider.steerAngle, camberAngle);
+        wheelTransform.transform.GetChild(0).transform.Rotate(wheelCollider.rpm * 6.6f * Time.deltaTime, 0, 0, Space.Self);
+        wheelTransform.transform.position = wheelPosition;
+
+    }
+    void SetSuspensionSpringTargetPosition(WheelCollider leftWheelCollider, WheelCollider rightWheelCollider, float targetPosition)
+    {
+        JointSpring suspensionSpring = leftWheelCollider.suspensionSpring;
+
+        suspensionSpring.targetPosition = Mathf.Clamp01(targetPosition);
+
+        leftWheelCollider.suspensionSpring = suspensionSpring;
+        rightWheelCollider.suspensionSpring = suspensionSpring;
+    }
+    private void MaxSpeed()
+    {
+        speed = rb.velocity.magnitude;
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+        }
     }
 }

@@ -1,3 +1,4 @@
+using cherrydev;
 using Models;
 using System.Collections;
 using System.Collections.Generic;
@@ -41,9 +42,12 @@ public class CarBttnPref : MonoBehaviour
     public void SelectCar()
     {
         mrSellerManager.BttnSelectCar = carObjOfBttn;
-        MrSellerContent.GetComponent<MessageHandler>().MrSellerNextText();
-        mrSellerManager.SelectCar();
-
+        mrSellerManager.GetComponent<MessageHandler>().MrSellerStartText();
+        mrSellerManager.PrintPropsSelectedCar();
+        mrSellerManager.CarSelectionContentPanelOn();
+        mrSellerManager.GetComponent<DialogueStarter>().DialogStart();
+        MrSellerContent.SetActive(false);
+        mrSellerManager.SelectedCar();
     }
 
     //public void ToggleActiveState(GameObject obj)

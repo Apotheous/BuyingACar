@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c046e72594ae14548b936a5a2c740cd0, type: 3}
   m_Name: DialogueScriptableObject
   m_EditorClassIdentifier: 
-  text:
-  - "Merhaba arabalardan hangisini be\u011Fendin ?"
-  - "Se\xE7ti\u011Fin araban\u0131n \xF6zelliklerini yan\u0131m\u0131zda ki panelde
-    g\xF6rebilirsin."
-  - Welcome 3
-  - Welcome 4
-  - Welcome 5
+  textStart:
+  - 000
+  - Hello, I am Mr Seller, the salesman of the cars you see behind me. Do you have
+    a car you like?
+  textPositive:
+  - 
+  - 
+  - Nice choice, do you want to try before buying?
+  - Very good, come on, take a tour and see.
+  textNegative:
+  - 
+  - 
+  - Yes you are right. I can give you some discount for the defective parts.
+  - Let me try
