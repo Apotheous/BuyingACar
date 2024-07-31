@@ -51,8 +51,16 @@ public class MrSellerManager : MonoBehaviour
     // Define a list of TextMeshProUGUI components
     public List<TextMeshProUGUI> textElements = new List<TextMeshProUGUI>(8);
 
+
     void Start()
     {
+        StartCoroutine(MrSellerStartFoncsDelayed());
+    }
+
+    private IEnumerator MrSellerStartFoncsDelayed()
+    {
+        yield return new WaitForSeconds(0.1f); // Kýsa bir gecikme
+
         MrSellerStartFoncs();
     }
 
@@ -67,13 +75,13 @@ public class MrSellerManager : MonoBehaviour
 
                 ListCarSale.Add(obj);
 
-                Instantiate(uiElements.carBtnPref, uiElements.carSelectionContent.transform);
+                GameObject newCarBtn = Instantiate(uiElements.carBtnPref, uiElements.carSelectionContent.transform);
+                newCarBtn.name = obj.name;
 
-                uiElements.carBtnPref.name = obj.name;
-                carBttnText = uiElements.carBtnPref.transform.GetChild(0).GetComponent<Text>();
+                carBttnText = newCarBtn.transform.GetChild(0).GetComponent<Text>();
                 carBttnText.text = obj.name;
 
-                uiElements.carBtnPref.GetComponent<CarBttnPref>().carObjOfBttn = obj;
+                newCarBtn.GetComponent<CarBttnPref>().carObjOfBttn = obj;
 
                 GetGeneralPropVal(obj);
             }
@@ -99,17 +107,23 @@ public class MrSellerManager : MonoBehaviour
     }
     public void PrintPropsSelectedCar()
     {
-        textElements[0].text = BttnSelectCar.GetComponent<Car>().carObject.name;
-        textElements[1].text = BttnSelectCar.GetComponent<Car>().carObject.damagedParts.ToString();
-        textElements[2].text = BttnSelectCar.GetComponent<Car>().carObject.paintedParts.ToString();
-        textElements[3].text = BttnSelectCar.GetComponent<Car>().carObject.maxSpeed.ToString();
-        textElements[4].text = BttnSelectCar.GetComponent<Car>().carObject.torque.ToString();
-        textElements[5].text = BttnSelectCar.GetComponent<Car>().carObject.Suspensions.ToString();
-        textElements[6].text = BttnSelectCar.GetComponent<Car>().carObject.wheelCamberValues.ToString();
-        textElements[7].text = BttnSelectCar.GetComponent<Car>().carObject.price.ToString();
-        foreach (Transform  item in uiElements.carSelectionContent.transform)
+        Car selectedCar = BttnSelectCar.GetComponent<Car>();
+        var carObject = selectedCar.carObject;
+
+        string[] carProperties = {
+        carObject.name,
+        carObject.damagedParts.ToString(),
+        carObject.paintedParts.ToString(),
+        carObject.maxSpeed.ToString(),
+        carObject.torque.ToString(),
+        carObject.Suspensions.ToString(),
+        carObject.wheelCamberValues.ToString(),
+        carObject.price.ToString()
+        };
+
+        for (int i = 0; i < textElements.Count; i++)
         {
-            item.transform.gameObject.SetActive(false);
+            textElements[i].text = carProperties[i];
         }
     }
     public void DeselectSelectCar()
@@ -127,7 +141,7 @@ public class MrSellerManager : MonoBehaviour
             {
                 foreach (GameObject obj in SoldCarList)
                 {
-                    if (obj.name + "(Clone)" == item.name)
+                    if (obj.name == item.name)
                     {
                         isSoldCar = true;
                         break;
@@ -145,10 +159,7 @@ public class MrSellerManager : MonoBehaviour
             }
         }
     }
-    void MrSellerTextMetod(string text)
-    {
-        uiElements.mrSellerText.text =  text;
-    }
+
     public void CarSelectionContentPanelOn()
     {
         uiElements.carSelectionContentPanel.SetActive(true);
@@ -164,7 +175,7 @@ public class MrSellerManager : MonoBehaviour
             BttnSelectCar.GetComponent<Car>().IsActive=true;
         }     
     }
-    public void MrSellerDealNegative()
+    void MrSellerDealNegative()
     {
          uiElements.mrMessageHandler.MrSellerNegativeText();
     }
