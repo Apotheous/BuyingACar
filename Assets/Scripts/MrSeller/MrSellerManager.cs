@@ -32,7 +32,7 @@ public class MrSellerManager : MonoBehaviour
         public TextMeshProUGUI mrSellerText;
         public MessageHandler mrMessageHandler;
     }
-    public UIElements uýElements;
+    public UIElements uiElements;
 
 
     private GameObject[] allObjects;
@@ -66,16 +66,16 @@ public class MrSellerManager : MonoBehaviour
             {
 
                 ListCarSale.Add(obj);
+                uiElements.carBtnPref.name = obj.name;
+                Instantiate(uiElements.carBtnPref, uiElements.carSelectionContent.transform);
 
-                Instantiate(uýElements.carBtnPref, uýElements.carSelectionContent.transform);
+                
 
-                uýElements.carBtnPref.name = obj.name;
+                uiElements.carBtnPref.GetComponent<CarBttnPref>().carObjOfBttn = obj;
 
-                uýElements.carBtnPref.GetComponent<CarBttnPref>().carObjOfBttn = obj;
+                //uiElements.carBtnPref.SetActive(true);
 
-                uýElements.carBtnPref.SetActive(true);
-
-                carBttnText = uýElements.carBtnPref.transform.GetChild(0).GetComponent<Text>();
+                carBttnText = uiElements.carBtnPref.transform.GetChild(0).GetComponent<Text>();
 
                 carBttnText.text = obj.name;
                 gnrlPropValue.Add(obj.GetComponent<CarMain>().generalPropValue);
@@ -86,7 +86,7 @@ public class MrSellerManager : MonoBehaviour
         //We empty the array that is no longer needed so that it does not take up space in memory.
         allObjects = null;
 
-        uýElements.mrMessageHandler = gameObject.GetComponent<MessageHandler>();
+        uiElements.mrMessageHandler = gameObject.GetComponent<MessageHandler>();
         gnrlPropValueCars = gnrlPropValueCars / ListCarSale.Count;
         foreach (var item in ListCarSale)
         {
@@ -107,7 +107,7 @@ public class MrSellerManager : MonoBehaviour
         textElements[5].text = BttnSelectCar.GetComponent<Car>().carObject.Suspensions.ToString();
         textElements[6].text = BttnSelectCar.GetComponent<Car>().carObject.wheelCamberValues.ToString();
         textElements[7].text = BttnSelectCar.GetComponent<Car>().carObject.price.ToString();
-        foreach (Transform  item in uýElements.carSelectionContent.transform)
+        foreach (Transform  item in uiElements.carSelectionContent.transform)
         {
             item.transform.gameObject.SetActive(false);
         }
@@ -119,7 +119,7 @@ public class MrSellerManager : MonoBehaviour
             item.text = null;
         }
 
-        foreach (Transform item in uýElements.carSelectionContent.transform)
+        foreach (Transform item in uiElements.carSelectionContent.transform)
         {
             bool isSoldCar = false;
 
@@ -147,11 +147,11 @@ public class MrSellerManager : MonoBehaviour
     }
     void MrSellerTextMetod(string text)
     {
-        uýElements.mrSellerText.text =  text;
+        uiElements.mrSellerText.text =  text;
     }
     public void CarSelectionContentPanelOn()
     {
-        uýElements.carSelectionContentPanel.SetActive(true);
+        uiElements.carSelectionContentPanel.SetActive(true);
     }
     public void ToggleActiveState(GameObject obj)
     {
@@ -166,6 +166,6 @@ public class MrSellerManager : MonoBehaviour
     }
     public void MrSellerDealNegative()
     {
-         uýElements.mrMessageHandler.MrSellerNegativeText();
+         uiElements.mrMessageHandler.MrSellerNegativeText();
     }
 }
