@@ -66,21 +66,16 @@ public class MrSellerManager : MonoBehaviour
             {
 
                 ListCarSale.Add(obj);
-                uiElements.carBtnPref.name = obj.name;
+
                 Instantiate(uiElements.carBtnPref, uiElements.carSelectionContent.transform);
 
-                
+                uiElements.carBtnPref.name = obj.name;
+                carBttnText = uiElements.carBtnPref.transform.GetChild(0).GetComponent<Text>();
+                carBttnText.text = obj.name;
 
                 uiElements.carBtnPref.GetComponent<CarBttnPref>().carObjOfBttn = obj;
 
-                //uiElements.carBtnPref.SetActive(true);
-
-                carBttnText = uiElements.carBtnPref.transform.GetChild(0).GetComponent<Text>();
-
-                carBttnText.text = obj.name;
-                gnrlPropValue.Add(obj.GetComponent<CarMain>().generalPropValue);
-                gnrlPropValueCars = gnrlPropValueCars + obj.GetComponent<CarMain>().generalPropValue;
-
+                GetGeneralPropVal(obj);
             }
         }
         //We empty the array that is no longer needed so that it does not take up space in memory.
@@ -96,7 +91,12 @@ public class MrSellerManager : MonoBehaviour
             }
         }
     }
-
+    void GetGeneralPropVal(GameObject obj)
+    {
+        Debug.Log("obj carObject gnrl" + obj.GetComponent<Car>().carObject.generalPropValue);
+        gnrlPropValue.Add(obj.GetComponent<Car>().carObject.generalPropValue);
+        gnrlPropValueCars = gnrlPropValueCars + obj.GetComponent<Car>().carObject.generalPropValue;
+    }
     public void PrintPropsSelectedCar()
     {
         textElements[0].text = BttnSelectCar.GetComponent<Car>().carObject.name;

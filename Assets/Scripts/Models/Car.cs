@@ -36,7 +36,7 @@ public class Car : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
 
         SetCarPropsStart();
