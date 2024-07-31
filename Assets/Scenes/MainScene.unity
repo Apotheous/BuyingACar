@@ -5457,7 +5457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 350674451}
   m_Layer: 0
-  m_Name: Ramps
+  m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5470,9 +5470,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350674450}
-  m_LocalRotation: {x: -0.66485155, y: -0, z: -0, w: 0.74697554}
-  m_LocalPosition: {x: -13.5, y: 0.31, z: -33.743546}
-  m_LocalScale: {x: 5.1678, y: 14.250181, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.38, y: 1.63, z: -40.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1321505798}
@@ -11406,9 +11406,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 706067196}
-  m_LocalRotation: {x: 0.00000006626976, y: 0.11594519, z: 0.9932557, w: 0.0000029432892}
-  m_LocalPosition: {x: 0, y: 0.9797527, z: -1.6297731}
-  m_LocalScale: {x: 1, y: 1.0518867, z: 0.5872247}
+  m_LocalRotation: {x: -0.0000019073485, y: 0.7469758, z: 0.66485137, w: 0.0000022426245}
+  m_LocalPosition: {x: -0.119999886, y: -1.319999, z: -7.1500015}
+  m_LocalScale: {x: 5.1678033, y: 14.250185, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 350674451}
@@ -19332,9 +19332,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321505794}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.66485155, y: -0, z: -0, w: 0.74697554}
+  m_LocalPosition: {x: -0.119999886, y: -1.3199999, z: 6.906456}
+  m_LocalScale: {x: 5.1678, y: 14.250183, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 350674451}
