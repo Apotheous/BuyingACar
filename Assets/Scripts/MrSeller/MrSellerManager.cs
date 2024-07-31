@@ -66,12 +66,14 @@ public class MrSellerManager : MonoBehaviour
             {
 
                 ListCarSale.Add(obj);
-
+                uiElements.carBtnPref.name = obj.name;
                 Instantiate(uiElements.carBtnPref, uiElements.carSelectionContent.transform);
 
-                uiElements.carBtnPref.name = obj.name;
+                
 
                 uiElements.carBtnPref.GetComponent<CarBttnPref>().carObjOfBttn = obj;
+
+                //uiElements.carBtnPref.SetActive(true);
 
                 carBttnText = uiElements.carBtnPref.transform.GetChild(0).GetComponent<Text>();
 
