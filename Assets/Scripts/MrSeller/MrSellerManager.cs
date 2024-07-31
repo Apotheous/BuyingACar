@@ -175,8 +175,4 @@ public class MrSellerManager : MonoBehaviour
             BttnSelectCar.GetComponent<Car>().IsActive=true;
         }     
     }
-    void MrSellerDealNegative()
-    {
-         uiElements.mrMessageHandler.MrSellerNegativeText();
-    }
 }
