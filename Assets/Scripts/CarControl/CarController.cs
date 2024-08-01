@@ -5,7 +5,7 @@ using static Interactor;
 
 public class CarController : MonoBehaviour,ISelectionCar
 {
-    public GameObject mySeller;
+    public MrSellerManager mySeller;
     #region Veriables
     Rigidbody rb;
     private Car carObj;
@@ -25,6 +25,7 @@ public class CarController : MonoBehaviour,ISelectionCar
     // Wheels
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
+
     public float maxSpeed;
     public float speed;
     public float frontWheels, rearWheels;
@@ -34,17 +35,17 @@ public class CarController : MonoBehaviour,ISelectionCar
     {
         carObj= GetComponent<Car>();
         rb = GetComponent<Rigidbody>();
-
+        mySeller.GetComponent<MrSellerManager>();
         maxSpeed=carObj.carObject.maxSpeed;  
         motorForce= carObj.carObject.torque * 1000;
 
         SupensionCase();
-
     }
     public void SelectionCar()
     {
-        //if (carObj.gameObject.GetComponent<Car>().IsActive == true && mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().SoldCarList.Contains(car.gameObject))
-        //{
+        if (carObj.IsActive == true && mySeller.SoldCarList.Contains(gameObject))
+        {
+            Debug.Log("Get in car ");
         //    camVariables.driveCam.SetParent(car.transform);
 
         //    camVariables.driveCam.gameObject.SetActive(true);
@@ -60,7 +61,7 @@ public class CarController : MonoBehaviour,ISelectionCar
         //    inCar = true;
         //    theCarImin = car.transform;
 
-        //}
+        }
     }
     void SupensionCase()
     {

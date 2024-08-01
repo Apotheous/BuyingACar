@@ -580,7 +580,6 @@ GameObject:
   - component: {fileID: 7495443279060062592}
   - component: {fileID: 1953448115}
   - component: {fileID: 1288273463404085869}
-  - component: {fileID: -864326412688956233}
   - component: {fileID: -8027563335105156319}
   m_Layer: 0
   m_Name: Car
@@ -636,6 +635,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9725b0c126dd15944ac59f1a64422808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySeller: {fileID: 4077630302651103244, guid: f6da99420f248a64891193a88883deca,
+    type: 3}
   motorForce: 1000
   breakForce: 3000
   maxSteerAngle: 30
@@ -649,6 +650,8 @@ MonoBehaviour:
   rearRightWheelTransform: {fileID: 6888211214124850648}
   maxSpeed: 0
   speed: 0
+  frontWheels: 0
+  rearWheels: 0
   camberAngle: 15
 --- !u!114 &1288273463404085869
 MonoBehaviour:
@@ -674,18 +677,6 @@ MonoBehaviour:
   carObject: {fileID: 0}
   isActive: 0
   isScrap: 0
---- !u!114 &-864326412688956233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3311311803080157842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 863e0e32ec65a0640b7dae4703df7709, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &-8027563335105156319
 BoxCollider:
   m_ObjectHideFlags: 0

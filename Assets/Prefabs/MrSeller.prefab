@@ -1953,6 +1953,72 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &2313941348084433756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5414422918282198495}
+  - component: {fileID: 3264956146559346269}
+  - component: {fileID: 4356336154424149303}
+  m_Layer: 0
+  m_Name: Store
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5414422918282198495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2313941348084433756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4547543097988243448}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3264956146559346269
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2313941348084433756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16.96246, y: 0.15224016, z: 9.240336}
+  m_Center: {x: -0.30181122, y: -0.011862934, z: -4.274675}
+--- !u!114 &4356336154424149303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2313941348084433756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 118f6f8662eff654688b288eafd0394a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySeller: {fileID: 0}
+  myCars:
+  - {fileID: 7720726507797323357, guid: e9be6b9d71ce20345b55b654f6eca5d9, type: 3}
+  - {fileID: 7282772008711335601, guid: 4d1624804e8167f479ab63c5302ff1d5, type: 3}
+  - {fileID: 6645616114513181105, guid: 62010132604e8c94d96b4cb4fe6d3394, type: 3}
+  - {fileID: 3294564219125457607, guid: 8a8f57edf3523624eb9f886833e8e97a, type: 3}
+  - {fileID: 3311311803080157842, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
+  spawnOffset: {x: 0.15, y: 0, z: 0}
 --- !u!1 &2393709378182994865
 GameObject:
   m_ObjectHideFlags: 0
@@ -2877,7 +2943,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3771710769288054082}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1672175, y: 0.0000009536743, z: -5.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2886,9 +2952,10 @@ Transform:
   - {fileID: 8308099620652728172}
   - {fileID: 8232393477917540450}
   - {fileID: 2668789267985983332}
+  - {fileID: 5414422918282198495}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4077630302651103246
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2973,14 +3040,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BttnSelectCar: {fileID: 0}
-  myStore: {fileID: 0}
   uiElements:
     carBtnPref: {fileID: 1484810055019763548, guid: 894eff8836ea5e44383e48c4702abd59,
       type: 3}
     carSelectionContent: {fileID: 8691508507384686884}
     carSelectionContentPanel: {fileID: 8691508508880732446}
-    changedCarPropsPanel: {fileID: 0}
-    tradePanel: {fileID: 0}
+    changedCarPropsPanel: {fileID: 3180601209431093965}
+    tradePanel: {fileID: 8691508507428567215}
     mrSellerText: {fileID: 8691508508347788212}
     mrMessageHandler: {fileID: 1805119818665421236}
   ListCarSale: []
@@ -8217,6 +8283,12 @@ GameObject:
 --- !u!224 &8691508507428567214 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7628535791576068671, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1243116721488661137}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8691508507428567215 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7628535791576068670, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
     type: 3}
   m_PrefabInstance: {fileID: 1243116721488661137}
   m_PrefabAsset: {fileID: 0}

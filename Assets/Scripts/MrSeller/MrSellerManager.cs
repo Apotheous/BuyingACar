@@ -39,7 +39,7 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
     public UIElements uiElements;
 
 
-    private GameObject[] allObjects;
+    //private GameObject[] allObjects;
 
 
     [Tooltip("List of cars for sale")]
@@ -62,7 +62,7 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
     #region TalkSellerMethods
     public void SelectionSeller()
     {
-        Debug.Log("Changed Seller = "+ gameObject.name);
+        Debug.Log("Changed Seller = " + gameObject.name);
         if (!uiElements.changedCarPropsPanel.activeSelf)
         {
             ForResetPanelsMrSeller();
@@ -102,38 +102,38 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
 
     private void MrSellerStartFoncs()
     {
-        allObjects = GameObject.FindObjectsOfType<GameObject>();
+       // allObjects = GameObject.FindObjectsOfType<GameObject>();
 
-        foreach (GameObject obj in allObjects)
-        {
-            if (obj.GetComponent<Car>() != null)
-            {
+        //foreach (GameObject obj in allObjects)
+        //{
+        //    if (obj.GetComponent<Car>() != null)
+        //    {
 
-                ListCarSale.Add(obj);
+        //        ListCarSale.Add(obj);
 
-                GameObject newCarBtn = Instantiate(uiElements.carBtnPref, uiElements.carSelectionContent.transform);
-                newCarBtn.name = obj.name;
+        //        GameObject newCarBtn = Instantiate(uiElements.carBtnPref, uiElements.carSelectionContent.transform);
+        //        newCarBtn.name = obj.name;
 
-                carBttnText = newCarBtn.transform.GetChild(0).GetComponent<Text>();
-                carBttnText.text = obj.name;
+        //        carBttnText = newCarBtn.transform.GetChild(0).GetComponent<Text>();
+        //        carBttnText.text = obj.name;
 
-                newCarBtn.GetComponent<CarBttnPref>().carObjOfBttn = obj;
+        //        newCarBtn.GetComponent<CarBttnPref>().carObjOfBttn = obj;
 
-                GetGeneralPropVal(obj);
-            }
-        }
-        //We empty the array that is no longer needed so that it does not take up space in memory.
-        allObjects = null;
+        //        GetGeneralPropVal(obj);
+        //    }
+        //}
+        ////We empty the array that is no longer needed so that it does not take up space in memory.
+        //allObjects = null;
 
-        uiElements.mrMessageHandler = gameObject.GetComponent<MessageHandler>();
-        gnrlPropValueCars = gnrlPropValueCars / ListCarSale.Count;
-        foreach (var item in ListCarSale)
-        {
-            if (item.GetComponent<CarMain>().generalPropValue <= gnrlPropValueCars)
-            {
-                item.GetComponent<Car>().isScrap = true;
-            }
-        }
+        //uiElements.mrMessageHandler = gameObject.GetComponent<MessageHandler>();
+        //gnrlPropValueCars = gnrlPropValueCars / ListCarSale.Count;
+        //foreach (var item in ListCarSale)
+        //{
+        //    if (item.GetComponent<CarMain>().generalPropValue <= gnrlPropValueCars)
+        //    {
+        //        item.GetComponent<Car>().isScrap = true;
+        //    }
+        //}
     }
     void GetGeneralPropVal(GameObject obj)
     {

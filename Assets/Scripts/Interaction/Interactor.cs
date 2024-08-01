@@ -87,17 +87,17 @@ public class Interactor : MonoBehaviour
             if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
             {
 
-                if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
+                if (hitInfo.collider.gameObject.TryGetComponent(out ISelectionCar selectedCar))
                 {
-                    interactObj.Interact();
+                    selectedCar.SelectionCar();
 
-                    DriveCarComps(hitInfo.transform);
+                    //DriveCarComps(hitInfo.transform);
                 }
             }
         }
         else if (Input.GetKeyDown(KeyCode.E) && inCar == true)
         {
-            GettinOutCar(theCarImin);
+            //GettinOutCar(theCarImin);
         }
     }    
 
@@ -156,7 +156,7 @@ public class Interactor : MonoBehaviour
     {
         if (car.gameObject.GetComponent<Car>().IsActive == true && mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().SoldCarList.Contains(car.gameObject))  
         {
-            Debug.Log("ÝnHere");
+
             camVariables.driveCam.SetParent(car.transform);
 
             camVariables.driveCam.gameObject.SetActive(true);
