@@ -6,13 +6,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Interactor;
 
-public class MrSellerManager : MonoBehaviour,ISelectionSeler
+public class MrSellerManager : MonoBehaviour,ISelectionSeller
 {
     #region Veriables
     [Header("Selected Car")]
     [Tooltip("The car of choice when trading")]
     public GameObject BttnSelectCar;
-    public GameObject myStore;
 
     [System.Serializable]
     public class UIElements
@@ -51,7 +50,6 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeler
 
     public int gnrlPropValueCars = 0;
     Text carBttnText;
-
     //----
     // Define a list of TextMeshProUGUI components
     public List<TextMeshProUGUI> textElements = new List<TextMeshProUGUI>(8);
@@ -76,8 +74,6 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeler
 
             gameObject.GetComponent<MessageHandler>().MrSellerStartText();
             gameObject.GetComponent<MessageHandler>().textNubber =1;
-
-            //characterCs.character.gameObject.SetActive(false);
         }
     }
     public void ForResetPanelsMrSeller()

@@ -69,7 +69,7 @@ public class Interactor : MonoBehaviour
             Ray r = new Ray(camVariables.interactirSource.position, camVariables.interactirSource.forward);
             if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
             {
-                ISelectionSeler iSelectionSeller =hitInfo.collider.GetComponent<ISelectionSeler>();
+                ISelectionSeller iSelectionSeller =hitInfo.collider.GetComponent<ISelectionSeller>();
 
                 if (iSelectionSeller != null)
                 {
@@ -77,20 +77,16 @@ public class Interactor : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.E) && inCar == true)
-        {
-            GettinOutCar(theCarImin);
-        }
     }
 
     private void SelectCar()
     {
-        if (Input.GetKeyDown(KeyCode.E)&&inCar==false)
+        if (Input.GetKeyDown(KeyCode.E) && inCar == false)
         {
             Ray r = new Ray(camVariables.interactirSource.position, camVariables.interactirSource.forward);
             if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
             {
-                
+
                 if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
                 {
                     interactObj.Interact();
@@ -158,8 +154,9 @@ public class Interactor : MonoBehaviour
     }
     private void DriveCarComps(Transform car)
     {
-        if (car.gameObject.GetComponent<Car>().IsActive == true&& mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().SoldCarList.Contains(car.gameObject))  
+        if (car.gameObject.GetComponent<Car>().IsActive == true && mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().SoldCarList.Contains(car.gameObject))  
         {
+            Debug.Log("ÝnHere");
             camVariables.driveCam.SetParent(car.transform);
 
             camVariables.driveCam.gameObject.SetActive(true);
