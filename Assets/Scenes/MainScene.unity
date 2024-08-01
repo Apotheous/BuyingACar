@@ -515,6 +515,12 @@ Transform:
   m_Father: {fileID: 619263290}
   m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!1 &44900962 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4825435160704716417, guid: f6da99420f248a64891193a88883deca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1893493302}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &46589853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3870,6 +3876,12 @@ Transform:
   m_Father: {fileID: 619263290}
   m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!1 &264688634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3180601209431093965, guid: f6da99420f248a64891193a88883deca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1893493302}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &264896080
 GameObject:
   m_ObjectHideFlags: 0
@@ -25066,6 +25078,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656070664}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1664197467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8691508507384686884, guid: f6da99420f248a64891193a88883deca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1893493302}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1669647354
 GameObject:
   m_ObjectHideFlags: 0
@@ -25360,6 +25378,12 @@ Transform:
   m_Father: {fileID: 301435719}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1701622693 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8691508507428567215, guid: f6da99420f248a64891193a88883deca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1893493302}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1707696428
 GameObject:
   m_ObjectHideFlags: 0
@@ -26461,11 +26485,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mrSellerVariables:
-    MrSeller: {fileID: 0}
-    TradePanel: {fileID: 0}
-    SelectedCarPropsPanel: {fileID: 0}
-    content: {fileID: 0}
-    DealPanel: {fileID: 0}
+    MrSeller: {fileID: 1957282730}
+    TradePanel: {fileID: 1701622693}
+    SelectedCarPropsPanel: {fileID: 264688634}
+    content: {fileID: 1664197467}
+    DealPanel: {fileID: 44900962}
   camVariables:
     interactirSource: {fileID: 1784804293}
     driveCam: {fileID: 1764413920}
@@ -27835,10 +27859,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3180601209431093965, guid: f6da99420f248a64891193a88883deca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3771710769288054082, guid: f6da99420f248a64891193a88883deca,
         type: 3}
       propertyPath: m_Name
-      value: MrSeller (1)
+      value: MrSeller
       objectReference: {fileID: 0}
     - target: {fileID: 4356336154424149303, guid: f6da99420f248a64891193a88883deca,
         type: 3}
@@ -28701,6 +28730,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945193222}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1957282730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3771710769288054082, guid: f6da99420f248a64891193a88883deca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1893493302}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1957516871
 GameObject:
   m_ObjectHideFlags: 0

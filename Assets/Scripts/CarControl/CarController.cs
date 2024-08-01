@@ -31,10 +31,15 @@ public class CarController : MonoBehaviour,ISelectionCar
     public float frontWheels, rearWheels;
     public float camberAngle;
     #endregion
+    void Awake()
+    {
+        carObj = GetComponent<Car>();
+        rb = GetComponent<Rigidbody>();
+    }
     private void Start()
     {
-        carObj= GetComponent<Car>();
-        rb = GetComponent<Rigidbody>();
+
+
         mySeller.GetComponent<MrSellerManager>();
         maxSpeed=carObj.carObject.maxSpeed;  
         motorForce= carObj.carObject.torque * 1000;

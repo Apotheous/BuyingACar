@@ -26,7 +26,10 @@ public class StoreManager : MonoBehaviour
             );
 
             GameObject car = Instantiate(myCars[i], carSpawnPoint, Quaternion.identity);
-            car.transform.SetParent(transform); 
+            car.transform.SetParent(transform);
+            car.name = myCars[i].name;
+            car.GetComponent<CarController>().mySeller = mySeller;
+            mySeller.ListCarSale.Add(car);
 
         }
     }
