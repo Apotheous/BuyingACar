@@ -58,7 +58,29 @@ public class Interactor : MonoBehaviour
     void Update()
     {
         SelectCar();
-        TalkSeller();
+
+        SelectionSeller();
+    }
+
+    void SelectionSeller()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Ray r = new Ray(camVariables.interactirSource.position, camVariables.interactirSource.forward);
+            if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
+            {
+                ISelectionSeler iSelectionSeller =hitInfo.collider.GetComponent<ISelectionSeler>();
+
+                if (iSelectionSeller != null)
+                {
+                    iSelectionSeller.SelectionSeller();
+                }
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && inCar == true)
+        {
+            GettinOutCar(theCarImin);
+        }
     }
 
     private void SelectCar()
@@ -81,39 +103,7 @@ public class Interactor : MonoBehaviour
         {
             GettinOutCar(theCarImin);
         }
-
     }    
-    private void TalkSeller()
-    {
-        if (Input.GetKeyDown(KeyCode.F) &&!mrSellerVariables.SelectedCarPropsPanel.activeSelf)
-        {
-            Ray r = new Ray(camVariables.interactirSource.position, camVariables.interactirSource.forward);
-            if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
-            {
-                
-                if (hitInfo.collider.gameObject.name=="MrSeller")
-                {
-                    if (!mrSellerVariables.TradePanel.activeSelf)
-                    {
-                        MrSellerTalkOn(hitInfo);
-                    }
-                    else
-                    {
-                        MrSellerTalkOff();
-                    }
-
-                }
-            }
-        }
-    }
-
-    private void ForResetPanels()
-    {
-        mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().BttnSelectCar = null;
-        mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().DeselectSelectCar();
-        mrSellerVariables.MrSeller.GetComponent<MessageHandler>().MrSellerResetText();
-        mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().CarSelectionContentPanelOn();
-    }
 
     private void MrSellerTalkOn(RaycastHit hitInfo)
     {
@@ -130,9 +120,16 @@ public class Interactor : MonoBehaviour
         hitInfo.collider.GetComponent<MessageHandler>().textNubber = 1;
 
         characterCs.character.gameObject.SetActive(false);
-        
-        
     }
+    private void ForResetPanels()
+    {
+        mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().BttnSelectCar = null;
+        mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().DeselectSelectCar();
+        mrSellerVariables.MrSeller.GetComponent<MessageHandler>().MrSellerResetText();
+        mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().CarSelectionContentPanelOn();
+    }
+
+
 
     public void MrSellerTalkOff()
     {
@@ -173,13 +170,12 @@ public class Interactor : MonoBehaviour
             car.GetComponent<Rigidbody>().isKinematic = false;
             camVariables.followPoint.position = carPos;
             camVariables.followPoint.rotation = car.rotation;
-            //
+
             car.transform.gameObject.GetComponent<CarController>().enabled = true;
             inCar = true;
             theCarImin = car.transform;
 
         }
-
     }
     private void GettinOutCar(Transform car)
     {
@@ -191,8 +187,7 @@ public class Interactor : MonoBehaviour
         car.GetComponent<Rigidbody>().isKinematic=true;
         car.transform.gameObject.GetComponent<CarController>().enabled = false;
         inCar = false;
-        //car.GetComponent<Rigidbody>().isKinematic = false;
-        //car.GetComponent<Car>().IsActive = false;
     }
+
 
 }

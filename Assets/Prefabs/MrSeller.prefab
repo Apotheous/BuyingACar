@@ -3041,6 +3041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BttnSelectCar: {fileID: 0}
+  myStore: {fileID: 0}
   uiElements:
     carBtnPref: {fileID: 1484810055019763548, guid: 894eff8836ea5e44383e48c4702abd59,
       type: 3}

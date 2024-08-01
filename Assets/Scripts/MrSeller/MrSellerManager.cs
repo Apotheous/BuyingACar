@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Interactor;
 
-public class MrSellerManager : MonoBehaviour
+public class MrSellerManager : MonoBehaviour,ISelectionSeler
 {
+    #region Veriables
     [Header("Selected Car")]
     [Tooltip("The car of choice when trading")]
     public GameObject BttnSelectCar;
+    public GameObject myStore;
 
     [System.Serializable]
     public class UIElements
@@ -23,6 +26,8 @@ public class MrSellerManager : MonoBehaviour
         [Tooltip("Bontent from which buttons are created")]
         public GameObject carSelectionContent;
         public GameObject carSelectionContentPanel;
+        public GameObject changedCarPropsPanel;
+        public GameObject tradePanel;
 
         //[Tooltip("Content used for deal management")]
         //public GameObject dealContent;
@@ -51,12 +56,47 @@ public class MrSellerManager : MonoBehaviour
     // Define a list of TextMeshProUGUI components
     public List<TextMeshProUGUI> textElements = new List<TextMeshProUGUI>(8);
 
-
+    #endregion
     void Start()
     {
         StartCoroutine(MrSellerStartFoncsDelayed());
     }
+    #region TalkSellerMethods
+    public void SelectionSeller()
+    {
+        Debug.Log("Changed Seller = "+ gameObject.name);
+        if (!uiElements.changedCarPropsPanel.activeSelf)
+        {
+            ForResetPanelsMrSeller();
+            ShowCursor();
 
+            uiElements.changedCarPropsPanel.SetActive(true);
+            uiElements.tradePanel.SetActive(true);
+            uiElements.carSelectionContent.SetActive(true);
+
+            gameObject.GetComponent<MessageHandler>().MrSellerStartText();
+            gameObject.GetComponent<MessageHandler>().textNubber =1;
+
+            //characterCs.character.gameObject.SetActive(false);
+        }
+    }
+    public void ForResetPanelsMrSeller()
+    {
+        BttnSelectCar = null;
+        DeselectSelectCar();
+        gameObject.GetComponent<MessageHandler>().MrSellerResetText();
+        CarSelectionContentPanelOn();
+    }
+
+    void ShowCursor()
+    {
+        //Make the mouse cursor visible
+        Cursor.visible = true;
+
+        // Make the mouse cursor move freely
+        Cursor.lockState = CursorLockMode.None;
+    }
+    #endregion
     private IEnumerator MrSellerStartFoncsDelayed()
     {
         yield return new WaitForSeconds(0.1f); // Kýsa bir gecikme
@@ -175,4 +215,5 @@ public class MrSellerManager : MonoBehaviour
             BttnSelectCar.GetComponent<Car>().IsActive=true;
         }     
     }
+
 }

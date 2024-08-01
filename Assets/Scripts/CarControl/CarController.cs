@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Interactor;
 
-public class CarController : MonoBehaviour
+public class CarController : MonoBehaviour,ISelectionCar
 {
+    public GameObject mySeller;
+    #region Veriables
     Rigidbody rb;
     private Car carObj;
     private float horizontalInput, verticalInput;
@@ -25,7 +28,8 @@ public class CarController : MonoBehaviour
     public float maxSpeed;
     public float speed;
     public float frontWheels, rearWheels;
-    public float camberAngle; 
+    public float camberAngle;
+    #endregion
     private void Start()
     {
         carObj= GetComponent<Car>();
@@ -36,6 +40,27 @@ public class CarController : MonoBehaviour
 
         SupensionCase();
 
+    }
+    public void SelectionCar()
+    {
+        //if (carObj.gameObject.GetComponent<Car>().IsActive == true && mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().SoldCarList.Contains(car.gameObject))
+        //{
+        //    camVariables.driveCam.SetParent(car.transform);
+
+        //    camVariables.driveCam.gameObject.SetActive(true);
+        //    characterCs.character.gameObject.SetActive(false);
+        //    characterCs.character.transform.SetParent(car.transform);
+        //    camVariables.followPoint.SetParent(car.transform);
+        //    Vector3 carPos = new Vector3(car.transform.position.x, 1f, car.transform.position.z);
+        //    car.GetComponent<Rigidbody>().isKinematic = false;
+        //    camVariables.followPoint.position = carPos;
+        //    camVariables.followPoint.rotation = car.rotation;
+
+        //    car.transform.gameObject.GetComponent<CarController>().enabled = true;
+        //    inCar = true;
+        //    theCarImin = car.transform;
+
+        //}
     }
     void SupensionCase()
     {
@@ -148,4 +173,6 @@ public class CarController : MonoBehaviour
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
         }
     }
+
+
 }
