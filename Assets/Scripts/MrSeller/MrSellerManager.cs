@@ -62,11 +62,13 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
     #region TalkSellerMethods
     public void SelectionSeller()
     {
+
+        ForResetPanelsMrSeller();
+        ShowCursor();
         Debug.Log("Changed Seller = " + gameObject.name);
         if (!uiElements.changedCarPropsPanel.activeSelf)
         {
-            ForResetPanelsMrSeller();
-            ShowCursor();
+
 
             uiElements.changedCarPropsPanel.SetActive(true);
             uiElements.tradePanel.SetActive(true);

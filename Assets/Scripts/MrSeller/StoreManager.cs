@@ -11,7 +11,7 @@ public class StoreManager : MonoBehaviour
     public float spawnOffsetZ;
     void Start()
     {
-        mySeller = transform.parent.GetComponent<MrSellerManager>();
+        //mySeller = transform.parent.GetComponent<MrSellerManager>();
         SpawnCars();
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface ISelectionCar 
 {
-    void SelectionCar();
+    void GetInTheCar();
+    void GetOutOfTheCar();
 
 }

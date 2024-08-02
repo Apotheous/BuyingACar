@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,11 +31,46 @@ public class CarController : MonoBehaviour,ISelectionCar
     public float speed;
     public float frontWheels, rearWheels;
     public float camberAngle;
+
+
+    //Drive
+    [System.Serializable]
+    public class CamVariables
+    {
+        public GameObject drvCamGameObj;
+        public Transform mainTransform;
+        public Camera interactirSource;
+        public Transform driveCam;
+        public Transform followPoint;
+        public GameObject mainCamObj;
+    }
+
+    public CamVariables camVariables;
+
+    public GameObject characterCs;
     #endregion
     void Awake()
     {
+        camVariables.drvCamGameObj = GameObject.Find("Drive Cam");
+        camVariables.mainCamObj = GameObject.Find("MainCamera");
+        characterCs = GameObject.Find("PlayerCapsule");
+        camVariables.interactirSource =camVariables.mainCamObj.GetComponent<Camera>() ;//Camera.main
+
         carObj = GetComponent<Car>();
         rb = GetComponent<Rigidbody>();
+
+    
+        foreach (Transform t in camVariables.drvCamGameObj.transform)
+        {
+            if (t.GetComponent<CinemachineVirtualCamera>())
+            {
+                camVariables.driveCam = t;
+            }
+            else if (t.name == "Follow Point")
+            {
+                camVariables.followPoint = t;
+            }
+        }
     }
     private void Start()
     {
@@ -46,27 +82,40 @@ public class CarController : MonoBehaviour,ISelectionCar
 
         SupensionCase();
     }
-    public void SelectionCar()
+    public void GetInTheCar()
     {
         if (carObj.IsActive == true && mySeller.SoldCarList.Contains(gameObject))
         {
             Debug.Log("Get in car ");
-        //    camVariables.driveCam.SetParent(car.transform);
 
-        //    camVariables.driveCam.gameObject.SetActive(true);
-        //    characterCs.character.gameObject.SetActive(false);
-        //    characterCs.character.transform.SetParent(car.transform);
-        //    camVariables.followPoint.SetParent(car.transform);
-        //    Vector3 carPos = new Vector3(car.transform.position.x, 1f, car.transform.position.z);
-        //    car.GetComponent<Rigidbody>().isKinematic = false;
-        //    camVariables.followPoint.position = carPos;
-        //    camVariables.followPoint.rotation = car.rotation;
+            camVariables.driveCam.SetParent(carObj.transform);
+            camVariables.followPoint.SetParent(carObj.transform);
+            camVariables.driveCam.gameObject.SetActive(true);
+            characterCs.gameObject.SetActive(false);
+            characterCs.transform.SetParent(carObj.transform);
 
-        //    car.transform.gameObject.GetComponent<CarController>().enabled = true;
-        //    inCar = true;
-        //    theCarImin = car.transform;
+            Vector3 carPos = new Vector3(carObj.transform.position.x, 1f, carObj.transform.position.z);
+            carObj.GetComponent<Rigidbody>().isKinematic = false;
+            camVariables.followPoint.position = carPos;
+            camVariables.followPoint.rotation = carObj.transform.rotation;
+
+            carObj.transform.gameObject.GetComponent<CarController>().enabled = true;
+            camVariables.interactirSource.GetComponent<Interactor>().inCar = true;
+            camVariables.interactirSource.GetComponent<Interactor>().theCarImin = carObj.transform;
 
         }
+    }
+
+    public void GetOutOfTheCar()
+    {
+        camVariables.interactirSource.transform.position = camVariables.driveCam.position;
+        camVariables.driveCam.SetParent(null);
+        camVariables.driveCam.gameObject.SetActive(false);
+        characterCs.transform.SetParent(null);
+        characterCs.gameObject.SetActive(true);
+        carObj.GetComponent<Rigidbody>().isKinematic = true;
+        carObj.transform.gameObject.GetComponent<CarController>().enabled = false;
+        camVariables.interactirSource.GetComponent<Interactor>().inCar = false;
     }
     void SupensionCase()
     {

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
+
 //using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -52,7 +54,8 @@ public class Interactor : MonoBehaviour
 
     public float interactRange;
 
-    [SerializeField] bool inCar= false;
+    [SerializeField]
+    public bool inCar= false;
     #endregion
 
     void Update()
@@ -87,17 +90,25 @@ public class Interactor : MonoBehaviour
             if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
             {
 
-                if (hitInfo.collider.gameObject.TryGetComponent(out ISelectionCar selectedCar))
+                if (hitInfo.collider.gameObject.TryGetComponent(out ISelectionCar getinthecar))
                 {
-                    selectedCar.SelectionCar();
+                    
+                    getinthecar.GetInTheCar();
+                    theCarImin = hitInfo.transform;
 
-                    //DriveCarComps(hitInfo.transform);
                 }
             }
         }
+
         else if (Input.GetKeyDown(KeyCode.E) && inCar == true)
         {
-            //GettinOutCar(theCarImin);
+            if (theCarImin.gameObject.TryGetComponent(out ISelectionCar getinthecar))
+            {
+                getinthecar.GetOutOfTheCar();
+                theCarImin = null;
+            }
+ 
+
         }
     }    
 
@@ -156,7 +167,6 @@ public class Interactor : MonoBehaviour
     {
         if (car.gameObject.GetComponent<Car>().IsActive == true && mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().SoldCarList.Contains(car.gameObject))  
         {
-
             camVariables.driveCam.SetParent(car.transform);
 
             camVariables.driveCam.gameObject.SetActive(true);
@@ -171,7 +181,6 @@ public class Interactor : MonoBehaviour
             car.transform.gameObject.GetComponent<CarController>().enabled = true;
             inCar = true;
             theCarImin = car.transform;
-
         }
     }
     private void GettinOutCar(Transform car)

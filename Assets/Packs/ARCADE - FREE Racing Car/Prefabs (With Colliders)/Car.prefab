@@ -653,6 +653,15 @@ MonoBehaviour:
   frontWheels: 0
   rearWheels: 0
   camberAngle: 15
+  camVariables:
+    mainTransform: {fileID: 8984131568777894896, guid: dc57ae473a5c0e54ab133dcf056dcae7,
+      type: 3}
+    interactirSource: {fileID: 0}
+    driveCam: {fileID: 0}
+    followPoint: {fileID: 0}
+  characterCs:
+    character: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
+      type: 3}
 --- !u!114 &1288273463404085869
 MonoBehaviour:
   m_ObjectHideFlags: 0
