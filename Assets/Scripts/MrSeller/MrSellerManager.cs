@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using static Interactor;
 
@@ -77,6 +78,18 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
             gameObject.GetComponent<MessageHandler>().MrSellerStartText();
             gameObject.GetComponent<MessageHandler>().textNubber =1;
         }
+    }
+
+    public void MrSellerTalkOff()
+    {
+        //mrSellerVariables.TradePanel.SetActive(false);
+        uiElements.changedCarPropsPanel.SetActive(false);
+        //characterCs.character.gameObject.SetActive(true);
+        //// Invert the visibility of the mouse cursor
+        //Cursor.visible = !Cursor.visible;
+
+        ////Reverse whether the mouse cursor is locked or not
+        //Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
     }
     public void ForResetPanelsMrSeller()
     {

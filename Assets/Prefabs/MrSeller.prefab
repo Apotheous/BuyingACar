@@ -4133,8 +4133,8 @@ MonoBehaviour:
   onDialogFinished:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Interactor, Assembly-CSharp
+      - m_Target: {fileID: 4077630302651103244}
+        m_TargetAssemblyTypeName: MrSellerManager, Assembly-CSharp
         m_MethodName: MrSellerTalkOff
         m_Mode: 1
         m_Arguments:

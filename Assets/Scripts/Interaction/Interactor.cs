@@ -105,27 +105,9 @@ public class Interactor : MonoBehaviour
                 getinthecar.GetOutOfTheCar();
                 theCarImin = null;
             }
- 
-
         }
     }    
 
-    //private void MrSellerTalkOn(RaycastHit hitInfo)
-    //{
-    //    ForResetPanels();
-    //    ShowCursor();
-
-    //    hitInfo.collider.GetComponent<MrSellerManager>().BttnSelectCar = null;
-
-    //    mrSellerVariables.SelectedCarPropsPanel.SetActive(true);
-    //    mrSellerVariables.TradePanel.SetActive(true);
-    //    mrSellerVariables.content.SetActive(true);
-
-    //    hitInfo.collider.GetComponent<MessageHandler>().MrSellerStartText();
-    //    hitInfo.collider.GetComponent<MessageHandler>().textNubber = 1;
-
-    //    characterCs.character.gameObject.SetActive(false);
-    //}
     private void ForResetPanels()
     {
         mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().BttnSelectCar = null;
