@@ -18,7 +18,8 @@ public class CarBttnPref : MonoBehaviour
     private void Start()
     {
         // Initialize MrSellerManager
-        GameObject sellerManagerObject = GameObject.Find("MrSeller");
+        
+        GameObject sellerManagerObject =transform.root.gameObject ;
         
         if (sellerManagerObject != null)
         {
