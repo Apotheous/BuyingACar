@@ -34,8 +34,6 @@ public class Interactor : MonoBehaviour
     public class CamVariables
     {
         public Transform interactirSource;
-        public Transform driveCam;
-        public Transform followPoint;
     }
 
     public CamVariables camVariables;
@@ -112,22 +110,22 @@ public class Interactor : MonoBehaviour
         }
     }    
 
-    private void MrSellerTalkOn(RaycastHit hitInfo)
-    {
-        ForResetPanels();
-        ShowCursor();
+    //private void MrSellerTalkOn(RaycastHit hitInfo)
+    //{
+    //    ForResetPanels();
+    //    ShowCursor();
 
-        hitInfo.collider.GetComponent<MrSellerManager>().BttnSelectCar = null;
+    //    hitInfo.collider.GetComponent<MrSellerManager>().BttnSelectCar = null;
 
-        mrSellerVariables.SelectedCarPropsPanel.SetActive(true);
-        mrSellerVariables.TradePanel.SetActive(true);
-        mrSellerVariables.content.SetActive(true);
+    //    mrSellerVariables.SelectedCarPropsPanel.SetActive(true);
+    //    mrSellerVariables.TradePanel.SetActive(true);
+    //    mrSellerVariables.content.SetActive(true);
 
-        hitInfo.collider.GetComponent<MessageHandler>().MrSellerStartText();
-        hitInfo.collider.GetComponent<MessageHandler>().textNubber = 1;
+    //    hitInfo.collider.GetComponent<MessageHandler>().MrSellerStartText();
+    //    hitInfo.collider.GetComponent<MessageHandler>().textNubber = 1;
 
-        characterCs.character.gameObject.SetActive(false);
-    }
+    //    characterCs.character.gameObject.SetActive(false);
+    //}
     private void ForResetPanels()
     {
         mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().BttnSelectCar = null;
@@ -137,7 +135,7 @@ public class Interactor : MonoBehaviour
     }
 
 
-
+    //Called every time a conversation is closed in mrSeller's dialog panel
     public void MrSellerTalkOff()
     {
         mrSellerVariables.TradePanel.SetActive(false);
@@ -163,37 +161,5 @@ public class Interactor : MonoBehaviour
         // Make the mouse cursor move freely
         Cursor.lockState = CursorLockMode.None;
     }
-    private void DriveCarComps(Transform car)
-    {
-        if (car.gameObject.GetComponent<Car>().IsActive == true && mrSellerVariables.MrSeller.GetComponent<MrSellerManager>().SoldCarList.Contains(car.gameObject))  
-        {
-            camVariables.driveCam.SetParent(car.transform);
-
-            camVariables.driveCam.gameObject.SetActive(true);
-            characterCs.character.gameObject.SetActive(false);
-            characterCs.character.transform.SetParent(car.transform);
-            camVariables.followPoint.SetParent(car.transform);
-            Vector3 carPos = new Vector3(car.transform.position.x, 1f, car.transform.position.z);
-            car.GetComponent<Rigidbody>().isKinematic = false;
-            camVariables.followPoint.position = carPos;
-            camVariables.followPoint.rotation = car.rotation;
-
-            car.transform.gameObject.GetComponent<CarController>().enabled = true;
-            inCar = true;
-            theCarImin = car.transform;
-        }
-    }
-    private void GettinOutCar(Transform car)
-    {
-        camVariables.interactirSource.position = camVariables.driveCam.position;
-        camVariables.driveCam.SetParent(null);
-        camVariables.driveCam.gameObject.SetActive(false);
-        characterCs.character.transform.SetParent(null);
-        characterCs.character.gameObject.SetActive(true);
-        car.GetComponent<Rigidbody>().isKinematic=true;
-        car.transform.gameObject.GetComponent<CarController>().enabled = false;
-        inCar = false;
-    }
-
 
 }

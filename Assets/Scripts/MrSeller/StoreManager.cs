@@ -6,7 +6,7 @@ public class StoreManager : MonoBehaviour
 {
     public MrSellerManager mySeller;
     public List<GameObject> myCars = new List<GameObject>();
-    public Vector3 spawnOffset = new Vector3(0,0,0);
+
     public float spawnOffsetX;
     public float spawnOffsetZ;
     void Start()
@@ -19,18 +19,32 @@ public class StoreManager : MonoBehaviour
     {
         for (int i = 0; i < myCars.Count; i++)
         {
+            if (i != 0)
+            {
+                int mod;
+                mod = i % 2;
+                if (mod == 0)
+                {
+                    spawnOffsetX = spawnOffsetX * -1;
+                    spawnOffsetX += 5;
+                }
+                else if (mod != 0)
+                {
+                    spawnOffsetX = -(spawnOffsetX);
+                
+                }
+            }
             Vector3 carSpawnPoint = new Vector3(
-                mySeller.transform.position.x + (spawnOffsetX * i), 
-                mySeller.transform.position.y , 
-                mySeller.transform.position.z - spawnOffsetZ 
+            mySeller.transform.position.x + (spawnOffsetX),
+            mySeller.transform.position.y,
+            mySeller.transform.position.z - spawnOffsetZ
             );
 
             GameObject car = Instantiate(myCars[i], carSpawnPoint, Quaternion.identity);
             car.transform.SetParent(transform);
             car.name = myCars[i].name;
             car.GetComponent<CarController>().mySeller = mySeller;
-            mySeller.ListCarSale.Add(car);
-
+            mySeller.ListCarSale.Add(car);           
         }
     }
 }
