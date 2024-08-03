@@ -82,10 +82,21 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
 
     public void MrSellerTalkOff()
     {
-        //mrSellerVariables.TradePanel.SetActive(false);
+        uiElements.carSelectionContentPanel.SetActive(false);
         uiElements.changedCarPropsPanel.SetActive(false);
         //characterCs.character.gameObject.SetActive(true);
-        //// Invert the visibility of the mouse cursor
+        // Invert the visibility of the mouse cursor
+        Cursor.visible = !Cursor.visible;
+
+        //Reverse whether the mouse cursor is locked or not
+        Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
+    }
+    public void MrSellerTalkOn()
+    {
+        uiElements.tradePanel.SetActive(false);
+        //uiElements.changedCarPropsPanel.SetActive(false);
+        //characterCs.character.gameObject.SetActive(true);
+        // Invert the visibility of the mouse cursor
         //Cursor.visible = !Cursor.visible;
 
         ////Reverse whether the mouse cursor is locked or not

@@ -4129,7 +4129,19 @@ MonoBehaviour:
   isCanSkippingText: 1
   onDialogStarted:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4077630302651103244}
+        m_TargetAssemblyTypeName: MrSellerManager, Assembly-CSharp
+        m_MethodName: MrSellerTalkOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDialogFinished:
     m_PersistentCalls:
       m_Calls:
@@ -8121,7 +8133,7 @@ PrefabInstance:
     - target: {fileID: 7628535791576068670, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
         type: 3}
       propertyPath: m_Name
-      value: TradeBg
+      value: Car Selection Panel
       objectReference: {fileID: 0}
     - target: {fileID: 7628535791576068670, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
         type: 3}
