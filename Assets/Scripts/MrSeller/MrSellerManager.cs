@@ -18,30 +18,18 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
     public class UIElements
     {
         [Tooltip("Button prefab for car selection")]
-        public GameObject carBtnPref;
-
-        //[Tooltip("Button prefab for properties selection")]
-        //public GameObject propsBtnPref;
+        public GameObject bttnPrefab;
 
         [Tooltip("Bontent from which buttons are created")]
         public GameObject carSelectionContent;
         public GameObject carSelectionContentPanel;
         public GameObject changedCarPropsPanel;
-        public GameObject tradePanel;
-
-        //[Tooltip("Content used for deal management")]
-        //public GameObject dealContent;
-        //public GameObject dealContentPanel;
+        public GameObject carSelectionMainPanel;
 
         [Tooltip("Text of Mr Seller")]
         public TextMeshProUGUI mrSellerText;
-        public MessageHandler mrMessageHandler;
     }
     public UIElements uiElements;
-
-
-    private GameObject[] allObjects;
-
 
     [Tooltip("List of cars for sale")]
     public List<GameObject> ListCarSale = new List<GameObject>();
@@ -51,7 +39,7 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
 
     public int gnrlPropValueCars = 0;
     Text carBttnText;
-    //----
+
     // Define a list of TextMeshProUGUI components
     public List<TextMeshProUGUI> textElements = new List<TextMeshProUGUI>(8);
 
@@ -63,20 +51,13 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
     #region TalkSellerMethods
     public void SelectionSeller()
     {
-
         ForResetPanelsMrSeller();
         ShowCursor();
-        Debug.Log("Changed Seller = " + gameObject.name);
         if (!uiElements.changedCarPropsPanel.activeSelf)
         {
-
-
             uiElements.changedCarPropsPanel.SetActive(true);
-            uiElements.tradePanel.SetActive(true);
-            uiElements.carSelectionContent.SetActive(true);
-
-            gameObject.GetComponent<MessageHandler>().MrSellerStartText();
-            gameObject.GetComponent<MessageHandler>().textNubber =1;
+            uiElements.carSelectionMainPanel.SetActive(true);
+            uiElements.carSelectionContent.SetActive(true);  
         }
     }
 
@@ -84,7 +65,6 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
     {
         uiElements.carSelectionContentPanel.SetActive(false);
         uiElements.changedCarPropsPanel.SetActive(false);
-        //characterCs.character.gameObject.SetActive(true);
         // Invert the visibility of the mouse cursor
         Cursor.visible = !Cursor.visible;
 
@@ -93,20 +73,12 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
     }
     public void MrSellerTalkOn()
     {
-        uiElements.tradePanel.SetActive(false);
-        //uiElements.changedCarPropsPanel.SetActive(false);
-        //characterCs.character.gameObject.SetActive(true);
-        // Invert the visibility of the mouse cursor
-        //Cursor.visible = !Cursor.visible;
-
-        ////Reverse whether the mouse cursor is locked or not
-        //Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
+        uiElements.carSelectionMainPanel.SetActive(false);
     }
     public void ForResetPanelsMrSeller()
     {
         BttnSelectCar = null;
         DeselectSelectCar();
-        gameObject.GetComponent<MessageHandler>().MrSellerResetText();
         CarSelectionContentPanelOn();
     }
 
@@ -132,7 +104,7 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
         foreach (GameObject obj in ListCarSale)
         {
  
-            GameObject newCarBtn = Instantiate(uiElements.carBtnPref, uiElements.carSelectionContent.transform);
+            GameObject newCarBtn = Instantiate(uiElements.bttnPrefab, uiElements.carSelectionContent.transform);
             newCarBtn.name = obj.name;
 
             carBttnText = newCarBtn.transform.GetChild(0).GetComponent<Text>();
@@ -144,7 +116,6 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
 
         }
 
-        uiElements.mrMessageHandler = gameObject.GetComponent<MessageHandler>();
         gnrlPropValueCars = gnrlPropValueCars / ListCarSale.Count;
         foreach (var item in ListCarSale)
         {
@@ -156,7 +127,6 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
     }
     void GetGeneralPropVal(GameObject obj)
     {
-        Debug.Log("obj carObject gnrl" + obj.GetComponent<Car>().carObject.generalPropValue);
         gnrlPropValue.Add(obj.GetComponent<Car>().carObject.generalPropValue);
         gnrlPropValueCars = gnrlPropValueCars + obj.GetComponent<Car>().carObject.generalPropValue;
     }
@@ -230,5 +200,4 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
             BttnSelectCar.GetComponent<Car>().IsActive=true;
         }     
     }
-
 }

@@ -63,13 +63,10 @@ public class Interactor : MonoBehaviour
             Ray r = new Ray(camVariables.interactirSource.position, camVariables.interactirSource.forward);
             if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
             {
-
                 if (hitInfo.collider.gameObject.TryGetComponent(out ISelectionCar getinthecar))
                 {
-                    
                     getinthecar.GetInTheCar();
                     theCarImin = hitInfo.transform;
-
                 }
             }
         }
@@ -82,19 +79,5 @@ public class Interactor : MonoBehaviour
                 theCarImin = null;
             }
         }
-    }    
-    public void ToggleActiveState(GameObject obj)
-    {
-        // Reverse GameObject's active state
-        obj.SetActive(!obj.activeSelf);
     }
-    void ShowCursor()
-    {
-        //Make the mouse cursor visible
-        Cursor.visible = true;
-
-        // Make the mouse cursor move freely
-        Cursor.lockState = CursorLockMode.None;
-    }
-
 }

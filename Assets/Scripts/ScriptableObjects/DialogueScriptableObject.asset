@@ -13,16 +13,5 @@ MonoBehaviour:
   m_Name: DialogueScriptableObject
   m_EditorClassIdentifier: 
   textStart:
-  - 000
   - Hello, I am Mr Seller, the salesman of the cars you see behind me. Do you have
     a car you like?
-  textPositive:
-  - 
-  - 
-  - Nice choice, do you want to try before buying?
-  - Very good, come on, take a tour and see.
-  textNegative:
-  - 
-  - 
-  - Yes you are right. I can give you some discount for the defective parts.
-  - Let me try

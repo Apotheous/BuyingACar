@@ -2926,7 +2926,6 @@ GameObject:
   - component: {fileID: 4077630302651103246}
   - component: {fileID: 4077630302651103245}
   - component: {fileID: 374167870}
-  - component: {fileID: 1805119818665421236}
   - component: {fileID: 4077630302651103244}
   - component: {fileID: 374167881}
   - component: {fileID: 374167889}
@@ -3012,22 +3011,6 @@ MonoBehaviour:
   darkPurple: {r: 0.4, g: 0, b: 0.4, a: 1}
   colorChangeSpeed: 1
   isAnimationRunning: 0
---- !u!114 &1805119818665421236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3771710769288054082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3e78635c7a9bb848b9e35f84b77874b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dialogueScriptableObject: {fileID: 11400000, guid: 332433deebd7614489fb5c306bee6de9,
-    type: 2}
-  dialogueText: {fileID: 8691508508347788212}
-  textNubber: 0
 --- !u!114 &4077630302651103244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3042,14 +3025,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BttnSelectCar: {fileID: 0}
   uiElements:
-    carBtnPref: {fileID: 1484810055019763548, guid: 894eff8836ea5e44383e48c4702abd59,
+    bttnPrefab: {fileID: 1484810055019763548, guid: 894eff8836ea5e44383e48c4702abd59,
       type: 3}
     carSelectionContent: {fileID: 8691508507384686884}
     carSelectionContentPanel: {fileID: 8691508508880732446}
     changedCarPropsPanel: {fileID: 3180601209431093965}
-    tradePanel: {fileID: 8691508507428567215}
+    carSelectionMainPanel: {fileID: 8691508507428567215}
     mrSellerText: {fileID: 8691508508347788212}
-    mrMessageHandler: {fileID: 1805119818665421236}
   ListCarSale: []
   gnrlPropValue: 
   SoldCarList: []
@@ -8075,6 +8057,12 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7628535790363271461, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
+        type: 3}
+      propertyPath: m_text
+      value: I am Mr Seller, the salesman of the cars you see behind me. Do you have
+        a car you like?
+      objectReference: {fileID: 0}
     - target: {fileID: 7628535790465109426, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -8133,7 +8121,7 @@ PrefabInstance:
     - target: {fileID: 7628535791576068670, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
         type: 3}
       propertyPath: m_Name
-      value: Car Selection Panel
+      value: Car Selection Main Panel
       objectReference: {fileID: 0}
     - target: {fileID: 7628535791576068670, guid: 00dc9090c926b9c4a9f77b3a0b18959c,
         type: 3}

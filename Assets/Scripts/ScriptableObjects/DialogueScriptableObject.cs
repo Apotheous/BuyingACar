@@ -4,6 +4,4 @@ using UnityEngine;
 public class DialogueScriptableObject : ScriptableObject
 {
     public string[] textStart;
-    public string[] textPositive;
-    public string[] textNegative;
 }

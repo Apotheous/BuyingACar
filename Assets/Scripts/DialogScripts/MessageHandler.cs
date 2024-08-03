@@ -17,26 +17,11 @@ public class MessageHandler : MonoBehaviour
         dialogueText.text = _dialogueScriptableObject.textStart[textNubber];
         textNubber++;
     }
-    public void MrSellerPositiveText()
-    {
-        dialogueText.text = _dialogueScriptableObject.textPositive[textNubber];
-        textNubber++;
-    }    
-    public void MrSellerNegativeText()
-    {
-        dialogueText.text = _dialogueScriptableObject.textNegative[textNubber];
-        textNubber++;
-    }
-    public void MrSellerNumberText(int txtNmbr)
-    {
-        dialogueText.text = _dialogueScriptableObject.textPositive[textNubber];
-        textNubber=txtNmbr;
-    }
     public void MrSellerResetText()
     {
         textNubber = 0;
         dialogueText.text = _dialogueScriptableObject.textStart[textNubber];
-        textNubber++;
+        //textNubber++;
 
     }
 }
