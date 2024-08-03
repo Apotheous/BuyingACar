@@ -22,15 +22,6 @@ public class Interactor : MonoBehaviour
     }
 
     public CamVariables camVariables;
-
-    //[System.Serializable]
-    //public class Character
-    //{
-    //    [Tooltip("Character Controller")]
-    //    //public Transform character;
-    ////}
-
-    //public Character characterCs;
     
     [Tooltip("The car we are in")]
     public Transform theCarImin;
