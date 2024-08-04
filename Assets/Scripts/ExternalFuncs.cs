@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ExternalFuncs : MonoBehaviour
 {
-    [SerializeField] public MrSellerManager m_Manager;
-
+    MrSellerManager m_Manager;
 
     private void Start()
     {
