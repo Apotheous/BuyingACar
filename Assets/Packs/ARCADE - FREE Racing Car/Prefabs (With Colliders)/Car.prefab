@@ -637,6 +637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySeller: {fileID: 4077630302651103244, guid: f6da99420f248a64891193a88883deca,
     type: 3}
+  carCanvas: {fileID: 3434951234668639019}
   motorForce: 1000
   breakForce: 3000
   maxSteerAngle: 30
@@ -654,14 +655,14 @@ MonoBehaviour:
   rearWheels: 0
   camberAngle: 15
   camVariables:
+    drvCamGameObj: {fileID: 0}
     mainTransform: {fileID: 8984131568777894896, guid: dc57ae473a5c0e54ab133dcf056dcae7,
       type: 3}
     interactirSource: {fileID: 0}
     driveCam: {fileID: 0}
     followPoint: {fileID: 0}
-  characterCs:
-    character: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47,
-      type: 3}
+    mainCamObj: {fileID: 0}
+  characterCs: {fileID: 0}
 --- !u!114 &1288273463404085869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1577,6 +1578,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3434951234668639019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6149223954955882439, guid: 7a2d6d222e7236342ac5762c31b7fb07,
+    type: 3}
+  m_PrefabInstance: {fileID: 8862252189553360108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3482683350071178924 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5380096656943974976, guid: 7a2d6d222e7236342ac5762c31b7fb07,

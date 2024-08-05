@@ -10,6 +10,7 @@ public class CarController : MonoBehaviour,ISelectionCar
     #region Veriables
     Rigidbody rb;
     private Car carObj;
+    public GameObject carCanvas;
     private float horizontalInput, verticalInput;
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
@@ -86,7 +87,6 @@ public class CarController : MonoBehaviour,ISelectionCar
     {
         if (carObj.IsActive == true && mySeller.SoldCarList.Contains(gameObject))
         {
-            Debug.Log("Get in car ");
 
             camVariables.driveCam.SetParent(carObj.transform);
             camVariables.followPoint.SetParent(carObj.transform);
@@ -102,7 +102,7 @@ public class CarController : MonoBehaviour,ISelectionCar
             carObj.transform.gameObject.GetComponent<CarController>().enabled = true;
             camVariables.interactirSource.GetComponent<Interactor>().inCar = true;
             camVariables.interactirSource.GetComponent<Interactor>().theCarImin = carObj.transform;
-
+            carCanvas.SetActive(false);
         }
     }
 
@@ -116,6 +116,7 @@ public class CarController : MonoBehaviour,ISelectionCar
         carObj.GetComponent<Rigidbody>().isKinematic = true;
         carObj.transform.gameObject.GetComponent<CarController>().enabled = false;
         camVariables.interactirSource.GetComponent<Interactor>().inCar = false;
+        carCanvas.SetActive(true);
     }
     void SupensionCase()
     {
