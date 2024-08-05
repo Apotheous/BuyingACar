@@ -94,7 +94,7 @@ public class CarController : MonoBehaviour,ISelectionCar
             characterCs.gameObject.SetActive(false);
             characterCs.transform.SetParent(carObj.transform);
 
-            Vector3 carPos = new Vector3(carObj.transform.position.x, 1f, carObj.transform.position.z);
+            Vector3 carPos = new Vector3(carObj.transform.position.x, carObj.transform.position.y+1f, carObj.transform.position.z);
             carObj.GetComponent<Rigidbody>().isKinematic = false;
             camVariables.followPoint.position = carPos;
             camVariables.followPoint.rotation = carObj.transform.rotation;
