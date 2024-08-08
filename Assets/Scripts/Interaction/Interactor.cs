@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
 
 interface IInteractable
@@ -12,7 +13,7 @@ interface IInteractable
 public class Interactor : MonoBehaviour
 {
     #region Variables
-
+    public static Interactor Instance { get; private set; }
     [System.Serializable]
     public class CamVariables
     {
@@ -31,7 +32,11 @@ public class Interactor : MonoBehaviour
     #endregion
 
     public Speedometer speedometer;
-
+    public UnityEvent OnUnityEvent;
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Update()
     {
         SelectCar();
@@ -68,6 +73,8 @@ public class Interactor : MonoBehaviour
                     getinthecar.GetInTheCar();
                     theCarImin = hitInfo.transform;
                     speedometer.target = hitInfo.transform.gameObject.GetComponent<Rigidbody>();
+                    OnUnityEvent?.Invoke();
+
                 }
             }
         }
@@ -79,6 +86,7 @@ public class Interactor : MonoBehaviour
                 getinthecar.GetOutOfTheCar();
                 theCarImin = null;
                 speedometer.target = null;
+                OnUnityEvent?.Invoke();
             }
         }
     }

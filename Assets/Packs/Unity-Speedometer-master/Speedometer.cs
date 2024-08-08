@@ -19,10 +19,15 @@ public class Speedometer : MonoBehaviour
     public RectTransform arrow; // The arrow in the speedometer
 
     private float speed = 0.0f;
+    private void Start()
+    {
+        
+    }
     private void Update()
     {
         if (target != null)
         {
+
             // 3.6f to convert in kilometers
             // ** The speed must be clamped by the car controller **
             speed = target.velocity.magnitude * 3.6f;
@@ -33,5 +38,9 @@ public class Speedometer : MonoBehaviour
                 arrow.localEulerAngles =
                     new Vector3(0, 0, Mathf.Lerp(minSpeedArrowAngle, maxSpeedArrowAngle, speed / maxSpeed));
         }
+    }
+    public void SpeedMeterOnOff(GameObject obj)
+    {
+        obj.SetActive(!obj.activeSelf);
     }
 }
