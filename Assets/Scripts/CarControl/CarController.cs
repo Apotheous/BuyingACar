@@ -1,8 +1,10 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Interactor;
+using static System.TimeZoneInfo;
 
 public class CarController : MonoBehaviour,ISelectionCar
 {
@@ -11,7 +13,7 @@ public class CarController : MonoBehaviour,ISelectionCar
     Rigidbody rb;
     private Car carObj;
     public GameObject carCanvas;
-    private float horizontalInput, verticalInput;
+    [SerializeField]private float horizontalInput, verticalInput;
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
     Vector3 wheelPosition;
@@ -49,7 +51,24 @@ public class CarController : MonoBehaviour,ISelectionCar
     public CamVariables camVariables;
 
     public GameObject characterCs;
+
+
     #endregion
+
+
+    //DragForce
+    private float targetDrag = 0.4f;
+    private float initialDrag = 0.01f;
+    private float transitionTime = 10f;
+    private int intervals = 20;
+    private float intervalTime;
+    private float dragStep;
+    private float currentDrag;
+    private float transitionProgress = 0f;
+
+    //InputVerticalZero
+    float currentSpeed;
+
     void Awake()
     {
         camVariables.drvCamGameObj = GameObject.Find("Drive Cam");
@@ -59,7 +78,7 @@ public class CarController : MonoBehaviour,ISelectionCar
 
         carObj = GetComponent<Car>();
         rb = GetComponent<Rigidbody>();
-
+     
     
         foreach (Transform t in camVariables.drvCamGameObj.transform)
         {
@@ -75,13 +94,15 @@ public class CarController : MonoBehaviour,ISelectionCar
     }
     private void Start()
     {
-
-
         mySeller.GetComponent<MrSellerManager>();
         maxSpeed=carObj.carObject.maxSpeed;  
         motorForce= carObj.carObject.torque * 1000;
+        
 
         SupensionCase();
+        intervalTime = transitionTime / intervals;
+        dragStep = (targetDrag - initialDrag) / intervals;
+        currentDrag = rb.drag;
     }
     public void GetInTheCar()
     {
@@ -142,9 +163,12 @@ public class CarController : MonoBehaviour,ISelectionCar
         SetSuspensionSpringTargetPosition(frontLeftWheelCollider, frontRightWheelCollider, frontWheels);
         SetSuspensionSpringTargetPosition(rearLeftWheelCollider, rearRightWheelCollider, rearWheels);
     }
+
     private void FixedUpdate()
     {
         GetInput();
+        VerticalInputZero();
+        DragForce();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
@@ -163,6 +187,44 @@ public class CarController : MonoBehaviour,ISelectionCar
         isBreaking = Input.GetKey(KeyCode.Space);
     }
 
+    private void VerticalInputZero()
+    {
+        if (verticalInput == 0)
+        {
+            // Arabanýn hýzýný yavaþça azaltmak için Lerp kullanýyoruz
+            float decelerationRate = 0.2f; // Yavaþlama hýzý
+            rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, decelerationRate * Time.deltaTime);
+        }
+        else
+        {
+            // Input olduðu sürece mevcut hýzý saklýyoruz
+            currentSpeed = rb.velocity.magnitude;
+        }
+    }
+    private void DragForce()
+    {
+        if (verticalInput == 0)
+        {
+            if (currentDrag < targetDrag)
+            {
+                transitionProgress += Time.deltaTime;
+
+                if (transitionProgress >= intervalTime)
+                {
+                    currentDrag += dragStep;
+                    transitionProgress = 0f;
+                }
+
+                rb.drag = Mathf.Min(currentDrag, targetDrag);
+            }
+        }
+        else
+        {
+            currentDrag = initialDrag;
+            rb.drag = currentDrag;
+            transitionProgress = 0f;
+        }
+    }
     private void HandleMotor()
     {
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
