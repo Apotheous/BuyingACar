@@ -666,6 +666,8 @@ MonoBehaviour:
     followPoint: {fileID: 0}
     mainCamObj: {fileID: 0}
   characterCs: {fileID: 0}
+  stabilizerForce: 2500
+  downforceValue: 1000
 --- !u!114 &1288273463404085869
 MonoBehaviour:
   m_ObjectHideFlags: 0

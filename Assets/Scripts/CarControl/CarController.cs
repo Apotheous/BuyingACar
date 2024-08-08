@@ -69,6 +69,10 @@ public class CarController : MonoBehaviour,ISelectionCar
     //InputVerticalZero
     float currentSpeed;
 
+
+    //
+    public float stabilizerForce;
+    public float downforceValue;
     void Awake()
     {
         camVariables.drvCamGameObj = GameObject.Find("Drive Cam");
@@ -78,8 +82,8 @@ public class CarController : MonoBehaviour,ISelectionCar
 
         carObj = GetComponent<Car>();
         rb = GetComponent<Rigidbody>();
-     
-    
+        rb.centerOfMass = new Vector3(0, -0.5f, 0);
+
         foreach (Transform t in camVariables.drvCamGameObj.transform)
         {
             if (t.GetComponent<CinemachineVirtualCamera>())
@@ -103,6 +107,7 @@ public class CarController : MonoBehaviour,ISelectionCar
         intervalTime = transitionTime / intervals;
         dragStep = (targetDrag - initialDrag) / intervals;
         currentDrag = rb.drag;
+
     }
     public void GetInTheCar()
     {
@@ -173,6 +178,7 @@ public class CarController : MonoBehaviour,ISelectionCar
         HandleSteering();
         UpdateWheels();
         MaxSpeed();
+        ApplyDownforce();
     }
 
     private void GetInput()
@@ -292,5 +298,8 @@ public class CarController : MonoBehaviour,ISelectionCar
         }
     }
 
-
+    private void ApplyDownforce()
+    {
+        rb.AddForce(-transform.up * downforceValue);
+    }
 }
