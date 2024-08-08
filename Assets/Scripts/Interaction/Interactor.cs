@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -28,6 +29,8 @@ public class Interactor : MonoBehaviour
     [SerializeField]
     public bool inCar= false;
     #endregion
+
+    public Speedometer speedometer;
 
     void Update()
     {
@@ -64,6 +67,7 @@ public class Interactor : MonoBehaviour
                 {
                     getinthecar.GetInTheCar();
                     theCarImin = hitInfo.transform;
+                    speedometer.target = hitInfo.transform.gameObject.GetComponent<Rigidbody>();
                 }
             }
         }
@@ -74,6 +78,7 @@ public class Interactor : MonoBehaviour
             {
                 getinthecar.GetOutOfTheCar();
                 theCarImin = null;
+                speedometer.target = null;
             }
         }
     }
