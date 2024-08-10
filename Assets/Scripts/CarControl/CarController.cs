@@ -14,13 +14,13 @@ public class CarController : MonoBehaviour,ISelectionCar
     private Car carObj;
     public GameObject carCanvas;
     [SerializeField]private float horizontalInput, verticalInput;
-    private float currentSteerAngle, currentbreakForce;
-    private bool isBreaking;
+    private float currentSteerAngle, currentHandBreakForce,currentBreakingForce;
+    private bool isHandBreaking,isBreaking;
     Vector3 wheelPosition;
     Quaternion wheelRotation;
 
     // Settings
-    [SerializeField] private float motorForce, breakForce, maxSteerAngle;
+    [SerializeField] private float motorForce, handBreakForce,breakForce, maxSteerAngle;
 
     // Wheel Colliders
     [SerializeField] private WheelCollider frontLeftWheelCollider, frontRightWheelCollider;
@@ -69,10 +69,29 @@ public class CarController : MonoBehaviour,ISelectionCar
     //InputVerticalZero
     float currentSpeed;
 
-
+    public float dotProduct;
     //
     public float stabilizerForce;
     public float downforceValue;
+
+
+    /// <summary>
+    /// ForInformation
+    /// </summary>
+    public float motorTorque = 2000;
+    public float brakeTorque = 2000;
+    public float maxSpeedII = 20;
+    public float steeringRange = 30;
+    public float steeringRangeAtMaxSpeed = 10;
+    public float centreOfGravityOffset = -1f;
+
+    public float forwardSpeed;
+    public float speedFactor;
+    public float currentMotorTorque;
+    public float currentSteerRange;
+    public bool isAccelerating;
+    //CrashControl
+    public float crashFactor;
     void Awake()
     {
         camVariables.drvCamGameObj = GameObject.Find("Drive Cam");
@@ -99,7 +118,7 @@ public class CarController : MonoBehaviour,ISelectionCar
     private void Start()
     {
         mySeller.GetComponent<MrSellerManager>();
-        maxSpeed=carObj.carObject.maxSpeed;  
+        maxSpeed=carObj.carObject.maxSpeed*100;  
         motorForce= carObj.carObject.torque * 1000;
         
 
@@ -107,6 +126,42 @@ public class CarController : MonoBehaviour,ISelectionCar
         intervalTime = transitionTime / intervals;
         dragStep = (targetDrag - initialDrag) / intervals;
         currentDrag = rb.drag;
+
+    }
+
+    private void ForInformation()
+    {
+        // Calculate current speed in relation to the forward direction of the car
+        // (this returns a negative number when traveling backwards)
+        // Arabanýn ileri yönüne göre mevcut hýzý hesapla
+        // (geri doðru seyahat ederken negatif bir sayý döndürür)
+         forwardSpeed = Vector3.Dot(transform.forward, rb.velocity);
+
+
+        // Calculate how close the car is to top speed
+        // as a number from zero to one
+        // Arabanýn azami hýza ne kadar yakýn olduðunu hesapla
+        // sýfýrdan bire kadar bir sayý olarak
+         speedFactor = Mathf.InverseLerp(0, maxSpeed, forwardSpeed);
+
+        // Use that to calculate how much torque is available 
+        // (zero torque at top speed)
+        // Ne kadar torkun mevcut olduðunu hesaplamak için bunu kullan
+        // (azami hýzda sýfýr tork)
+         currentMotorTorque = Mathf.Lerp(motorTorque, 0, speedFactor);
+
+        // …and to calculate how much to steer 
+        // (the car steers more gently at top speed)
+        // …ve ne kadar direksiyon çevrileceðini hesaplamak için
+        // (araba en yüksek hýzda daha yumuþak bir þekilde direksiyon çevriliyor)
+         currentSteerRange = Mathf.Lerp(steeringRange, steeringRangeAtMaxSpeed, speedFactor);
+
+        // Check whether the user input is in the same direction 
+        // as the car's velocity
+        // Kullanýcý giriþinin aracýn hýzýyla ayný yönde olup olmadýðýný kontrol edin
+         isAccelerating = Mathf.Sign(verticalInput) == Mathf.Sign(forwardSpeed);
+
+
 
     }
     public void GetInTheCar()
@@ -172,6 +227,8 @@ public class CarController : MonoBehaviour,ISelectionCar
     private void FixedUpdate()
     {
         GetInput();
+        ForInformation();
+        CheckDirection();
         VerticalInputZero();
         DragForce();
         HandleMotor();
@@ -190,7 +247,7 @@ public class CarController : MonoBehaviour,ISelectionCar
         verticalInput = Input.GetAxis("Vertical");
 
         // Breaking Input
-        isBreaking = Input.GetKey(KeyCode.Space);
+        isHandBreaking = Input.GetKey(KeyCode.Space);
     }
 
     private void VerticalInputZero()
@@ -207,6 +264,8 @@ public class CarController : MonoBehaviour,ISelectionCar
             currentSpeed = rb.velocity.magnitude;
         }
     }
+
+
     private void DragForce()
     {
         if (verticalInput == 0)
@@ -231,20 +290,73 @@ public class CarController : MonoBehaviour,ISelectionCar
             transitionProgress = 0f;
         }
     }
+    private void CheckDirection()
+    {
+        // Rigidbody'nin velocity'sini al
+        Vector3 velocity = rb.velocity;
+
+        // Arabanýn ileri yönde olup olmadýðýný kontrol etmek için dot product kullan
+        dotProduct = Vector3.Dot(transform.forward, velocity);
+
+        if (dotProduct > 0)
+        {
+            // Dot product pozitifse, araba ileri gidiyor
+            Debug.Log("Araba ileri gidiyor.");
+        }
+        else if (dotProduct < 0)
+        {
+            // Dot product negatifse, araba geri gidiyor
+            Debug.Log("Araba geri gidiyor.");
+        }
+        else
+        {
+            // Dot product sýfýrsa, araba duruyor
+            Debug.Log("Araba duruyor.");
+        }
+    }
     private void HandleMotor()
     {
-        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
-        currentbreakForce = isBreaking ? breakForce : 0f;
-        ApplyBreaking();
+        if (verticalInput >0)
+        {
+            rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
+            rearRightWheelCollider.motorTorque = verticalInput * motorForce;
+        }
+        else if (verticalInput < 0)
+        {
+            if (dotProduct > 0)
+            {
+                // Dot product pozitifse, araba ileri gidiyor
+                Debug.Log("Araba ileri gidiyor.");
+                Breaking();
+            }
+            else if (dotProduct == 0)
+            {
+                rearLeftWheelCollider.motorTorque = 0;
+                rearRightWheelCollider.motorTorque = 0;
+            }
+
+            rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
+            rearRightWheelCollider.motorTorque = verticalInput * motorForce;
+
+        }
+        currentBreakingForce = isBreaking ? handBreakForce : 0f;
+        currentHandBreakForce = isHandBreaking ? handBreakForce : 0f;
+        ApplyHandBreaking();
     }
 
-    private void ApplyBreaking()
+    private void Breaking()
     {
-        frontRightWheelCollider.brakeTorque = currentbreakForce;
-        frontLeftWheelCollider.brakeTorque = currentbreakForce;
-        rearLeftWheelCollider.brakeTorque = currentbreakForce;
-        rearRightWheelCollider.brakeTorque = currentbreakForce;
+        rearLeftWheelCollider.brakeTorque = breakForce;
+        rearRightWheelCollider.brakeTorque = breakForce;
+        frontLeftWheelCollider.brakeTorque = breakForce;
+        frontRightWheelCollider.brakeTorque = breakForce;
+    }
+    private void ApplyHandBreaking()
+    {
+        frontRightWheelCollider.brakeTorque = currentHandBreakForce;
+        frontLeftWheelCollider.brakeTorque = currentHandBreakForce;
+        rearLeftWheelCollider.brakeTorque = currentHandBreakForce;
+        rearRightWheelCollider.brakeTorque = currentHandBreakForce;
     }
 
     private void HandleSteering()
@@ -276,7 +388,7 @@ public class CarController : MonoBehaviour,ISelectionCar
 
         wheelCollider.GetWorldPose(out wheelPosition, out wheelRotation);
         wheelTransform.transform.localRotation = Quaternion.Euler(0, wheelCollider.steerAngle, camberAngle);
-        wheelTransform.transform.GetChild(0).transform.Rotate(wheelCollider.rpm * 6.6f * Time.deltaTime, 0, 0, Space.Self);
+        wheelTransform.transform.GetChild(0).transform.Rotate(wheelCollider.rpm * 0.01f * Time.deltaTime, 0, 0, Space.Self);
         wheelTransform.transform.position = wheelPosition;
 
     }
