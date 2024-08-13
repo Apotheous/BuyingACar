@@ -260,8 +260,8 @@ public class CarController : MonoBehaviour,ISelectionCar
     #region Functions that enable the car to move
     private void HandleMotor()
     {
-        carObj.r_L_Wheel_Coll.motorTorque = verticalInput * motorForce;
-        carObj.r_R_Wheel_Coll.motorTorque = verticalInput * motorForce;
+        carObj.f_R_Wheel_Coll.motorTorque = verticalInput * motorForce;
+        carObj.f_L_Wheel_Coll.motorTorque = verticalInput * motorForce;
     }
     private void HandleSteering()
     {
@@ -294,7 +294,7 @@ public class CarController : MonoBehaviour,ISelectionCar
 
         wheelCollider.GetWorldPose(out wheelPosition, out wheelRotation);
         wheelTransform.transform.localRotation = Quaternion.Euler(0, wheelCollider.steerAngle, camberAngle);
-        wheelTransform.transform.GetChild(0).transform.Rotate(wheelCollider.rpm * 0.01f * Time.deltaTime, 0, 0, Space.Self);
+        wheelTransform.transform.GetChild(0).transform.Rotate(wheelCollider.rpm * 6.6f * Time.deltaTime, 0, 0, Space.Self);
         wheelTransform.transform.position = wheelPosition;
     }
     private void UpdateWheels()
