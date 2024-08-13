@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static Interactor;
 using static System.TimeZoneInfo;
 
@@ -14,8 +15,8 @@ public class CarController : MonoBehaviour,ISelectionCar
     private Car carObj;
     public GameObject carCanvas;
     [SerializeField]private float horizontalInput, verticalInput;
-    private float currentSteerAngle, currentHandBreakForce,currentBreakingForce;
-    private bool isHandBreaking,isBreaking;
+    private float currentSteerAngle;
+
     Vector3 wheelPosition;
     Quaternion wheelRotation;
 
@@ -92,6 +93,9 @@ public class CarController : MonoBehaviour,ISelectionCar
     public bool isAccelerating;
     //CrashControl
     public float crashFactor;
+
+
+    public float brakeInput;
     void Awake()
     {
         camVariables.drvCamGameObj = GameObject.Find("Drive Cam");
@@ -160,8 +164,6 @@ public class CarController : MonoBehaviour,ISelectionCar
         // as the car's velocity
         // Kullanýcý giriþinin aracýn hýzýyla ayný yönde olup olmadýðýný kontrol edin
          isAccelerating = Mathf.Sign(verticalInput) == Mathf.Sign(forwardSpeed);
-
-
 
     }
     public void GetInTheCar()
@@ -236,6 +238,8 @@ public class CarController : MonoBehaviour,ISelectionCar
         UpdateWheels();
         MaxSpeed();
         ApplyDownforce();
+
+        ApplyHandBreaking();
     }
 
     private void GetInput()
@@ -246,8 +250,21 @@ public class CarController : MonoBehaviour,ISelectionCar
         // Acceleration Input
         verticalInput = Input.GetAxis("Vertical");
 
-        // Breaking Input
-        isHandBreaking = Input.GetKey(KeyCode.Space);
+
+        //fixed code to brake even after going on reverse by Andrew Alex 
+        float movingDirection = Vector3.Dot(transform.forward, rb.velocity);
+        if (movingDirection < -0.5f && verticalInput > 0)
+        {
+            brakeInput = Mathf.Abs(verticalInput);
+        }
+        else if (movingDirection > 0.5f && verticalInput < 0)
+        {
+            brakeInput = Mathf.Abs(verticalInput);
+        }
+        else
+        {
+            brakeInput = 0;
+        }
     }
 
     private void VerticalInputZero()
@@ -316,47 +333,23 @@ public class CarController : MonoBehaviour,ISelectionCar
     }
     private void HandleMotor()
     {
-        if (verticalInput >0)
-        {
-            rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
-            rearRightWheelCollider.motorTorque = verticalInput * motorForce;
-        }
-        else if (verticalInput < 0)
-        {
-            if (dotProduct > 0)
-            {
-                // Dot product pozitifse, araba ileri gidiyor
-                Debug.Log("Araba ileri gidiyor.");
-                Breaking();
-            }
-            else if (dotProduct == 0)
-            {
-                rearLeftWheelCollider.motorTorque = 0;
-                rearRightWheelCollider.motorTorque = 0;
-            }
+        rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
+        rearRightWheelCollider.motorTorque = verticalInput * motorForce;
 
-            rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
-            rearRightWheelCollider.motorTorque = verticalInput * motorForce;
-
-        }
-        currentBreakingForce = isBreaking ? handBreakForce : 0f;
-        currentHandBreakForce = isHandBreaking ? handBreakForce : 0f;
-        ApplyHandBreaking();
     }
 
-    private void Breaking()
-    {
-        rearLeftWheelCollider.brakeTorque = breakForce;
-        rearRightWheelCollider.brakeTorque = breakForce;
-        frontLeftWheelCollider.brakeTorque = breakForce;
-        frontRightWheelCollider.brakeTorque = breakForce;
-    }
+
     private void ApplyHandBreaking()
     {
-        frontRightWheelCollider.brakeTorque = currentHandBreakForce;
-        frontLeftWheelCollider.brakeTorque = currentHandBreakForce;
-        rearLeftWheelCollider.brakeTorque = currentHandBreakForce;
-        rearRightWheelCollider.brakeTorque = currentHandBreakForce;
+        frontRightWheelCollider.brakeTorque = brakeInput * handBreakForce * 0.7f;
+        frontLeftWheelCollider.brakeTorque = brakeInput * handBreakForce * 0.7f;
+
+        rearLeftWheelCollider.brakeTorque = brakeInput * handBreakForce * 0.3f;
+        rearRightWheelCollider.brakeTorque = brakeInput * handBreakForce * 0.3f;
+        //frontRightWheelCollider.brakeTorque = currentHandBreakForce;
+        //frontLeftWheelCollider.brakeTorque = currentHandBreakForce;
+        //rearLeftWheelCollider.brakeTorque = currentHandBreakForce;
+        //rearRightWheelCollider.brakeTorque = currentHandBreakForce;
     }
 
     private void HandleSteering()
