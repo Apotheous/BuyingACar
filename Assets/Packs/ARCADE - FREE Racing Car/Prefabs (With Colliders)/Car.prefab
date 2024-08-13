@@ -637,26 +637,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySeller: {fileID: 4077630302651103244, guid: f6da99420f248a64891193a88883deca,
     type: 3}
-  carCanvas: {fileID: 3434951234668639019}
-  horizontalInput: 0
-  verticalInput: 0
-  motorForce: 10000
-  handBreakForce: 50000
-  breakForce: 1000000
-  maxSteerAngle: 30
-  frontLeftWheelCollider: {fileID: 2716459193614891142}
-  frontRightWheelCollider: {fileID: 4795950753765878369}
-  rearLeftWheelCollider: {fileID: 3145262460232535540}
-  rearRightWheelCollider: {fileID: 1057494946909100755}
-  frontLeftWheelTransform: {fileID: 639405857522347959}
-  frontRightWheelTransform: {fileID: 5536184018728695142}
-  rearLeftWheelTransform: {fileID: 8300722904061064130}
-  rearRightWheelTransform: {fileID: 6888211214124850648}
-  maxSpeed: 0
-  speed: 0
-  frontWheels: 0
-  rearWheels: 0
-  camberAngle: 15
+  carObj:
+    rb: {fileID: 7495443279060062592}
+    carObj: {fileID: 1288273463404085869}
+    f_L_Wheel_Coll: {fileID: 2716459193614891142}
+    f_R_Wheel_Coll: {fileID: 4795950753765878369}
+    r_L_Wheel_Coll: {fileID: 3145262460232535540}
+    r_R_Wheel_Coll: {fileID: 1057494946909100755}
+    f_L_Wh_Transform: {fileID: 639405857522347959}
+    f_R_Wh_Transform: {fileID: 5536184018728695142}
+    r_L_Wh_Transform: {fileID: 8300722904061064130}
+    r_R_Wh_Transform: {fileID: 6888211214124850648}
+    carCanvas: {fileID: 3434951234668639019}
   camVariables:
     drvCamGameObj: {fileID: 0}
     mainTransform: {fileID: 8984131568777894896, guid: dc57ae473a5c0e54ab133dcf056dcae7,
@@ -666,10 +658,18 @@ MonoBehaviour:
     followPoint: {fileID: 0}
     mainCamObj: {fileID: 0}
   characterCs: {fileID: 0}
-  dotProduct: 0
-  stabilizerForce: 2500
-  downforceValue: 1000
-  crashFactor: 0
+  horizontalInput: 0
+  verticalInput: 0
+  motorForce: 10000
+  handBreakForce: 50000
+  breakForce: 10000
+  maxSteerAngle: 30
+  currentSpeed: 0
+  maxSpeed: 0
+  speed: 0
+  frontWheels: 0
+  rearWheels: 0
+  camberAngle: 15
   brakeInput: 0
 --- !u!114 &1288273463404085869
 MonoBehaviour:
