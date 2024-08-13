@@ -53,24 +53,12 @@ public class CarController : MonoBehaviour,ISelectionCar
 
     public GameObject characterCs;
 
-
     #endregion
-
-
-    //DragForce
-    private float targetDrag = 0.4f;
-    private float initialDrag = 0.01f;
-    private float transitionTime = 10f;
-    private int intervals = 20;
-    private float intervalTime;
-    private float dragStep;
-    private float currentDrag;
-    private float transitionProgress = 0f;
 
     //InputVerticalZero
     float currentSpeed;
 
-    public float dotProduct;
+
     //
     public float stabilizerForce;
     public float downforceValue;
@@ -110,26 +98,17 @@ public class CarController : MonoBehaviour,ISelectionCar
         mySeller.GetComponent<MrSellerManager>();
         maxSpeed=carObj.carObject.maxSpeed*100;  
         motorForce= carObj.carObject.torque * 1000;
-        
-
         SupensionCase();
-        intervalTime = transitionTime / intervals;
-        dragStep = (targetDrag - initialDrag) / intervals;
-        currentDrag = rb.drag;
-
     }
 
     private void FixedUpdate()
     {
         GetInput();
-        CheckDirection();
-        VerticalInputZero();
         DragForce();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
         MaxSpeed();
-        ApplyDownforce();
         ApplyHandBreaking();
     }
     
@@ -173,31 +152,6 @@ public class CarController : MonoBehaviour,ISelectionCar
     #endregion
 
     #region Autonomous Controls
-    private void DragForce()
-    {
-        if (verticalInput == 0)
-        {
-            if (currentDrag < targetDrag)
-            {
-                transitionProgress += Time.deltaTime;
-
-                if (transitionProgress >= intervalTime)
-                {
-                    currentDrag += dragStep;
-                    transitionProgress = 0f;
-                }
-
-                rb.drag = Mathf.Min(currentDrag, targetDrag);
-            }
-        }
-        else
-        {
-            currentDrag = initialDrag;
-            rb.drag = currentDrag;
-            transitionProgress = 0f;
-        }
-    }
-
     private void MaxSpeed()
     {
         speed = rb.velocity.magnitude;
@@ -206,23 +160,29 @@ public class CarController : MonoBehaviour,ISelectionCar
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
         }
     }
-    private void VerticalInputZero()
+    private void DragForce()
     {
         if (verticalInput == 0)
         {
             // Arabanýn hýzýný yavaþça azaltmak için Lerp kullanýyoruz
-            float decelerationRate = 0.2f; // Yavaþlama hýzý
+            float decelerationRate = 0.5f; // Yavaþlama hýzý
             rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, decelerationRate * Time.deltaTime);
+
+            // Dragý her saniye 0.01 artýran metodu çaðýrýyoruz
+            IncreaseDragOverTime(0.02f);
         }
         else
         {
             // Input olduðu sürece mevcut hýzý saklýyoruz
             currentSpeed = rb.velocity.magnitude;
+            rb.drag = 0;
         }
-    }
-    private void ApplyDownforce()
-    {
-        rb.AddForce(-transform.up * downforceValue);
+
+        // Dragý artýran metod
+        void IncreaseDragOverTime(float increment)
+        {
+            rb.drag += increment * Time.deltaTime;
+        }
     }
     #endregion
 
@@ -248,30 +208,6 @@ public class CarController : MonoBehaviour,ISelectionCar
         else
         {
             brakeInput = 0;
-        }
-    }
-    private void CheckDirection()
-    {
-        // Rigidbody'nin velocity'sini al
-        Vector3 velocity = rb.velocity;
-
-        // Arabanýn ileri yönde olup olmadýðýný kontrol etmek için dot product kullan
-        dotProduct = Vector3.Dot(transform.forward, velocity);
-
-        if (dotProduct > 0)
-        {
-            // Dot product pozitifse, araba ileri gidiyor
-            Debug.Log("Araba ileri gidiyor.");
-        }
-        else if (dotProduct < 0)
-        {
-            // Dot product negatifse, araba geri gidiyor
-            Debug.Log("Araba geri gidiyor.");
-        }
-        else
-        {
-            // Dot product sýfýrsa, araba duruyor
-            Debug.Log("Araba duruyor.");
         }
     }
 
@@ -365,4 +301,5 @@ public class CarController : MonoBehaviour,ISelectionCar
         UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform, camberAngle);
     }
     #endregion
+
 }
