@@ -75,6 +75,8 @@ public class CarController : MonoBehaviour,ISelectionCar
 
     #endregion
 
+    private float speedClamped;
+    public int isEngineRunning;
     void Awake()
     {
         camVariables.drvCamGameObj = GameObject.Find("Drive Cam");
@@ -101,13 +103,15 @@ public class CarController : MonoBehaviour,ISelectionCar
     private void Start()
     {
         mySeller.GetComponent<MrSellerManager>();
-        maxSpeed= carObj.carObj.carObject.maxSpeed*100;  
+        maxSpeed= carObj.carObj.carObject.maxSpeed * 10*3.6f;  
         motorForce= carObj.carObj.carObject.torque * 1000;
         SupensionCase();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        speed = carObj.f_L_Wheel_Coll.rpm * carObj.f_R_Wheel_Coll.radius * 2f * Mathf.PI / 10f;
+        speedClamped = Mathf.Lerp(speedClamped, speed, Time.deltaTime);
         GetInput();
         DragForce();
         HandleMotor();
@@ -158,7 +162,8 @@ public class CarController : MonoBehaviour,ISelectionCar
     #region Autonomous Controls
     private void MaxSpeed()
     {
-        speed = carObj.rb.velocity.magnitude;
+        //speed = carObj.rb.velocity.magnitude;
+
         if (carObj.rb.velocity.magnitude > maxSpeed)
         {
             carObj.rb.velocity = Vector3.ClampMagnitude(carObj.rb.velocity, maxSpeed);
@@ -198,7 +203,10 @@ public class CarController : MonoBehaviour,ISelectionCar
 
         // Acceleration Input
         verticalInput = Input.GetAxis("Vertical");
-
+        if (Mathf.Abs(verticalInput) > 0 && isEngineRunning == 0)
+        {
+            StartCoroutine(GetComponent<EngineAudio>().StartEngine());
+        }
         //fixed code to brake even after going on reverse by Andrew Alex 
         float movingDirection = Vector3.Dot(transform.forward, carObj.rb.velocity);
         if (movingDirection < -0.5f && verticalInput > 0)
@@ -260,9 +268,21 @@ public class CarController : MonoBehaviour,ISelectionCar
     #region Functions that enable the car to move
     private void HandleMotor()
     {
-        carObj.f_R_Wheel_Coll.motorTorque = verticalInput * motorForce;
-        carObj.f_L_Wheel_Coll.motorTorque = verticalInput * motorForce;
+        if (isEngineRunning > 1)
+        {
+            if (Mathf.Abs(speed) < maxSpeed)
+            {
+                carObj.f_R_Wheel_Coll.motorTorque = verticalInput * motorForce;
+                carObj.f_L_Wheel_Coll.motorTorque = verticalInput * motorForce;
+            }
+            else
+            {
+                carObj.f_R_Wheel_Coll.motorTorque = 0;
+                carObj.f_L_Wheel_Coll.motorTorque = 0;
+            }
     }
+
+}
     private void HandleSteering()
     {
         currentSteerAngle = maxSteerAngle * horizontalInput;
@@ -280,6 +300,11 @@ public class CarController : MonoBehaviour,ISelectionCar
     }
     #endregion
 
+    public float GetSpeedRaito()
+    {
+        var gas = Mathf.Clamp(Mathf.Abs(verticalInput) , 0.5f, 1f);
+        return speedClamped * gas / maxSpeed;
+    }
     #region Turn the wheels (in accordance with the camber value)
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform, float cmbrAbngle)
     {
