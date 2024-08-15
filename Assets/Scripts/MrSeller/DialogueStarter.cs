@@ -12,21 +12,14 @@ public class DialogueStarter : MonoBehaviour
 
     private void Start()
     {
-        // Harici iþlevi baðlama
         externalFunc = GetComponent<ExternalFuncs>();
         dialogBehaviour.BindExternalFunction("Discount", externalFunc.Discount);
         dialogBehaviour.BindExternalFunction("ScrapBargaining", externalFunc.ScrapBargaining);
         dialogBehaviour.BindExternalFunction("SaleListToSoldList", externalFunc.SaleListToSoldList);
-        //dialogBehaviour.BindExternalFunction("ILoveThisCar", externalFunc.SaleListToSoldList);
     }
     public void DialogStart()
     {
-        
-
-        // Dialog'u baþlatma
         dialogBehaviour.StartDialog(dialogGraph);
-
-
     }
 }
 

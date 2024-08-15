@@ -27,7 +27,6 @@ public class ExternalFuncs : MonoBehaviour
 
     public void SaleListToSoldList()
     {
-        Debug.Log("SaleLisToSoldListCalled");
         if (!m_Manager.SoldCarList.Contains(m_Manager.BttnSelectCar))
         {
             m_Manager.SoldCarList.Add(m_Manager.BttnSelectCar);
@@ -37,11 +36,5 @@ public class ExternalFuncs : MonoBehaviour
         {
             Debug.LogWarning("This car is already on the sold list!");
         }
-    }
-
-    public void ILoveThisCar()
-    {
-        Debug.LogWarning("SaleLisToSoldListCalled2222");
-
     }
 }

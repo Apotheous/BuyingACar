@@ -16,20 +16,20 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1395
-    y: 534
+    x: 1525
+    y: 527
     width: 190
-    height: 135
+    height: 155
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: 
-    text: this Car your
+    characterName: MrSeller
+    text: Okay the car is yours
     characterSprite: {fileID: 0}
   parentNode: {fileID: 8047484397418546695}
   childNode: {fileID: 0}
-  isExternalFunc: 0
-  externalFunctionName: 
+  isExternalFunc: 1
+  externalFunctionName: SaleListToSoldList
 --- !u!114 &-8707103711094994345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,15 +46,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 653
-    y: 536
+    x: 875
+    y: 554
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   answers:
-  - Okey discount
-  - no discoun inoff
+  - This discount is enough, I'll take it
+  - This discount is not enough
   parentSentenceNode: {fileID: -8376946208867661023}
   childSentenceNodes:
   - {fileID: -3735307479980415106}
@@ -75,15 +75,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 395
-    y: 456
+    x: 676
+    y: 478
     width: 190
     height: 155
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: 
-    text: Yes you alrihgt
+    characterName: MrSeller
+    text: Yes you are right
     characterSprite: {fileID: 0}
   parentNode: {fileID: -4771906700214444625}
   childNode: {fileID: -8707103711094994345}
@@ -105,21 +105,20 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 911
-    y: 627
+    x: 1074
+    y: 643
     width: 190
-    height: 135
+    height: 155
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: 
+    characterName: MrSeller
     text: I have determined a price for you according to the features of your car.
-      I can't do more.
     characterSprite: {fileID: 0}
   parentNode: {fileID: -8707103711094994345}
   childNode: {fileID: 8047484397418546695}
-  isExternalFunc: 0
-  externalFunctionName: 
+  isExternalFunc: 1
+  externalFunctionName: ScrapBargaining
 --- !u!114 &-4771906700214444625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,14 +135,14 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 168
-    y: 363
+    x: 448
+    y: 385
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   answers:
-  - I Love this car!
+  - 'I love this car '
   - This car has defective parts
   parentSentenceNode: {fileID: 5676157591334552417}
   childSentenceNodes:
@@ -165,20 +164,20 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 909
-    y: 471
+    x: 1075
+    y: 492
     width: 190
-    height: 135
+    height: 155
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: 
+    characterName: MrSeller
     text: Ok the car is yours now
     characterSprite: {fileID: 0}
   parentNode: {fileID: -8707103711094994345}
   childNode: {fileID: 0}
-  isExternalFunc: 0
-  externalFunctionName: 
+  isExternalFunc: 1
+  externalFunctionName: SaleListToSoldList
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,15 +222,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 672
-    y: 247
+    x: 874
+    y: 274
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   answers:
-  - I get it
-  - Dont get i
+  - I'm taking the car
+  - I gave up on taking it
   parentSentenceNode: {fileID: 2728450827044181497}
   childSentenceNodes:
   - {fileID: 3429725159372135423}
@@ -252,15 +251,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 906
-    y: 322
+    x: 1077
+    y: 343
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: 
-    text: Okey
+    characterName: MrSeller
+    text: Okay buddy
     characterSprite: {fileID: 0}
   parentNode: {fileID: 1163099791748217058}
   childNode: {fileID: 0}
@@ -282,14 +281,14 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 398
-    y: 252
+    x: 672
+    y: 273
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: 
+    characterName: MrSeller
     text: Good Choose
     characterSprite: {fileID: 0}
   parentNode: {fileID: -4771906700214444625}
@@ -312,15 +311,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 907
-    y: 141
+    x: 1078
+    y: 175
     width: 190
     height: 155
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: 
-    text: The car is yours
+    characterName: MrSeller
+    text: Okay the car is yours
     characterSprite: {fileID: 0}
   parentNode: {fileID: 1163099791748217058}
   childNode: {fileID: 0}
@@ -342,8 +341,8 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: -68
-    y: 356
+    x: 212
+    y: 378
     width: 190
     height: 135
   isDragging: 0
@@ -372,15 +371,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1393
-    y: 692
+    x: 1522
+    y: 711
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   sentence:
-    characterName: 
-    text: your chose
+    characterName: MrSeller
+    text: Okay buddy
     characterSprite: {fileID: 0}
   parentNode: {fileID: 8047484397418546695}
   childNode: {fileID: 0}
@@ -402,15 +401,15 @@ MonoBehaviour:
   nodeGraph: {fileID: 11400000}
   rect:
     serializedVersion: 2
-    x: 1175
-    y: 657
+    x: 1296
+    y: 658
     width: 190
     height: 135
   isDragging: 0
   isSelected: 0
   answers:
-  - okey
-  - Dont
+  - I'm taking the car
+  - I gave up on taking it
   parentSentenceNode: {fileID: -5362766542378857485}
   childSentenceNodes:
   - {fileID: -8867080231474011848}
