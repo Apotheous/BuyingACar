@@ -247,6 +247,9 @@ public class CarController : MonoBehaviour,ISelectionCar
             camVariables.interactirSource.GetComponent<Interactor>().inCar = true;
             camVariables.interactirSource.GetComponent<Interactor>().theCarImin = carObj.carObj.transform;
             carObj.carCanvas.SetActive(false);
+            gameObject.GetComponent<EngineAudio>().isEngineRunning = true;
+            gameObject.GetComponent<EngineAudio>().startingSound.Play();
+
         }
     }
 
@@ -261,6 +264,7 @@ public class CarController : MonoBehaviour,ISelectionCar
         carObj.carObj.transform.gameObject.GetComponent<CarController>().enabled = false;
         camVariables.interactirSource.GetComponent<Interactor>().inCar = false;
         carObj.carCanvas.SetActive(true);
+        gameObject.GetComponent<EngineAudio>().isEngineRunning=false;
     }
 
     #endregion
