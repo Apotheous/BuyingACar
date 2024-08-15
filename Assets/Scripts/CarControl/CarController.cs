@@ -298,13 +298,11 @@ public class CarController : MonoBehaviour,ISelectionCar
         carObj.r_L_Wheel_Coll.brakeTorque = brakeInput * handBreakForce * 0.3f;
         carObj.r_R_Wheel_Coll.brakeTorque = brakeInput * handBreakForce * 0.3f;
     }
+
+
     #endregion
 
-    public float GetSpeedRaito()
-    {
-        var gas = Mathf.Clamp(Mathf.Abs(verticalInput) , 0.5f, 1f);
-        return speedClamped * gas / maxSpeed;
-    }
+
     #region Turn the wheels (in accordance with the camber value)
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform, float cmbrAbngle)
     {
@@ -328,6 +326,14 @@ public class CarController : MonoBehaviour,ISelectionCar
         UpdateSingleWheel(carObj.f_R_Wheel_Coll, carObj.f_R_Wh_Transform, camberAngle);
         UpdateSingleWheel(carObj.r_L_Wheel_Coll, carObj.r_L_Wh_Transform, -camberAngle);
         UpdateSingleWheel(carObj.r_R_Wheel_Coll, carObj.r_R_Wh_Transform, camberAngle);
+    }
+    #endregion
+
+    #region About The Sound
+    public float GetSpeedRaito()
+    {
+        var gas = Mathf.Clamp(Mathf.Abs(verticalInput), 0.5f, 1f);
+        return speedClamped * gas / maxSpeed;
     }
     #endregion
 
