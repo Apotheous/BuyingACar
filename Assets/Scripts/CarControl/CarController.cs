@@ -98,6 +98,7 @@ public class CarController : MonoBehaviour,ISelectionCar
                 camVariables.followPoint = t;
             }
         }
+
     }
     private void Start()
     {
@@ -105,6 +106,18 @@ public class CarController : MonoBehaviour,ISelectionCar
         maxSpeed= carObj.car.carObject.maxSpeed * 10*3.6f;  
         motorForce= carObj.car.carObject.torque * 1000;
         SupensionCase();
+        StartCoroutine(CarControllerStopper());
+    }
+    private IEnumerator CarControllerStopper()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        CarCntStopper();
+    }
+
+    private void CarCntStopper()
+    {
+        gameObject.GetComponent<CarController>().enabled = false;
     }
 
     private void Update()
@@ -130,12 +143,12 @@ public class CarController : MonoBehaviour,ISelectionCar
                 rearWheels = 0f;
                 break;
             case 2:
-                frontWheels = 1f;
-                rearWheels = 1f;
+                frontWheels = 0.33f;
+                rearWheels = 0.33f;
                 break;
             case 1:
-                frontWheels = Random.Range(0f, 1f);
-                rearWheels = Random.Range(0f, 1f);
+                frontWheels = Random.Range(0.33f, 0.75f);
+                rearWheels = Random.Range(0.33f, 0.75f);
                 break;
             case 0:
                 frontWheels = 0.5f;
