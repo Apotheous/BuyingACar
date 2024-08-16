@@ -1090,10 +1090,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2792218741957914664}
   - component: {fileID: 7495443279060062592}
-  - component: {fileID: 1953448115}
-  - component: {fileID: 1288273463404085869}
   - component: {fileID: -8027563335105156319}
   - component: {fileID: 3800714258663667014}
+  - component: {fileID: 1288273463404085869}
+  - component: {fileID: 1953448115}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -1140,78 +1140,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1953448115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3311311803080157842}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9725b0c126dd15944ac59f1a64422808, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mySeller: {fileID: 4077630302651103244, guid: f6da99420f248a64891193a88883deca,
-    type: 3}
-  carObj:
-    rb: {fileID: 7495443279060062592}
-    carObj: {fileID: 1288273463404085869}
-    f_L_Wheel_Coll: {fileID: 2716459193614891142}
-    f_R_Wheel_Coll: {fileID: 4795950753765878369}
-    r_L_Wheel_Coll: {fileID: 3145262460232535540}
-    r_R_Wheel_Coll: {fileID: 1057494946909100755}
-    f_L_Wh_Transform: {fileID: 639405857522347959}
-    f_R_Wh_Transform: {fileID: 5536184018728695142}
-    r_L_Wh_Transform: {fileID: 8300722904061064130}
-    r_R_Wh_Transform: {fileID: 6888211214124850648}
-    carCanvas: {fileID: 3434951234668639019}
-  camVariables:
-    drvCamGameObj: {fileID: 0}
-    mainTransform: {fileID: 8984131568777894896, guid: dc57ae473a5c0e54ab133dcf056dcae7,
-      type: 3}
-    interactirSource: {fileID: 0}
-    driveCam: {fileID: 0}
-    followPoint: {fileID: 0}
-    mainCamObj: {fileID: 0}
-  characterCs: {fileID: 0}
-  horizontalInput: 0
-  verticalInput: 0
-  motorForce: 10000
-  handBreakForce: 50000
-  breakForce: 10000
-  maxSteerAngle: 30
-  maxSpeed: 0
-  speed: 0
-  frontWheels: 0
-  rearWheels: 0
-  camberAngle: 15
-  brakeInput: 0
-  isEngineRunning: 0
---- !u!114 &1288273463404085869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3311311803080157842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8130ae0fbcc1b4da23b6165e984a66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textElements:
-  - {fileID: 8853120276173176221}
-  - {fileID: 3180703598692975447}
-  - {fileID: 6719593454199938024}
-  - {fileID: 1263772068360788709}
-  - {fileID: 51544718781100072}
-  - {fileID: 249338026380019086}
-  - {fileID: 5915063753619315712}
-  - {fileID: 7069542962847998495}
-  carObject: {fileID: 0}
-  isActive: 0
-  isScrap: 0
 --- !u!65 &-8027563335105156319
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1251,6 +1179,78 @@ MonoBehaviour:
   LimiterEngage: 0.8
   isEngineRunning: 0
   startingSound: {fileID: 4920087011595036595}
+--- !u!114 &1288273463404085869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3311311803080157842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8130ae0fbcc1b4da23b6165e984a66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textElements:
+  - {fileID: 8853120276173176221}
+  - {fileID: 3180703598692975447}
+  - {fileID: 6719593454199938024}
+  - {fileID: 1263772068360788709}
+  - {fileID: 51544718781100072}
+  - {fileID: 249338026380019086}
+  - {fileID: 5915063753619315712}
+  - {fileID: 7069542962847998495}
+  carObject: {fileID: 0}
+  isActive: 0
+  isScrap: 0
+--- !u!114 &1953448115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3311311803080157842}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9725b0c126dd15944ac59f1a64422808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySeller: {fileID: 4077630302651103244, guid: f6da99420f248a64891193a88883deca,
+    type: 3}
+  carObj:
+    rb: {fileID: 7495443279060062592}
+    car: {fileID: 0}
+    f_L_Wheel_Coll: {fileID: 2716459193614891142}
+    f_R_Wheel_Coll: {fileID: 4795950753765878369}
+    r_L_Wheel_Coll: {fileID: 3145262460232535540}
+    r_R_Wheel_Coll: {fileID: 1057494946909100755}
+    f_L_Wh_Transform: {fileID: 639405857522347959}
+    f_R_Wh_Transform: {fileID: 5536184018728695142}
+    r_L_Wh_Transform: {fileID: 8300722904061064130}
+    r_R_Wh_Transform: {fileID: 6888211214124850648}
+    carCanvas: {fileID: 3434951234668639019}
+  camVariables:
+    drvCamGameObj: {fileID: 0}
+    mainTransform: {fileID: 8984131568777894896, guid: dc57ae473a5c0e54ab133dcf056dcae7,
+      type: 3}
+    interactirSource: {fileID: 0}
+    driveCam: {fileID: 0}
+    followPoint: {fileID: 0}
+    mainCamObj: {fileID: 0}
+  characterCs: {fileID: 0}
+  horizontalInput: 0
+  verticalInput: 0
+  motorForce: 10000
+  handBreakForce: 50000
+  breakForce: 10000
+  maxSteerAngle: 30
+  maxSpeed: 0
+  speed: 0
+  frontWheels: 0
+  rearWheels: 0
+  camberAngle: 15
+  brakeInput: 0
+  isEngineRunning: 0
 --- !u!1 &3953746348255851067
 GameObject:
   m_ObjectHideFlags: 0

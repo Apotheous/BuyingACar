@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
+using Models;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Rendering.Universal;
 
 interface IInteractable
 {
@@ -71,10 +68,13 @@ public class Interactor : MonoBehaviour
                 if (hitInfo.collider.gameObject.TryGetComponent(out ISelectionCar getinthecar))
                 {
                     getinthecar.GetInTheCar();
-                    theCarImin = hitInfo.transform;
-                    speedometer.target = hitInfo.transform.gameObject.GetComponent<Rigidbody>();
-                    OnUnityEvent?.Invoke();
-
+                    if (hitInfo.transform.GetComponent<Car>().IsActive==true)
+                    {
+                        theCarImin = hitInfo.transform;
+                        speedometer.target = hitInfo.transform.gameObject.GetComponent<Rigidbody>();
+                        OnUnityEvent?.Invoke();
+                        Debug.Log("++++Open");
+                    }
                 }
             }
         }
@@ -87,6 +87,7 @@ public class Interactor : MonoBehaviour
                 theCarImin = null;
                 speedometer.target = null;
                 OnUnityEvent?.Invoke();
+                Debug.Log("++++Close");
             }
         }
     }
