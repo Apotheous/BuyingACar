@@ -73,7 +73,6 @@ public class Interactor : MonoBehaviour
                         theCarImin = hitInfo.transform;
                         speedometer.target = hitInfo.transform.gameObject.GetComponent<Rigidbody>();
                         OnUnityEvent?.Invoke();
-                        Debug.Log("++++Open");
                     }
                 }
             }
@@ -87,7 +86,6 @@ public class Interactor : MonoBehaviour
                 theCarImin = null;
                 speedometer.target = null;
                 OnUnityEvent?.Invoke();
-                Debug.Log("++++Close");
             }
         }
     }

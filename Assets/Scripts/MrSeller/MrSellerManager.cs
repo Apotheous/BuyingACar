@@ -40,7 +40,6 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
     public int gnrlPropValueCars = 0;
     Text carBttnText;
 
-    // Define a list of TextMeshProUGUI components
     public List<TextMeshProUGUI> textElements = new List<TextMeshProUGUI>(8);
 
     #endregion
@@ -65,10 +64,8 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
     {
         uiElements.carSelectionContentPanel.SetActive(false);
         uiElements.changedCarPropsPanel.SetActive(false);
-        // Invert the visibility of the mouse cursor
         Cursor.visible = !Cursor.visible;
 
-        //Reverse whether the mouse cursor is locked or not
         Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
     }
     public void MrSellerTalkOn()
@@ -84,36 +81,28 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
 
     void ShowCursor()
     {
-        //Make the mouse cursor visible
         Cursor.visible = true;
-
-        // Make the mouse cursor move freely
         Cursor.lockState = CursorLockMode.None;
     }
     #endregion
     private IEnumerator MrSellerStartFoncsDelayed()
     {
-        yield return new WaitForSeconds(0.1f); // Kýsa bir gecikme
+        yield return new WaitForSeconds(0.1f); 
 
         MrSellerStartFoncs();
     }
 
     private void MrSellerStartFoncs()
     {
-
         foreach (GameObject obj in ListCarSale)
         {
  
             GameObject newCarBtn = Instantiate(uiElements.bttnPrefab, uiElements.carSelectionContent.transform);
             newCarBtn.name = obj.name;
-
             carBttnText = newCarBtn.transform.GetChild(0).GetComponent<Text>();
             carBttnText.text = obj.name;
-
             newCarBtn.GetComponent<CarBttnPref>().carObjOfBttn = obj;
-
             GetGeneralPropVal(obj);
-
         }
 
         gnrlPropValueCars = gnrlPropValueCars / ListCarSale.Count;
@@ -184,7 +173,6 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
             }
         }
     }
-
     public void CarSelectionContentPanelOn()
     {
         uiElements.carSelectionContentPanel.SetActive(true);

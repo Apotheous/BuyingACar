@@ -36,7 +36,6 @@ public class CarController : MonoBehaviour,ISelectionCar
     }
     public CarObj carObj;
 
-    //Drive
     [System.Serializable]
     public class CamVariables
     {

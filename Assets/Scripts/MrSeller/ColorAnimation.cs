@@ -11,23 +11,15 @@ public class ColorAnimation : MonoBehaviour
     public Image maxSpeedImg;
     public Image torqueImg;
 
-
-    // Define colors as public so they can be set in the Inspector
     public Color lightPurple = new Color(0.8f, 0.4f, 0.8f);
     public Color darkPurple = new Color(0.4f, 0.0f, 0.4f);
 
-    // Set the speed of color change
     public float colorChangeSpeed = 1.0f;
     public bool isAnimationRunning;
     
 
     private ColorAnimationControl colorAnimationControl = new ColorAnimationControl();
 
-    void Start()
-    {
-        
-        
-    }
     private void Update()
     {
         if (m_Manager.gameObject.GetComponent<MrSellerManager>().BttnSelectCar != null) { StartColorChange(); }else { StopColorChange(); }

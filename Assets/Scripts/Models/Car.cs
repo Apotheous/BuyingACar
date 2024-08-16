@@ -8,20 +8,16 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    // Define a list of TextMeshProUGUI components
     public List<TextMeshProUGUI> textElements = new List<TextMeshProUGUI>(8);
     public CarMain carObject = new CarMain();
-    //string carNameThis;
 
- 
     [SerializeField]
     private bool isActive;
     public bool isScrap;
     [Tooltip("If the car lock sold is true, it is sold. It means the car can be used.")]
-    // Event tanýmlama
+
     public event Action<bool> OnValueChanged;
 
-    // bool deðiþkeni için özellik
     public bool IsActive
     {
         get => isActive;
@@ -30,7 +26,6 @@ public class Car : MonoBehaviour
             if (isActive != value)
             {
                 isActive = value;
-                // Deðer deðiþtiðinde event'i tetikle
                 OnValueChanged?.Invoke(isActive);
             }
         }
@@ -38,15 +33,12 @@ public class Car : MonoBehaviour
 
     void Awake()
     {
-
         SetCarPropsStart();
         PrintProperties();
-
     }
 
     private void PrintProperties()
     {
- 
         Debug.Log($" {carObject.ToString()}");
         textElements[0].text = carObject.name;
         textElements[1].text = carObject.damagedParts.ToString();
@@ -61,29 +53,22 @@ public class Car : MonoBehaviour
     private void SetCarPropsStart()
     {
         carObject = this.gameObject.AddComponent<CarMain>();
-        //carNameThis=this.gameObject.name;
         carObject.CarName(this.gameObject.name);
-
         carObject.InitializeRandomValues();
     }
 
     private void OnEnable()
     {
-        // Event'e abone ol
         OnValueChanged += HandleValueChanged;
-
-        // Test amaçlý olarak baþlangýçta deðeri deðiþtir
-        //IsActive = true;
     }
-    // Event tetiklendiðinde çaðrýlacak metod
     void HandleValueChanged(bool newValue)
     {
-        Debug.Log("IsActive changed to: " + newValue);
-        if (gameObject.GetComponent<CarController>().enabled ==false )
+        CarController carController = gameObject.GetComponent<CarController>();
+
+        if (carController.enabled)
         {
-            //gameObject.GetComponent<CarController>().enabled = true;
-        }else { gameObject.GetComponent<CarController>().enabled = false; }
-        
+            carController.enabled = false;
+        }
     }
     public void PriceCalculation()
     {
@@ -91,17 +76,12 @@ public class Car : MonoBehaviour
         newPrice=carObject.maxSpeed+carObject.torque+carObject.paintedParts+carObject.torque;
         newPrice = newPrice * 1000;
         carObject.price = newPrice;
-        Debug.Log("The car name ="+gameObject.name+"Car newPrice = "+newPrice);
         PrintProperties();
     }
     public void IsTheCarScrap()
     {
-
         int scrapPrice = carObject.price-1000;
         carObject.price = scrapPrice;
-        //Debug.Log("The car name ="+gameObject.name+"Car newPrice = "+newPrice);
         PrintProperties();
     }
-
-
 }

@@ -9,25 +9,20 @@ namespace Models
 {
     public class CarMain : MonoBehaviour
     {
-
         public string carName { get; set; }
-        //Factors That Will Affect the Sales Value of Vehicles
         public int generalPropValue { get; set; }
         public int damagedParts { get; set; }
         public int paintedParts { get; set; }
         public int maxSpeed { get; set; }
         public int torque { get; set; }
 
-        //Factors That Will Not Affect the Sales Value of Vehicles
         public int Suspensions { get; set; }
         public int wheelCamberValues { get; set; }
         public int price { get; set; }
-        //Constructor
         public virtual void CarName(string name)
         {
             carName = name;
         }
-
         public void InitializeRandomValues()
         {
             torque = Random.Range(5, 10);
