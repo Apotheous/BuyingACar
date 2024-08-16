@@ -17,7 +17,7 @@ public class CarController : MonoBehaviour,ISelectionCar
     public class CarObj
     {
         public Rigidbody rb;
-        public Car carObj;
+        public Car car;
 
         [Header("Wheel Colliders")]
         public WheelCollider f_L_Wheel_Coll;
@@ -84,7 +84,7 @@ public class CarController : MonoBehaviour,ISelectionCar
         characterCs = GameObject.Find("PlayerCapsule");
         camVariables.interactirSource =camVariables.mainCamObj.GetComponent<Camera>() ;//Camera.main
 
-        carObj.carObj = GetComponent<Car>();
+        carObj.car = GetComponent<Car>();
         carObj.rb = GetComponent<Rigidbody>();
         carObj.rb.centerOfMass = new Vector3(0, -0.5f, 0);
 
@@ -103,8 +103,8 @@ public class CarController : MonoBehaviour,ISelectionCar
     private void Start()
     {
         mySeller.GetComponent<MrSellerManager>();
-        maxSpeed= carObj.carObj.carObject.maxSpeed * 10*3.6f;  
-        motorForce= carObj.carObj.carObject.torque * 1000;
+        maxSpeed= carObj.car.carObject.maxSpeed * 10*3.6f;  
+        motorForce= carObj.car.carObject.torque * 1000;
         SupensionCase();
     }
 
@@ -124,7 +124,7 @@ public class CarController : MonoBehaviour,ISelectionCar
     #region Propeties Assignment
     void SupensionCase()
     {
-        switch (carObj.carObj.carObject.Suspensions)
+        switch (carObj.car.carObject.Suspensions)
         {
             case 3:
                 frontWheels = 0f;
@@ -162,8 +162,6 @@ public class CarController : MonoBehaviour,ISelectionCar
     #region Autonomous Controls
     private void MaxSpeed()
     {
-        //speed = carObj.rb.velocity.magnitude;
-
         if (carObj.rb.velocity.magnitude > maxSpeed)
         {
             carObj.rb.velocity = Vector3.ClampMagnitude(carObj.rb.velocity, maxSpeed);
@@ -173,21 +171,15 @@ public class CarController : MonoBehaviour,ISelectionCar
     {
         if (verticalInput == 0)
         {
-            // Arabanýn hýzýný yavaþça azaltmak için Lerp kullanýyoruz
-            float decelerationRate = 0.5f; // Yavaþlama hýzý
+            float decelerationRate = 0.5f;
             carObj.rb.velocity = Vector3.Lerp(carObj.rb.velocity, Vector3.zero, decelerationRate * Time.deltaTime);
-
-            // Dragý her saniye 0.01 artýran metodu çaðýrýyoruz
             IncreaseDragOverTime(0.02f);
         }
         else
         {
-            // Input olduðu sürece mevcut hýzý saklýyoruz
             currentSpeed = carObj.rb.velocity.magnitude;
             carObj.rb.drag = 0;
         }
-
-        // Dragý artýran metod
         void IncreaseDragOverTime(float increment)
         {
             carObj.rb.drag += increment * Time.deltaTime;
@@ -198,16 +190,13 @@ public class CarController : MonoBehaviour,ISelectionCar
     #region Inputs and Informations
     private void GetInput()
     {
-        // Steering Input
         horizontalInput = Input.GetAxis("Horizontal");
 
-        // Acceleration Input
         verticalInput = Input.GetAxis("Vertical");
         if (Mathf.Abs(verticalInput) > 0 && isEngineRunning == 0)
         {
             StartCoroutine(GetComponent<EngineAudio>().StartEngine());
         }
-        //fixed code to brake even after going on reverse by Andrew Alex 
         float movingDirection = Vector3.Dot(transform.forward, carObj.rb.velocity);
         if (movingDirection < -0.5f && verticalInput > 0)
         {
@@ -229,23 +218,23 @@ public class CarController : MonoBehaviour,ISelectionCar
 
     public void GetInTheCar()
     {
-        if (carObj.carObj.IsActive == true && mySeller.SoldCarList.Contains(gameObject))
+        if (carObj.car.IsActive == true && mySeller.SoldCarList.Contains(gameObject))
         {
 
-            camVariables.driveCam.SetParent(carObj.carObj.transform);
-            camVariables.followPoint.SetParent(carObj.carObj.transform);
+            camVariables.driveCam.SetParent(carObj.car.transform);
+            camVariables.followPoint.SetParent(carObj.car.transform);
             camVariables.driveCam.gameObject.SetActive(true);
             characterCs.gameObject.SetActive(false);
-            characterCs.transform.SetParent(carObj.carObj.transform);
+            characterCs.transform.SetParent(carObj.car.transform);
 
-            Vector3 carPos = new Vector3(carObj.carObj.transform.position.x, carObj.carObj.transform.position.y + 1f, carObj.carObj.transform.position.z);
-            carObj.carObj.GetComponent<Rigidbody>().isKinematic = false;
+            Vector3 carPos = new Vector3(carObj.car.transform.position.x, carObj.car.transform.position.y + 1f, carObj.car.transform.position.z);
+            carObj.car.GetComponent<Rigidbody>().isKinematic = false;
             camVariables.followPoint.position = carPos;
-            camVariables.followPoint.rotation = carObj.carObj.transform.rotation;
+            camVariables.followPoint.rotation = carObj.car.transform.rotation;
 
-            carObj.carObj.transform.gameObject.GetComponent<CarController>().enabled = true;
+            carObj.car.transform.gameObject.GetComponent<CarController>().enabled = true;
             camVariables.interactirSource.GetComponent<Interactor>().inCar = true;
-            camVariables.interactirSource.GetComponent<Interactor>().theCarImin = carObj.carObj.transform;
+            camVariables.interactirSource.GetComponent<Interactor>().theCarImin = carObj.car.transform;
             carObj.carCanvas.SetActive(false);
             gameObject.GetComponent<EngineAudio>().isEngineRunning = true;
             gameObject.GetComponent<EngineAudio>().startingSound.Play();
@@ -260,8 +249,8 @@ public class CarController : MonoBehaviour,ISelectionCar
         camVariables.driveCam.gameObject.SetActive(false);
         characterCs.transform.SetParent(null);
         characterCs.gameObject.SetActive(true);
-        carObj.carObj.GetComponent<Rigidbody>().isKinematic = true;
-        carObj.carObj.transform.gameObject.GetComponent<CarController>().enabled = false;
+        carObj.car.GetComponent<Rigidbody>().isKinematic = true;
+        carObj.car.transform.gameObject.GetComponent<CarController>().enabled = false;
         camVariables.interactirSource.GetComponent<Interactor>().inCar = false;
         carObj.carCanvas.SetActive(true);
         gameObject.GetComponent<EngineAudio>().isEngineRunning=false;
@@ -284,9 +273,9 @@ public class CarController : MonoBehaviour,ISelectionCar
                 carObj.f_R_Wheel_Coll.motorTorque = 0;
                 carObj.f_L_Wheel_Coll.motorTorque = 0;
             }
-    }
+        }
 
-}
+    }
     private void HandleSteering()
     {
         currentSteerAngle = maxSteerAngle * horizontalInput;
@@ -302,7 +291,6 @@ public class CarController : MonoBehaviour,ISelectionCar
         carObj.r_L_Wheel_Coll.brakeTorque = brakeInput * handBreakForce * 0.3f;
         carObj.r_R_Wheel_Coll.brakeTorque = brakeInput * handBreakForce * 0.3f;
     }
-
 
     #endregion
 

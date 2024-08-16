@@ -23,7 +23,6 @@ public class EngineAudio : MonoBehaviour
 
 
     private CarController carController;
-    // Start is called before the first frame update
     void Start()
     {
         carController = GetComponent<CarController>();
@@ -32,7 +31,6 @@ public class EngineAudio : MonoBehaviour
         reverseSound.volume = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float speedSign=0;
