@@ -81,7 +81,7 @@ public class CarController : MonoBehaviour,ISelectionCar
         camVariables.drvCamGameObj = GameObject.Find("Drive Cam");
         camVariables.mainCamObj = GameObject.Find("MainCamera");
         characterCs = GameObject.Find("PlayerCapsule");
-        camVariables.interactirSource =camVariables.mainCamObj.GetComponent<Camera>() ;//Camera.main
+        camVariables.interactirSource =camVariables.mainCamObj.GetComponent<Camera>();
 
         carObj.car = GetComponent<Car>();
         carObj.rb = GetComponent<Rigidbody>();
