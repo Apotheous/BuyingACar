@@ -43,9 +43,11 @@ public class MrSellerManager : MonoBehaviour,ISelectionSeller
     public List<TextMeshProUGUI> textElements = new List<TextMeshProUGUI>(8);
 
     #endregion
+    public int gold;
     void Start()
     {
         StartCoroutine(MrSellerStartFoncsDelayed());
+        gold = 100000;
     }
     #region TalkSellerMethods
     public void SelectionSeller()
