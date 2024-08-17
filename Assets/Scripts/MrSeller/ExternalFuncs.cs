@@ -36,7 +36,6 @@ public class ExternalFuncs : MonoBehaviour
             if (!m_Manager.SoldCarList.Contains(m_Manager.BttnSelectCar) )
             {
                 m_Manager.gold += m_Manager.BttnSelectCar.gameObject.GetComponent<CarMain>().price;
-                //playerSc.gold -=m_Manager.BttnSelectCar.gameObject.GetComponent<CarMain>().price;
                 playerSc.ChangeGold(-m_Manager.BttnSelectCar.gameObject.GetComponent<CarMain>().price);
                 m_Manager.SoldCarList.Add(m_Manager.BttnSelectCar);
                 m_Manager.ListCarSale.Remove(m_Manager.BttnSelectCar);
@@ -50,5 +49,11 @@ public class ExternalFuncs : MonoBehaviour
         {
             Debug.LogWarning("You don't have money to buy this car");
         }
+    }
+
+    public void SelectCarNull()
+    {
+        m_Manager.BttnSelectCar.GetComponent<Car>().IsActive = false;
+        m_Manager.BttnSelectCar= null;
     }
 }

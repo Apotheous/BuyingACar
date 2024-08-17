@@ -16,6 +16,7 @@ public class DialogueStarter : MonoBehaviour
         dialogBehaviour.BindExternalFunction("Discount", externalFunc.Discount);
         dialogBehaviour.BindExternalFunction("ScrapBargaining", externalFunc.ScrapBargaining);
         dialogBehaviour.BindExternalFunction("SaleListToSoldList", externalFunc.SaleListToSoldList);
+        dialogBehaviour.BindExternalFunction("SelectCarNull", externalFunc.SelectCarNull);
     }
     public void DialogStart()
     {
