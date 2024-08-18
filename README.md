@@ -27,7 +27,7 @@ Once a car is purchased, players can drive it around the map.
 To interact with the seller, look at them and press the "X" key.
 To enter and drive the purchased car, look at the vehicle and press the "E" key.
 
-Driving Controls:
+* Driving Controls:
 
 -"W" for Forward
 
