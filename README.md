@@ -49,7 +49,7 @@ Car Store Management: Configure the cars available for sale in the Store Manager
   
 Car attributes are randomly generated within a specified range each time the game starts. This process is handled in the CarMain class and is invoked through the InitializeRandomValues() method within the Car class.
 
-*Driving Mechanics
+* Driving Mechanics
 
 The CarController class is responsible for controlling the car's driving mechanics.
 
