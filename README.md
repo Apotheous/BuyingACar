@@ -5,12 +5,19 @@ https://github.com/user-attachments/assets/77d319d9-910b-40f9-9b00-fdc5b4e9dfee
 This project is designed to allow players to purchase and drive various cars. Each car has customizable attributes, including:
 
 -Torque
+
 -Maximum Speed
+
 -Damaged Parts
+
 -Painted Parts
+
 -Suspension
+
 -Wheel Camber
+
 -Price
+
 The initial price of each car is set at 50,000 gold. Players can negotiate to lower the price, which will be recalculated based on the car's specific attributes. If the new price is still unsatisfactory and the car's condition is sufficiently poor, there may be further opportunities for a price reduction.
 
 Once a car is purchased, players can drive it around the map.
