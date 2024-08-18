@@ -53,3 +53,6 @@ Car attributes are randomly generated within a specified range each time the gam
 
 The CarController class is responsible for controlling the car's driving mechanics.
 
+Link to the 3rd party library I used for the dialogue system.
+https://github.com/OlegVishnivetsky/node-based-dialog-system
+
